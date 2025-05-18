@@ -1,0 +1,78 @@
+.left_pane_background {
+  -fx-background-color: #e98888;
+}
+
+.right_pane_background {
+  -fx-background-color: #ddee7e;
+}
+
+.top_pane_background {
+  -fx-background-color: #87dd87cb;
+}
+
+.bottom_pane_background {
+  -fx-background-color: #9c9df3b7;
+}
+
+.btn_system {
+  -fx-background-color: #55b86e;
+  -fx-text-fill: #000000;
+}
+
+.adn_button_radius {
+  -fx-background-radius: 12px;
+}
+
+.btn_play {
+  -fx-background-color: #588cd9;
+  -fx-background-radius: 110px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.btn_play:hover {
+  -fx-background-color: #3761a2;
+}
+
+.btn_play > Label {
+  -fx-text-fill: #ffffff;
+}
+
+.btn_play:hover > Label {
+  -fx-text-fill: #e2e2e2;
+}
+
+.btn_tutorial {
+  -fx-background-color: #edaa5e;
+  -fx-background-radius: 110px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.btn_tutorial > Label {
+  -fx-text-fill: #ffffff;
+}
+
+.btn_tutorial:hover > Label {
+  -fx-text-fill: #e2e2e2;
+}
+
+.btn_tutorial:hover {
+  -fx-background-color: #c78b3f;
+}
+
+.btn_keluar {
+  -fx-background-color: #d95858;
+  -fx-background-radius: 110px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.btn_keluar > Label {
+  -fx-text-fill: #ffffff;
+}
+
+.btn_keluar:hover > Label {
+  -fx-text-fill: #e2e2e2;
+}
+
+.btn_keluar:hover {
+  -fx-background-color: #a83c3c;
+}
