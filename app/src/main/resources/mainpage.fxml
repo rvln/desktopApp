@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="800.0" fitWidth="1024.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-preserve-ratio: false;">
          <image>
-            <Image url="desain/BackgroundFX.png" />
+            <Image url="@desain/BackgroundFX.png" />
          </image>
          <viewport>
             <Rectangle2D />
@@ -49,7 +49,7 @@
                                           <Rectangle2D />
                                        </viewport>
                                        <image>
-                                          <Image url="desain/Button System/info-lg.png" />
+                                          <Image url="@desain/Button System/info-lg.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -69,7 +69,7 @@
                                           <Rectangle2D />
                                        </viewport>
                                        <image>
-                                          <Image url="desain/Button System/icon.png" />
+                                          <Image url="@desain/Button System/icon.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -102,7 +102,7 @@
                                     <Rectangle2D />
                                  </viewport>
                                  <image>
-                                    <Image url="desain/Button System/Bantuan.png" />
+                                    <Image url="@desain/Button System/Bantuan.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -120,7 +120,7 @@
                <children>
                   <ImageView fitHeight="202.0" fitWidth="415.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                      <image>
-                        <Image url="desain/Judul.png" />
+                        <Image url="@desain/Judul.png" />
                      </image>
                   </ImageView>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" >
@@ -134,7 +134,7 @@
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="desain/CTA BUTTON/Icon Play.png" />
+                                          <Image url="@desain/CTA BUTTON/Icon Play.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="20.0" />
@@ -154,7 +154,7 @@
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="desain/CTA BUTTON/Lampu.png" />
+                                          <Image url="@desain/CTA BUTTON/Lampu.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="24.0" />
@@ -177,7 +177,7 @@
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="desain/CTA BUTTON/X.png" />
+                                          <Image url="@desain/CTA BUTTON/X.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="20.0" />
