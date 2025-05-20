@@ -25,19 +25,19 @@
       </ImageView>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <left>
-            <VBox prefHeight="200.0" prefWidth="155.0"  BorderPane.alignment="CENTER" />
+            <VBox prefHeight="200.0" prefWidth="155.0" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <VBox prefHeight="200.0" prefWidth="155.0"  BorderPane.alignment="CENTER" />
+            <VBox prefHeight="200.0" prefWidth="155.0" BorderPane.alignment="CENTER" />
          </right>
          <top>
-            <HBox prefHeight="100.0" prefWidth="200.0"  BorderPane.alignment="CENTER">
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="160.0" >
+                  <VBox prefHeight="200.0" prefWidth="160.0">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="218.0" spacing="16.0" >
+                        <HBox prefHeight="100.0" prefWidth="218.0" spacing="16.0">
                            <children>
-                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" >
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#showInfo" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
                                  <styleClass>
                                     <String fx:value="right_pane_background" />
                                     <String fx:value="btn_system" />
@@ -57,7 +57,7 @@
                                     <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                                  </padding>
                               </Pane>
-                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" >
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
                                  <styleClass>
                                     <String fx:value="right_pane_background" />
                                     <String fx:value="btn_system" />
@@ -84,13 +84,13 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Pane prefHeight="200.0" prefWidth="653.0"  />
-                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="218.0" spacing="16.0" >
+                  <Pane prefHeight="200.0" prefWidth="653.0" />
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="218.0" spacing="16.0">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                      <children>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" >
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
                            <styleClass>
                               <String fx:value="right_pane_background" />
                               <String fx:value="btn_system" />
@@ -116,21 +116,21 @@
             </HBox>
          </top>
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0"  BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="202.0" fitWidth="415.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                      <image>
                         <Image url="@desain/Judul.png" />
                      </image>
                   </ImageView>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" >
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0">
                      <VBox.margin>
                         <Insets top="60.0" />
                      </VBox.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="300.0" prefWidth="210.0" spacing="24.0" >
+                        <VBox alignment="CENTER" prefHeight="300.0" prefWidth="210.0" spacing="24.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="218.0" styleClass="btn_play" >
+                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="218.0" styleClass="btn_play" stylesheets="@style.css">
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -150,7 +150,7 @@
                                     <Insets left="35.0" />
                                  </padding>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="218.0" styleClass="btn_tutorial" >
+                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="218.0" styleClass="btn_tutorial" stylesheets="@style.css">
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -160,7 +160,7 @@
                                           <Insets right="24.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Label alignment="CENTER" contentDisplay="CENTER"  text="Tutorial" textFill="WHITE">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Tutorial" textFill="WHITE">
                                        <font>
                                           <Font name="Lapsus Pro Bold" size="28.0" />
                                        </font>
@@ -173,7 +173,7 @@
                                     <Insets left="30.0" />
                                  </padding>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="218.0" spacing="4.0" styleClass="btn_keluar" >
+                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="218.0" spacing="4.0" styleClass="btn_keluar" stylesheets="@style.css">
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
