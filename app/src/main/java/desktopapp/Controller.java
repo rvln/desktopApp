@@ -30,7 +30,7 @@ public class Controller {
     private void showInfo(MouseEvent event) {
         try {
             // Load FXML untuk pop-up
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/desktopapp/popupinfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/popupinfo.fxml"));
             Parent root = loader.load();
 
             // Buat stage baru untuk pop-up
@@ -45,16 +45,6 @@ public class Controller {
 
         } catch (IOException e) {
             e.printStackTrace(); // Debug output
-        }
-    }
-
-
-    @FXML
-    void handleButtonAction(ActionEvent event) {
-        // Contoh: dari sini kamu sekarang bisa akses mainWindow kalau mau
-        System.out.println("Button diklik!");
-        if (mainWindow != null) {
-            System.out.println("Window title: " + mainWindow.getTitle());
         }
     }
 }

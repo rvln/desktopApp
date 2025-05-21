@@ -21,6 +21,10 @@
   -fx-text-fill: #000000;
 }
 
+.btn_system:hover {
+  -fx-background-color: #3d9553;
+}
+
 .adn_button_radius {
   -fx-background-radius: 12px;
 }
