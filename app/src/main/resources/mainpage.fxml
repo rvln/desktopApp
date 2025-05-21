@@ -208,6 +208,7 @@
          </BorderPane>
       </children>
    </AnchorPane>
+   <Pane fx:id="disableLayer" prefHeight="200.0" prefWidth="200.0" styleClass="disableLayer_background" stylesheets="@style.css" visible="false" mouseTransparent="false" />
 
    <AnchorPane fx:id="overlayPopup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -369,9 +370,9 @@
          </bottom>
       </BorderPane>
    </children>
-   <styleClass>
-      <String fx:value="info_background" />
-      <String fx:value="adn_button_radius" />
-   </styleClass>
+      <styleClass>
+         <String fx:value="info_background" />
+         <String fx:value="adn_button_radius" />
+      </styleClass>
 </AnchorPane>
 </StackPane>

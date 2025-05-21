@@ -89,8 +89,13 @@
 
 /* infoPopup */
 
+.disableLayer_background {
+  -fx-background-color: rgba(0, 0, 0, 0.425);
+}
+
 .info_background {
   -fx-background-color: #3e434a;
+  -fx-effect: dropshadow(gaussian, rgba(34, 34, 34, 0.616), 4, 0, 0, 4);
 }
 
 .info_background_content {
