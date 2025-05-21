@@ -1,42 +1,48 @@
 package desktopapp;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage; // ini perlu di-import buat Stage
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
-public class Controller {
+import java.util.ResourceBundle;
+import java.net.URL;
 
-    private Stage mainWindow; // bikin variabel buat nyimpan Stage
+import javafx.animation.FadeTransition;
+import javafx.util.Duration;
 
-    public void setMainWindow(Stage stage) {
-        this.mainWindow = stage;
-    }
+public class Controller implements javafx.fxml.Initializable {
 
     @FXML
+    private AnchorPane mainPage;
+
+    @FXML
+    private AnchorPane overlayPopup;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Sembunyikan popup saat pertama kali aplikasi dibuka
+        overlayPopup.setVisible(false);
+    }
+
+    // Menampilkan popup overlay
+    @FXML
     private void showInfo(MouseEvent event) {
-        try {
-            // Load FXML untuk pop-up
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/infoPopup.fxml"));
-            Parent root = loader.load();
+        overlayPopup.setVisible(true);
 
-            // Buat stage baru untuk pop-up
-            Stage popupStage = new Stage();
-            popupStage.setTitle("Informasi");
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Block window lain sampai ditutup
-            popupStage.setResizable(false);
+        // Efek fade-in biar halus
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(200), overlayPopup);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+        fadeIn.play();
+    }
 
-            // Tampilkan scene dari popupinfo.fxml
-            popupStage.setScene(new Scene(root));
-            popupStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace(); // Debug output
-        }
+    // Sembunyikan popup overlay (misalnya pakai tombol close di overlay)
+    @FXML
+    private void closePopup(MouseEvent event) {
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(200), overlayPopup);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.setOnFinished(e -> overlayPopup.setVisible(false));
+        fadeOut.play();
     }
 }
