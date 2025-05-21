@@ -10,14 +10,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainpage.fxml")); // <- Path benar
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainpage.fxml"));
         Pane root = loader.load();
 
         Controller controller = loader.getController();
         controller.setMainWindow(primaryStage);
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm()); // <- Path benar
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 
         primaryStage.setMinWidth(700);
         primaryStage.setMinHeight(500);

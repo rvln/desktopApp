@@ -2,23 +2,15 @@ package desktopapp;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage; // ini perlu di-import buat Stage
 import javafx.scene.input.MouseEvent;
 
 public class Controller {
-
-    @FXML
-    private Button textField1;
-
-    @FXML
-    private Button textField2;
 
     private Stage mainWindow; // bikin variabel buat nyimpan Stage
 
@@ -30,7 +22,7 @@ public class Controller {
     private void showInfo(MouseEvent event) {
         try {
             // Load FXML untuk pop-up
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/popupinfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/infoPopup.fxml"));
             Parent root = loader.load();
 
             // Buat stage baru untuk pop-up
