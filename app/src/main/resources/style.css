@@ -114,8 +114,16 @@
   -fx-effect: dropshadow(gaussian, rgba(49, 49, 49, 0.25), 4, 0, 0, 4);
 }
 
+.info_button_kembali:hover {
+  -fx-background-color: #3761a2;
+}
+
 .border_button {
   -fx-border-color: #55b86e;
   -fx-border-radius: 110px;
   -fx-border-width: 1px;
+}
+
+.border_button:hover {
+  -fx-background-color: #3d9553;
 }
