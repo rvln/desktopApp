@@ -210,169 +210,205 @@
    </AnchorPane>
    <Pane fx:id="disableLayer" mouseTransparent="false" prefHeight="200.0" prefWidth="200.0" styleClass="disableLayer_background" stylesheets="@style.css" visible="false" />
 
-   <AnchorPane fx:id="overlayPopup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane layoutX="-35.0" prefHeight="400.0" prefWidth="547.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <VBox prefHeight="200.0" prefWidth="200.0" spacing="10.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="392.0" stylesheets="@style.css">
-                     <children>
-                        <Label text="INFORMASI" textFill="WHITE">
-                           <font>
-                              <Font name="Lapsus Pro Bold" size="36.0" />
-                           </font>
-                        </Label>
-                     </children>
+   <AnchorPane fx:id="overlayPopup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="712.0" stylesheets="@style.css">
+      <children>
+         <BorderPane layoutX="-35.0" prefHeight="400.0" prefWidth="547.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
+                  <children>
+                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="392.0" stylesheets="@style.css">
+                        <children>
+                           <Label alignment="CENTER" text="INFORMASI" textFill="WHITE">
+                              <font>
+                                 <Font name="Lapsus Pro Bold" size="42.0" />
+                              </font>
+                           </Label>
+                        </children>
+                        <padding>
+                           <Insets bottom="20.0" top="10.0" />
+                        </padding>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                     </HBox>
+                     <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="452.0" spacing="140.0" stylesheets="@style.css">
+                        <children>
+                           <HBox fx:id="infoProfil" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="140.0" stylesheets="@style.css">
+                              <children>
+                                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="80.0" text="Profil" textFill="WHITE">
+                                    <font>
+                                       <Font name="Lapsus Pro Bold" size="28.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                              <styleClass>
+                                 <String fx:value="btn_system" />
+                                 <String fx:value="medium_button_radius" />
+                              </styleClass>
+                           </HBox>
+                           <HBox fx:id="infoSumber" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="160.0" stylesheets="@style.css">
+                              <children>
+                                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="95.0" text="Sumber" textFill="WHITE">
+                                    <font>
+                                       <Font name="Lapsus Pro Bold" size="28.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                              <styleClass>
+                                 <String fx:value="border_button" />
+                                 <String fx:value="medium_button_radius" />
+                              </styleClass>
+                           </HBox>
+                        </children>
+                     </HBox>
+                     <HBox fx:id="infoContent" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="540.0" spacing="25.0" stylesheets="@style.css">
+                        <VBox.margin>
+                           <Insets top="20.0" />
+                        </VBox.margin>
+                        <styleClass>
+                           <String fx:value="info_background_content" />
+                           <String fx:value="adn_button_radius" />
+                        </styleClass>
+                        <children>
+                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0" spacing="25.0" stylesheets="@style.css">
+                              <children>
+                                 <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" stylesheets="@style.css">
+                                    <styleClass>
+                                       <String fx:value="info_background" />
+                                       <String fx:value="info_avatar" />
+                                    </styleClass>
+                                 </HBox>
+                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
+                                    <children>
+                                       <Label text="Frico Putung" textFill="WHITE">
+                                          <font>
+                                             <Font name="Lapsus Pro Bold" size="18.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
+                                       <children>
+                                          <Label text="220211060359" textFill="WHITE">
+                                             <font>
+                                                <Font name="Lapsus Pro Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="-30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                              </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="25.0" stylesheets="@style.css">
+                              <children>
+                                 <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" stylesheets="@style.css">
+                                    <styleClass>
+                                       <String fx:value="info_background" />
+                                       <String fx:value="info_avatar" />
+                                    </styleClass>
+                                 </HBox>
+                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" stylesheets="@style.css">
+                                    <children>
+                                       <Label text="Syifabela Suratinoyo" textFill="WHITE">
+                                          <font>
+                                             <Font name="Lapsus Pro Bold" size="18.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" stylesheets="@style.css">
+                                       <children>
+                                          <Label text="220211060344" textFill="WHITE">
+                                             <font>
+                                                <Font name="Lapsus Pro Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="-30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                              </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0" spacing="25.0" stylesheets="@style.css">
+                              <children>
+                                 <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" stylesheets="@style.css">
+                                    <styleClass>
+                                       <String fx:value="info_background" />
+                                       <String fx:value="info_avatar" />
+                                    </styleClass>
+                                 </HBox>
+                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
+                                    <children>
+                                       <Label text="Kevin Rimper" textFill="WHITE">
+                                          <font>
+                                             <Font name="Lapsus Pro Bold" size="18.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
+                                       <children>
+                                          <Label text="220211060364" textFill="WHITE">
+                                             <font>
+                                                <Font name="Lapsus Pro Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="-30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </center>
+            <bottom>
+               <HBox alignment="CENTER" prefHeight="71.0" prefWidth="512.0" BorderPane.alignment="CENTER">
+                  <children>
+                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closePopup" prefHeight="40.0" prefWidth="140.0" spacing="5.0" stylesheets="@style.css">
+                        <children>
+                           <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                              <HBox.margin>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </HBox.margin>
+                              <image>
+                                 <Image url="@desain/icon/L_Chevron.png" />
+                              </image>
+                           </ImageView>
+                           <Label alignment="CENTER" prefHeight="21.0" prefWidth="70.0" text="Kembali" textFill="WHITE">
+                              <font>
+                                 <Font name="Lapsus Pro Bold" size="18.0" />
+                              </font>
+                           </Label>
+                        </children>
+                        <padding>
+                           <Insets left="10.0" right="10.0" />
+                        </padding>
+                        <styleClass>
+                           <String fx:value="bottom_pane_background" />
+                           <String fx:value="info_button_kembali" />
+                        </styleClass>
+                        <HBox.margin>
+                           <Insets left="20.0" top="20.0" />
+                        </HBox.margin>
+                     </HBox>
+                  </children>
                      <padding>
-                        <Insets top="20.0" />
+                        <Insets bottom="40.0" />
                      </padding>
-                  </HBox>
-                  <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="392.0" spacing="80.0" stylesheets="@style.css">
-                     <children>
-                        <HBox fx:id="infoProfil" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" stylesheets="@style.css">
-                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="80.0" text="Profil" textFill="WHITE">
-                                 <font>
-                                    <Font name="Lapsus Pro Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <styleClass>
-                              <String fx:value="btn_system" />
-                              <String fx:value="medium_button_radius" />
-                           </styleClass>
-                        </HBox>
-                        <HBox fx:id="infoSumber" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" stylesheets="@style.css">
-                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="80.0" text="Sumber" textFill="WHITE">
-                                 <font>
-                                    <Font name="Lapsus Pro Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <styleClass>
-                              <String fx:value="border_button" />
-                              <String fx:value="medium_button_radius" />
-                           </styleClass>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="infoContent" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="392.0" spacing="20.0" stylesheets="@style.css">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="info_background_content" />
-                        <String fx:value="adn_button_radius" />
-                     </styleClass>
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" stylesheets="@style.css">
-                           <children>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
-                                 <styleClass>
-                                    <String fx:value="info_background" />
-                                    <String fx:value="info_avatar" />
-                                 </styleClass>
-                              </HBox>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
-                                 <children>
-                                    <Label text="Anggota 1" textFill="WHITE">
-                                       <font>
-                                          <Font name="Lapsus Pro Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" stylesheets="@style.css">
-                           <children>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
-                                 <styleClass>
-                                    <String fx:value="info_background" />
-                                    <String fx:value="info_avatar" />
-                                 </styleClass>
-                              </HBox>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
-                                 <children>
-                                    <Label text="Anggota 2" textFill="WHITE">
-                                       <font>
-                                          <Font name="Lapsus Pro Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" stylesheets="@style.css">
-                           <children>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
-                                 <styleClass>
-                                    <String fx:value="info_background" />
-                                    <String fx:value="info_avatar" />
-                                 </styleClass>
-                              </HBox>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
-                                 <children>
-                                    <Label text="Anggota 3" textFill="WHITE">
-                                       <font>
-                                          <Font name="Lapsus Pro Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </center>
-         <left>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="60.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <Pane prefHeight="200.0" prefWidth="60.0" BorderPane.alignment="CENTER" />
-         </right>
-         <bottom>
-            <HBox prefHeight="71.0" prefWidth="512.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closePopup" prefHeight="30.0" prefWidth="100.0" spacing="5.0" stylesheets="@style.css">
-                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </HBox.margin>
-                           <image>
-                              <Image url="@desain/icon/L_Chevron.png" />
-                           </image>
-                        </ImageView>
-                        <Label alignment="CENTER" prefHeight="19.0" prefWidth="55.0" text="Kembali" textFill="WHITE">
-                           <font>
-                              <Font name="Lapsus Pro Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="bottom_pane_background" />
-                        <String fx:value="info_button_kembali" />
-                     </styleClass>
-                     <HBox.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </HBox.margin>
-                  </HBox>
-               </children>
-            </HBox>
-         </bottom>
-      </BorderPane>
-   </children>
-      <styleClass>
-         <String fx:value="info_background" />
-         <String fx:value="adn_button_radius" />
-      </styleClass>
-</AnchorPane>
+               </HBox>
+            </bottom>
+         </BorderPane>
+      </children>
+         <styleClass>
+            <String fx:value="info_background" />
+            <String fx:value="adn_button_radius" />
+         </styleClass>
+   </AnchorPane>
 </StackPane>
