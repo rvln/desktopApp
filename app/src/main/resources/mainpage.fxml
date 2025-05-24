@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,6 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <StackPane fx:id="rootPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopapp.Controller">
@@ -21,9 +21,6 @@
             <image>
                <Image url="@desain/BackgroundFX.png" />
             </image>
-            <viewport>
-               <Rectangle2D />
-            </viewport>
          </ImageView>
          <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -47,9 +44,6 @@
                                     </styleClass>
                                     <children>
                                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                          <viewport>
-                                             <Rectangle2D />
-                                          </viewport>
                                           <image>
                                              <Image url="@desain/Button System/info-lg.png" />
                                           </image>
@@ -59,21 +53,21 @@
                                        <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                                     </padding>
                                  </Pane>
-                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
-                                     <styleClass>
-                                         <String fx:value="right_pane_background" />
-                                         <String fx:value="btn_system" />
-                                         <String fx:value="adn_button_radius" />
-                                     </styleClass>
-                                     <children>
-                                         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                 <Image url="@desain/Button System/icon.png" /> </image>
-                                         </ImageView>
-                                     </children>
-                                      <padding>
-                                          <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
-                                      </padding>
+                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#showSettingsPopup" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
+                                    <styleClass>
+                                       <String fx:value="right_pane_background" />
+                                       <String fx:value="btn_system" />
+                                       <String fx:value="adn_button_radius" />
+                                    </styleClass>
+                                    <children>
+                                       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@desain/Button System/icon.png" /> </image>
+                                       </ImageView>
+                                    </children>
+                                    <padding>
+                                       <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                                    </padding>
                                  </Pane>
                               </children>
                               <padding>
@@ -88,29 +82,30 @@
                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </padding>
                         <children>
-                            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
-                                 <styleClass>
-                                     <String fx:value="right_pane_background" />
-                                     <String fx:value="btn_system" />
-                                     <String fx:value="adn_button_radius" />
-                                 </styleClass>
-                                 <children>
-                                     <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                         <image>
-                                             <Image url="@desain/Button System/Bantuan.png" /> </image>
-                                     </ImageView>
-                                 </children>
-                                  <padding>
-                                      <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
-                                  </padding>
-                             </Pane>
+                           <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
+                              <styleClass>
+                                 <String fx:value="right_pane_background" />
+                                 <String fx:value="btn_system" />
+                                 <String fx:value="adn_button_radius" />
+                              </styleClass>
+                              <children>
+                                 <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@desain/Button System/Bantuan.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                              <padding>
+                                 <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                              </padding>
+                           </Pane>
                         </children>
                      </HBox>
                   </children>
                </HBox>
             </top>
             <center>
-               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                   <children>
                      <ImageView fitHeight="202.0" fitWidth="415.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                         <image>
@@ -197,9 +192,14 @@
          </BorderPane>
       </children>
    </AnchorPane>
+
    <Pane fx:id="disableLayer" mouseTransparent="false" prefHeight="200.0" prefWidth="200.0" styleClass="disableLayer_background" stylesheets="@style.css" visible="false" />
 
    <AnchorPane fx:id="overlayPopup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="712.0" stylesheets="@style.css" visible="false">
+      <styleClass>
+         <String fx:value="info_background" />
+         <String fx:value="adn_button_radius" />
+      </styleClass>
       <children>
          <BorderPane prefHeight="600.0" prefWidth="712.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
@@ -246,15 +246,14 @@
                         <VBox.margin>
                            <Insets top="20.0" />
                         </VBox.margin>
-                        <children>
-                           </children>
                      </HBox>
                   </children>
                </VBox>
             </center>
             <bottom>
-               <HBox alignment="CENTER" prefHeight="71.0" prefWidth="712.0" BorderPane.alignment="CENTER"> <children>
-                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closePopup" prefHeight="40.0" prefWidth="140.0" spacing="5.0" styleClass="bottom_pane_background, info_button_kembali">
+               <HBox alignment="CENTER" prefHeight="71.0" prefWidth="712.0" BorderPane.alignment="CENTER">
+                  <children>
+                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeActivePopup" prefHeight="40.0" prefWidth="140.0" spacing="5.0" styleClass="bottom_pane_background, info_button_kembali">
                         <children>
                            <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                               <HBox.margin>
@@ -274,19 +273,137 @@
                            <Insets left="10.0" right="10.0" />
                         </padding>
                         <HBox.margin>
-                           <Insets /> </HBox.margin>
+                           <Insets top="20.0" />
+                        </HBox.margin>
                      </HBox>
                   </children>
                   <padding>
-                     <Insets bottom="40.0" top="20.0" />
+                     <Insets bottom="40.0" />
                   </padding>
                </HBox>
             </bottom>
          </BorderPane>
       </children>
-      <styleClass>
-         <String fx:value="info_background" />
-         <String fx:value="adn_button_radius" />
-      </styleClass>
    </AnchorPane>
+
+   <AnchorPane fx:id="settingsPopupAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="712.0" stylesheets="@style.css" visible="false">
+      <styleClass>
+         <String fx:value="info_background" /> <String fx:value="adn_button_radius" />
+      </styleClass>
+      <children>
+         <BorderPane prefHeight="500.0" prefWidth="712.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+               <VBox alignment="TOP_CENTER" prefHeight="321.0" prefWidth="518.0" spacing="30.0" BorderPane.alignment="CENTER"> <children>
+                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="392.0">
+                        <children>
+                           <Label alignment="CENTER" text="PENGATURAN" textFill="WHITE">
+                              <font>
+                                 <Font name="Lapsus Pro Bold" size="42.0" />
+                              </font>
+                           </Label>
+                        </children>
+                        <padding>
+                           <Insets bottom="20.0" top="10.0" />
+                        </padding>
+                        <VBox.margin>
+                           <Insets top="40.0" />
+                        </VBox.margin>
+                     </HBox>
+                     <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" spacing="20.0">
+                        <children>
+                           <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@desain/icon/musical-notes-sharp.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets left="10.0" />
+                              </HBox.margin>
+                           </ImageView>
+                           <Label prefWidth="150.0" text="Musik" textFill="WHITE"> <font>
+                                 <Font name="Lapsus Pro Bold" size="28.0" />
+                              </font>
+                           </Label>
+                           <Pane HBox.hgrow="ALWAYS" /> <HBox fx:id="musicSwitch" alignment="CENTER_LEFT" onMouseClicked="#toggleMusic" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 20;" stylesheets="@style.css">
+                               <children>
+                                   <Circle fx:id="musicSwitchCircle" fill="WHITE" radius="16.0">
+                                       <HBox.margin>
+                                           <Insets /> </HBox.margin>
+                                   </Circle>
+                               </children>
+                               <padding>
+                                   <Insets left="4.0" right="4.0" /> </padding>
+                           </HBox>
+                        </children>
+                        <padding>
+                           <Insets left="20.0" right="20.0" />
+                        </padding>
+                     </HBox>
+                     <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" spacing="20.0">
+                        <children>
+                           <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@desain/icon/musical-notes-sharp.png" /> </image>
+                              <HBox.margin>
+                                 <Insets left="10.0" />
+                              </HBox.margin>
+                           </ImageView>
+                           <Label prefWidth="150.0" text="Efek Suara" textFill="WHITE">
+                              <font>
+                                 <Font name="Lapsus Pro Bold" size="28.0" />
+                              </font>
+                           </Label>
+                           <Pane HBox.hgrow="ALWAYS" /> <HBox fx:id="soundEffectSwitch" alignment="CENTER_LEFT" onMouseClicked="#toggleSoundEffect" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 20;" stylesheets="@style.css">
+                               <children>
+                                   <Circle fx:id="soundEffectSwitchCircle" fill="WHITE" radius="16.0">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </Circle>
+                               </children>
+                               <padding>
+                                   <Insets left="4.0" right="4.0" />
+                               </padding>
+                           </HBox>
+                        </children>
+                        <padding>
+                           <Insets left="20.0" right="20.0" />
+                        </padding>
+                     </HBox>
+                  </children>
+               </VBox>
+            </center>
+            <bottom>
+               <HBox alignment="CENTER" prefHeight="116.0" prefWidth="712.0" BorderPane.alignment="CENTER">
+                  <children>
+                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeActivePopup" prefHeight="40.0" prefWidth="140.0" spacing="5.0" styleClass="bottom_pane_background, info_button_kembali">
+                        <children>
+                           <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                              <HBox.margin>
+                                 <Insets bottom="10.0" right="10.0" top="10.0" />
+                              </HBox.margin>
+                              <image>
+                                 <Image url="@desain/icon/L_Chevron.png" />
+                              </image>
+                           </ImageView>
+                           <Label alignment="CENTER" prefHeight="21.0" prefWidth="70.0" text="Kembali" textFill="WHITE">
+                              <font>
+                                 <Font name="Lapsus Pro Bold" size="22.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </HBox>
+                  </children>
+                  <padding>
+                     <Insets top="20.0" /> </padding>
+                  <BorderPane.margin>
+                      <Insets top="20.0" /> </BorderPane.margin>
+               </HBox>
+            </bottom>
+            <top>
+               <Pane prefHeight="23.0" prefWidth="712.0" BorderPane.alignment="CENTER" />
+            </top>
+         </BorderPane>
+      </children>
+   </AnchorPane>
+
 </StackPane>
