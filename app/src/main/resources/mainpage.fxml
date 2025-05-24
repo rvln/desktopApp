@@ -60,24 +60,20 @@
                                     </padding>
                                  </Pane>
                                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
-                                    <styleClass>
-                                       <String fx:value="right_pane_background" />
-                                       <String fx:value="btn_system" />
-                                       <String fx:value="adn_button_radius" />
-                                    </styleClass>
-                                    <children>
-                                       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                          <viewport>
-                                             <Rectangle2D />
-                                          </viewport>
-                                          <image>
-                                             <Image url="@desain/Button System/icon.png" />
-                                          </image>
-                                       </ImageView>
-                                    </children>
-                                    <padding>
-                                       <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
-                                    </padding>
+                                     <styleClass>
+                                         <String fx:value="right_pane_background" />
+                                         <String fx:value="btn_system" />
+                                         <String fx:value="adn_button_radius" />
+                                     </styleClass>
+                                     <children>
+                                         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                 <Image url="@desain/Button System/icon.png" /> </image>
+                                         </ImageView>
+                                     </children>
+                                      <padding>
+                                          <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                                      </padding>
                                  </Pane>
                               </children>
                               <padding>
@@ -92,26 +88,22 @@
                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </padding>
                         <children>
-                           <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
-                              <styleClass>
-                                 <String fx:value="right_pane_background" />
-                                 <String fx:value="btn_system" />
-                                 <String fx:value="adn_button_radius" />
-                              </styleClass>
-                              <children>
-                                 <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                    <viewport>
-                                       <Rectangle2D />
-                                    </viewport>
-                                    <image>
-                                       <Image url="@desain/Button System/Bantuan.png" />
-                                    </image>
-                                 </ImageView>
-                              </children>
-                              <padding>
-                                 <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
-                              </padding>
-                           </Pane>
+                            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
+                                 <styleClass>
+                                     <String fx:value="right_pane_background" />
+                                     <String fx:value="btn_system" />
+                                     <String fx:value="adn_button_radius" />
+                                 </styleClass>
+                                 <children>
+                                     <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                         <image>
+                                             <Image url="@desain/Button System/Bantuan.png" /> </image>
+                                     </ImageView>
+                                 </children>
+                                  <padding>
+                                      <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                                  </padding>
+                             </Pane>
                         </children>
                      </HBox>
                   </children>
@@ -168,9 +160,6 @@
                                           </font>
                                        </Label>
                                     </children>
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
                                     <padding>
                                        <Insets left="30.0" />
                                     </padding>
@@ -210,13 +199,13 @@
    </AnchorPane>
    <Pane fx:id="disableLayer" mouseTransparent="false" prefHeight="200.0" prefWidth="200.0" styleClass="disableLayer_background" stylesheets="@style.css" visible="false" />
 
-   <AnchorPane fx:id="overlayPopup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="712.0" stylesheets="@style.css">
+   <AnchorPane fx:id="overlayPopup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="712.0" stylesheets="@style.css" visible="false">
       <children>
-         <BorderPane layoutX="-35.0" prefHeight="400.0" prefWidth="547.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <BorderPane prefHeight="600.0" prefWidth="712.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
-               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                   <children>
-                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="392.0" stylesheets="@style.css">
+                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="392.0">
                         <children>
                            <Label alignment="CENTER" text="INFORMASI" textFill="WHITE">
                               <font>
@@ -227,13 +216,13 @@
                         <padding>
                            <Insets bottom="20.0" top="10.0" />
                         </padding>
-                           <VBox.margin>
-                              <Insets top="40.0" />
-                           </VBox.margin>
+                        <VBox.margin>
+                           <Insets top="40.0" />
+                        </VBox.margin>
                      </HBox>
-                     <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="452.0" spacing="140.0" stylesheets="@style.css">
+                     <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="452.0" spacing="140.0">
                         <children>
-                           <HBox fx:id="infoProfil" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="140.0" stylesheets="@style.css">
+                           <HBox fx:id="infoProfil" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#handleInfoProfilClicked" prefHeight="40.0" prefWidth="140.0" styleClass="btn_system, medium_button_radius">
                               <children>
                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="80.0" text="Profil" textFill="WHITE">
                                     <font>
@@ -241,12 +230,8 @@
                                     </font>
                                  </Label>
                               </children>
-                              <styleClass>
-                                 <String fx:value="btn_system" />
-                                 <String fx:value="medium_button_radius" />
-                              </styleClass>
                            </HBox>
-                           <HBox fx:id="infoSumber" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="160.0" stylesheets="@style.css">
+                           <HBox fx:id="infoSumber" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#handleInfoSumberClicked" prefHeight="40.0" prefWidth="160.0" styleClass="border_button, medium_button_radius">
                               <children>
                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="95.0" text="Sumber" textFill="WHITE">
                                     <font>
@@ -254,124 +239,22 @@
                                     </font>
                                  </Label>
                               </children>
-                              <styleClass>
-                                 <String fx:value="border_button" />
-                                 <String fx:value="medium_button_radius" />
-                              </styleClass>
                            </HBox>
                         </children>
                      </HBox>
-                     <HBox fx:id="infoContent" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="540.0" spacing="25.0" stylesheets="@style.css">
+                     <HBox fx:id="infoContent" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="540.0" spacing="25.0" styleClass="info_background_content, adn_button_radius">
                         <VBox.margin>
                            <Insets top="20.0" />
                         </VBox.margin>
-                        <styleClass>
-                           <String fx:value="info_background_content" />
-                           <String fx:value="adn_button_radius" />
-                        </styleClass>
                         <children>
-                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0" spacing="25.0" stylesheets="@style.css">
-                              <children>
-                                 <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" stylesheets="@style.css">
-                                    <styleClass>
-                                       <String fx:value="info_background" />
-                                       <String fx:value="info_avatar" />
-                                    </styleClass>
-                                 </HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
-                                    <children>
-                                       <Label text="Frico Putung" textFill="WHITE">
-                                          <font>
-                                             <Font name="Lapsus Pro Bold" size="18.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                 </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
-                                       <children>
-                                          <Label text="220211060359" textFill="WHITE">
-                                             <font>
-                                                <Font name="Lapsus Pro Bold" size="16.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="-30.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                              </children>
-                           </VBox>
-                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="25.0" stylesheets="@style.css">
-                              <children>
-                                 <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" stylesheets="@style.css">
-                                    <styleClass>
-                                       <String fx:value="info_background" />
-                                       <String fx:value="info_avatar" />
-                                    </styleClass>
-                                 </HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" stylesheets="@style.css">
-                                    <children>
-                                       <Label text="Syifabela Suratinoyo" textFill="WHITE">
-                                          <font>
-                                             <Font name="Lapsus Pro Bold" size="18.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                 </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" stylesheets="@style.css">
-                                       <children>
-                                          <Label text="220211060344" textFill="WHITE">
-                                             <font>
-                                                <Font name="Lapsus Pro Bold" size="16.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="-30.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                              </children>
-                           </VBox>
-                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0" spacing="25.0" stylesheets="@style.css">
-                              <children>
-                                 <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" stylesheets="@style.css">
-                                    <styleClass>
-                                       <String fx:value="info_background" />
-                                       <String fx:value="info_avatar" />
-                                    </styleClass>
-                                 </HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
-                                    <children>
-                                       <Label text="Kevin Rimper" textFill="WHITE">
-                                          <font>
-                                             <Font name="Lapsus Pro Bold" size="18.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                 </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css">
-                                       <children>
-                                          <Label text="220211060364" textFill="WHITE">
-                                             <font>
-                                                <Font name="Lapsus Pro Bold" size="16.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="-30.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                              </children>
-                           </VBox>
-                        </children>
+                           </children>
                      </HBox>
                   </children>
                </VBox>
             </center>
             <bottom>
-               <HBox alignment="CENTER" prefHeight="71.0" prefWidth="512.0" BorderPane.alignment="CENTER">
-                  <children>
-                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closePopup" prefHeight="40.0" prefWidth="140.0" spacing="5.0" stylesheets="@style.css">
+               <HBox alignment="CENTER" prefHeight="71.0" prefWidth="712.0" BorderPane.alignment="CENTER"> <children>
+                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closePopup" prefHeight="40.0" prefWidth="140.0" spacing="5.0" styleClass="bottom_pane_background, info_button_kembali">
                         <children>
                            <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                               <HBox.margin>
@@ -390,25 +273,20 @@
                         <padding>
                            <Insets left="10.0" right="10.0" />
                         </padding>
-                        <styleClass>
-                           <String fx:value="bottom_pane_background" />
-                           <String fx:value="info_button_kembali" />
-                        </styleClass>
                         <HBox.margin>
-                           <Insets left="20.0" top="20.0" />
-                        </HBox.margin>
+                           <Insets /> </HBox.margin>
                      </HBox>
                   </children>
-                     <padding>
-                        <Insets bottom="40.0" />
-                     </padding>
+                  <padding>
+                     <Insets bottom="40.0" top="20.0" />
+                  </padding>
                </HBox>
             </bottom>
          </BorderPane>
       </children>
-         <styleClass>
-            <String fx:value="info_background" />
-            <String fx:value="adn_button_radius" />
-         </styleClass>
+      <styleClass>
+         <String fx:value="info_background" />
+         <String fx:value="adn_button_radius" />
+      </styleClass>
    </AnchorPane>
 </StackPane>
