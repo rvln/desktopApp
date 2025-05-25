@@ -30,7 +30,15 @@
 }
 
 .medium_button_radius {
-  -fx-background-radius: 24px;
+  -fx-background-radius: 48px;
+}
+
+.stroked-hbox {
+  -fx-background-radius: 48px;
+  -fx-border-color: #3c8d51;
+  -fx-border-width: 0.5;
+  -fx-border-radius: 48px; /* INI WAJIB agar border mengikuti lengkungan background */
+  -fx-padding: 10;
 }
 
 .btn_play {
@@ -160,4 +168,15 @@
   -fx-background-color: transparent; /* Menghilangkan tombol panah atas/bawah */
   -fx-padding: 0 0 0 0;
   -fx-pref-height: 0;
+}
+
+.settings-switch-track {
+  /* Anda bisa tambahkan styleClass ini ke HBox switch jika mau */
+  -fx-background-radius: 20px; /* Radius untuk track switch */
+  -fx-padding: 4px;
+}
+
+.settings-switch-thumb {
+  /* Anda bisa tambahkan styleClass ini ke Circle switch jika mau */
+  /* Tidak banyak yang perlu di-style di sini karena fill diatur di Java */
 }
