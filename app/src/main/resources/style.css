@@ -16,6 +16,11 @@
   -fx-background-color: #9c9df3b7;
 }
 
+.btn_system_red {
+  -fx-background-color: #ff4848;
+  -fx-text-fill: #000000;
+}
+
 .btn_system {
   -fx-background-color: #55b86e;
   -fx-text-fill: #000000;
