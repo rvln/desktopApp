@@ -83,7 +83,7 @@
                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </padding>
                         <children>
-                           <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
+                           <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
                               <styleClass>
                                  <String fx:value="right_pane_background" />
                                  <String fx:value="btn_system" />
@@ -450,7 +450,7 @@
                                 <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" stylesheets="@style.css">
                                         <children>
-                                            <HBox fx:id="btnLatihanHuruf" onMouseClicked="#handlePilihLatihanHuruf" alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
+                                            <HBox fx:id="btnLatihanHuruf" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#handlePilihLatihanHuruf" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
                                                 <children>
                                                     <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Huruf" textAlignment="CENTER">
                                                         <font>
@@ -463,7 +463,7 @@
                                                     <String fx:value="stroked-hbox" />
                                                 </styleClass>
                                             </HBox>
-                                            <HBox fx:id="btnLatihanKata" onMouseClicked="#handlePilihLatihanKata" alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
+                                            <HBox fx:id="btnLatihanKata" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#handlePilihLatihanKata" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
                                                 <styleClass>
                                                     <String fx:value="btn_system" />
                                                     <String fx:value="stroked-hbox" />
@@ -480,7 +480,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
                                         <children>
-                                            <HBox fx:id="btnLatihanKalimat" onMouseClicked="#handlePilihLatihanKalimat" alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
+                                            <HBox fx:id="btnLatihanKalimat" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#handlePilihLatihanKalimat" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
                                                 <styleClass>
                                                     <String fx:value="btn_system" />
                                                     <String fx:value="stroked-hbox" />
@@ -500,7 +500,7 @@
                                     <Insets top="10.0" />
                                 </padding>
                                 <VBox.margin>
-                                    <Insets bottom="20.0"/>
+                                    <Insets bottom="20.0" />
                                 </VBox.margin>
                             </VBox>
                         </children>
@@ -512,7 +512,7 @@
                 <right>
                     <Pane prefHeight="512.0" prefWidth="81.0" BorderPane.alignment="CENTER">
                         <children>
-                            <HBox onMouseClicked="#closeActivePopup" alignment="TOP_CENTER" prefHeight="90.0" prefWidth="81.0" style="-fx-cursor: hand;">
+                            <HBox alignment="TOP_CENTER" onMouseClicked="#closeActivePopup" prefHeight="90.0" prefWidth="81.0" style="-fx-cursor: hand;">
                                 <children>
                                     <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
@@ -749,7 +749,7 @@
                                 <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" stylesheets="@style.css">
                                         <children>
-                                            <HBox fx:id="btnKeluarYa" onMouseClicked="#handleKeluarYa" alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
+                                            <HBox fx:id="btnKeluarYa" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#handleKeluarYa" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
                                                 <children>
                                                     <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Ya" textAlignment="CENTER">
                                                         <font>
@@ -762,7 +762,7 @@
                                                     <String fx:value="stroked-hbox" />
                                                 </styleClass>
                                             </HBox>
-                                            <HBox fx:id="btnKeluarTidak" onMouseClicked="#handleKeluarTidak" alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
+                                            <HBox fx:id="btnKeluarTidak" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#handleKeluarTidak" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
                                                 <styleClass>
                                                     <String fx:value="btn_system" />
                                                     <String fx:value="stroked-hbox" />
