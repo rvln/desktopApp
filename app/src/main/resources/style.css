@@ -16,6 +16,11 @@
   -fx-background-color: #9c9df3b7;
 }
 
+.btn_system_red {
+  -fx-background-color: #ff4848;
+  -fx-text-fill: #000000;
+}
+
 .btn_system {
   -fx-background-color: #55b86e;
   -fx-text-fill: #000000;
@@ -30,7 +35,15 @@
 }
 
 .medium_button_radius {
-  -fx-background-radius: 24px;
+  -fx-background-radius: 48px;
+}
+
+.stroked-hbox {
+  -fx-background-radius: 48px;
+  -fx-border-color: #3c8d51;
+  -fx-border-width: 0.5;
+  -fx-border-radius: 48px; /* INI WAJIB agar border mengikuti lengkungan background */
+  -fx-padding: 10;
 }
 
 .btn_play {
@@ -126,4 +139,49 @@
 
 .border_button:hover {
   -fx-background-color: #3d9553;
+}
+
+.sumber-referensi-scrollpane {
+  -fx-background-color: transparent; /* Membuat background ScrollPane transparan */
+  -fx-border-color: transparent; /* Menghilangkan border default jika ada */
+}
+
+.sumber-referensi-scrollpane > .viewport {
+  -fx-background-color: transparent; /* Membuat background viewport (area konten) transparan */
+}
+
+/* Styling Scrollbar Vertikal (Opsional) */
+.sumber-referensi-scrollpane .scroll-bar:vertical {
+  -fx-background-color: rgba(
+    40,
+    40,
+    40,
+    0.7
+  ); /* Warna background track scrollbar */
+  -fx-pref-width: 10; /* Lebar scrollbar */
+  -fx-padding: 2;
+}
+
+.sumber-referensi-scrollpane .scroll-bar:vertical .thumb {
+  -fx-background-color: #6e6e6e; /* Warna thumb (bagian yang digeser) */
+  -fx-background-insets: 0;
+  -fx-background-radius: 5; /* Membuat sudut thumb sedikit membulat */
+}
+
+.sumber-referensi-scrollpane .scroll-bar:vertical .increment-button,
+.sumber-referensi-scrollpane .scroll-bar:vertical .decrement-button {
+  -fx-background-color: transparent; /* Menghilangkan tombol panah atas/bawah */
+  -fx-padding: 0 0 0 0;
+  -fx-pref-height: 0;
+}
+
+.settings-switch-track {
+  /* Anda bisa tambahkan styleClass ini ke HBox switch jika mau */
+  -fx-background-radius: 20px; /* Radius untuk track switch */
+  -fx-padding: 4px;
+}
+
+.settings-switch-thumb {
+  /* Anda bisa tambahkan styleClass ini ke Circle switch jika mau */
+  /* Tidak banyak yang perlu di-style di sini karena fill diatur di Java */
 }
