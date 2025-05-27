@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "App", // Atau nama apa pun yang Anda gunakan untuk menjalankan kelas App
+            "request": "launch",
+            "mainClass": "desktopapp.App", // Pastikan ini benar
+            "vmArgs": "--module-path \"C:\\Program Files\\Java\\javafx-sdk-21.0.7\\lib\" --add-modules javafx.controls,javafx.fxml"
+        }
+        // Mungkin ada konfigurasi lain di sini, pastikan Anda menjalankan yang benar.
+    ]
+}
