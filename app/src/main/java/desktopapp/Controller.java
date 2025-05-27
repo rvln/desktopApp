@@ -1,8 +1,9 @@
 package desktopapp;
 
 import javafx.animation.FillTransition;
-import javafx.animation.TranslateTransition;
+// import javafx.animation.TranslateTransition;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -10,8 +11,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+// import javafx.scene.image.Image;
+// import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -23,6 +24,9 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -30,11 +34,20 @@ public class Controller implements Initializable {
     @FXML
     private AnchorPane mainPage;
 
+    // Popups
     @FXML
     private AnchorPane overlayPopup; // Info popup
-
     @FXML
     private AnchorPane settingsPopupAnchorPane; // Settings popup
+    @FXML
+    private AnchorPane mulaiPopup; // CTA Mulai popup
+    @FXML
+    private AnchorPane tutorialPage1Popup; // CTA Tutorial popup - Halaman 1 (rename dari tutorialPopup)
+    @FXML
+    private AnchorPane tutorialPage2Popup; // CTA Tutorial popup - Halaman 2 (BARU)
+    @FXML
+    private AnchorPane keluarPopup; // CTA Keluar popup
+
 
     @FXML
     private Pane disableLayer;
@@ -60,15 +73,35 @@ public class Controller implements Initializable {
     @FXML
     private Circle soundEffectSwitchCircle;
 
+    // Untuk tombol di dalam Mulai Popup
+    @FXML
+    private HBox btnLatihanHuruf;
+    @FXML
+    private HBox btnLatihanKata;
+    @FXML
+    private HBox btnLatihanKalimat;
+
+    // Untuk tombol di dalam Keluar Popup
+    @FXML
+    private HBox btnKeluarYa;
+    @FXML
+    private HBox btnKeluarTidak;
+
+    // Untuk tombol di dalam Tutorial Popup (Page 1 & 2)
+    // fx:id untuk tombol kembali di tutorialPage1Popup mungkin tidak perlu jika hanya memanggil closeActivePopup
+    // fx:id untuk tombol lanjut di tutorialPage1Popup (btnTutorialLanjutPage1) sudah ada di FXML
+    // fx:id untuk tombol kembali di tutorialPage2Popup (btnTutorialKembaliPage2) sudah ada di FXML
+
+
     // State untuk switches
-    private boolean isMusicEnabled = true; // Default ON
-    private boolean isSoundEffectsEnabled = true; // Default ON
+    private boolean isMusicEnabled = true;
+    private boolean isSoundEffectsEnabled = true;
 
     // Konstanta warna untuk switch
-    private final Color SWITCH_ON_COLOR = Color.web("#ffffff"); // Putih
-    private final Color SWITCH_OFF_COLOR = Color.web("#79747E"); // Abu-abu dari desain Anda
-    private final Color SWITCH_TRACK_ON_COLOR = Color.web("#6FADCF"); // Biru muda untuk track
-    private final Color SWITCH_TRACK_OFF_COLOR = Color.web("#A0A0A0"); // Abu-abu muda untuk track
+    private final Color SWITCH_ON_COLOR = Color.web("#ffffff");
+    private final Color SWITCH_OFF_COLOR = Color.web("#79747E");
+    private final Color SWITCH_TRACK_ON_COLOR = Color.web("#6FADCF");
+    private final Color SWITCH_TRACK_OFF_COLOR = Color.web("#A0A0A0");
 
 
     private static final String STYLE_ACTIVE_BUTTON = "btn_system";
@@ -77,38 +110,61 @@ public class Controller implements Initializable {
     private static final String STYLE_CONTENT_BACKGROUND = "info_background_content";
     private static final String STYLE_CONTENT_RADIUS = "adn_button_radius";
 
+    private List<AnchorPane> allPopups;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        overlayPopup.setVisible(false);
-        settingsPopupAnchorPane.setVisible(false);
-        disableLayer.setVisible(false);
+        // Tambahkan tutorialPage2Popup ke daftar dan pastikan nama tutorialPage1Popup benar
+        allPopups = new ArrayList<>(Arrays.asList(
+                overlayPopup, settingsPopupAnchorPane,
+                mulaiPopup, tutorialPage1Popup, tutorialPage2Popup, keluarPopup
+        ));
 
-        // Inisialisasi Info Popup
+        for (AnchorPane popup : allPopups) {
+            if (popup != null) {
+                popup.setVisible(false);
+            }
+        }
+        if (disableLayer != null) {
+            disableLayer.setVisible(false);
+        }
+
         profilDeveloperNode = createProfilDeveloperContent();
         sumberReferensiNode = createSumberReferensiContent();
-        if (profilDeveloperNode != null) {
+        if (profilDeveloperNode != null && infoContent != null) {
             infoContent.getChildren().setAll(profilDeveloperNode);
         }
-        updateButtonStyles(true); // Profil aktif by default
+        updateButtonStyles(true);
 
-        // Inisialisasi tampilan switch pengaturan
         updateSwitchVisuals(musicSwitch, musicSwitchCircle, isMusicEnabled, "Musik");
         updateSwitchVisuals(soundEffectSwitch, soundEffectSwitchCircle, isSoundEffectsEnabled, "Efek Suara");
     }
 
-    // --- Metode untuk Info Popup ---
-    @FXML
-    private void showInfo(MouseEvent event) {
-        settingsPopupAnchorPane.setVisible(false); // Sembunyikan popup lain jika terbuka
-        showProfilContent(); // Pastikan konten info benar
+    private void showSpecificPopup(AnchorPane popupToShow) {
+        for (AnchorPane popup : allPopups) {
+            if (popup != null && popup != popupToShow) {
+                popup.setVisible(false);
+            }
+        }
 
-        overlayPopup.setVisible(true);
-        disableLayer.setVisible(true);
-        applyFadeInAnimation(overlayPopup);
-        applyFadeInAnimation(disableLayer);
+        if (popupToShow != null) {
+            popupToShow.setVisible(true);
+            applyFadeInAnimation(popupToShow);
+        }
+        if (disableLayer != null) {
+            disableLayer.setVisible(true);
+            applyFadeInAnimation(disableLayer);
+        }
     }
 
+    @FXML
+    private void showInfo(MouseEvent event) {
+        showProfilContent();
+        showSpecificPopup(overlayPopup);
+    }
+
+    // ... (Metode Info Popup lainnya tetap sama) ...
     @FXML
     void handleInfoProfilClicked(MouseEvent event) {
         showProfilContent();
@@ -120,7 +176,7 @@ public class Controller implements Initializable {
     }
 
     private void updateButtonStyles(boolean isProfilActive) {
-        if (infoProfil != null && infoSumber != null) { // Cek null untuk keamanan
+        if (infoProfil != null && infoSumber != null) {
             if (isProfilActive) {
                 infoProfil.getStyleClass().setAll(STYLE_ACTIVE_BUTTON, STYLE_MEDIUM_RADIUS);
                 infoSumber.getStyleClass().setAll(STYLE_INACTIVE_BUTTON, STYLE_MEDIUM_RADIUS);
@@ -145,23 +201,16 @@ public class Controller implements Initializable {
         if (infoContent != null && sumberReferensiNode != null) {
             infoContent.getChildren().setAll(sumberReferensiNode);
             infoContent.getStyleClass().setAll(STYLE_CONTENT_BACKGROUND, STYLE_CONTENT_RADIUS);
-            // Tidak perlu HBox.setHgrow jika ScrollPane sudah diatur setFitToWidth(true)
-            // dan prefSize-nya sesuai.
         }
     }
 
 
-    // --- Metode untuk Settings Popup ---
     @FXML
     private void showSettingsPopup(MouseEvent event) {
-        overlayPopup.setVisible(false); // Sembunyikan popup lain jika terbuka
-
-        settingsPopupAnchorPane.setVisible(true);
-        disableLayer.setVisible(true);
-        applyFadeInAnimation(settingsPopupAnchorPane);
-        applyFadeInAnimation(disableLayer);
+        showSpecificPopup(settingsPopupAnchorPane);
     }
 
+    // ... (Metode Settings Popup lainnya tetap sama) ...
     @FXML
     private void toggleMusic(MouseEvent event) {
         isMusicEnabled = !isMusicEnabled;
@@ -180,46 +229,20 @@ public class Controller implements Initializable {
 
     private void updateSwitchVisuals(HBox switchBox, Circle switchCircle, boolean isEnabled, String switchName) {
         if (switchBox == null || switchCircle == null) return;
-
-        // Lebar HBox switch adalah 80, padding kiri/kanan 4, jadi area untuk circle 72.
-        // Radius circle 16, diameter 32.
-        // Posisi ON: margin kiri = 80 - 4 (padding kanan) - 32 (diameter circle) - 4 (padding kiri) = 40
-        // Posisi OFF: margin kiri = 0 (karena sudah ada padding kiri 4 pada HBox)
-        double targetTranslateX;
-        Color targetTrackColor;
-
         if (isEnabled) {
-            switchBox.setAlignment(Pos.CENTER_RIGHT); // Circle ke kanan
+            switchBox.setAlignment(Pos.CENTER_RIGHT);
             switchBox.setStyle("-fx-background-color: " + toWebColor(SWITCH_TRACK_ON_COLOR) + "; -fx-background-radius: 20;");
             switchCircle.setFill(SWITCH_ON_COLOR);
-            // HBox.setMargin(switchCircle, new Insets(0, 0, 0, 40)); // Kanan
-            targetTranslateX = (switchBox.getWidth() - (2 * switchCircle.getRadius())) - (2* switchBox.getPadding().getLeft());
-
         } else {
-            switchBox.setAlignment(Pos.CENTER_LEFT); // Circle ke kiri
+            switchBox.setAlignment(Pos.CENTER_LEFT);
             switchBox.setStyle("-fx-background-color: " + toWebColor(SWITCH_TRACK_OFF_COLOR) + "; -fx-background-radius: 20;");
             switchCircle.setFill(SWITCH_OFF_COLOR);
-            // HBox.setMargin(switchCircle, new Insets(0, 40, 0, 0)); // Kiri
-            targetTranslateX = 0;
         }
-        
-        // Animasi perpindahan circle
-        TranslateTransition tt = new TranslateTransition(Duration.millis(150), switchCircle);
-        // tt.setToX(targetTranslateX); // Ini jika circle adalah child langsung dari parent yang lebih besar
-        // Karena circle ada di dalam HBox yang alignment-nya diubah, kita tidak perlu translate manual jika HBox sudah benar.
-        // Namun, jika ingin animasi slide, kita bisa atur HBox selalu CENTER_LEFT dan mainkan translateX circle.
-        // Untuk saat ini, perubahan alignment HBox sudah cukup.
-        // Jika ingin animasi slide:
-        // switchBox.setAlignment(Pos.CENTER_LEFT); // Selalu kiri
-        // tt.setToX(isEnabled ? (switchBox.getWidth() - switchCircle.getRadius()*2 - switchBox.getPadding().getLeft() - switchBox.getPadding().getRight()) : 0);
-        // tt.play();
-
-        // Animasi perubahan warna circle (opsional, bisa juga langsung setFill)
         FillTransition ft = new FillTransition(Duration.millis(150), switchCircle);
         ft.setToValue(isEnabled ? SWITCH_ON_COLOR : SWITCH_OFF_COLOR);
         ft.play();
-
     }
+
     private String toWebColor(Color color) {
         return String.format("#%02X%02X%02X",
             (int)(color.getRed() * 255),
@@ -227,43 +250,108 @@ public class Controller implements Initializable {
             (int)(color.getBlue() * 255));
     }
 
-
-    // --- Metode Umum ---
+    // --- Metode untuk CTA Popups ---
     @FXML
-    private void closeActivePopup(MouseEvent event) { // Ganti nama dari closePopup
+    private void showMulaiPopup(MouseEvent event) {
+        showSpecificPopup(mulaiPopup);
+    }
+
+    @FXML
+    private void showTutorialPopup(MouseEvent event) { // Ini akan menampilkan halaman 1 tutorial
+        showSpecificPopup(tutorialPage1Popup);
+    }
+
+    @FXML
+    private void showKeluarPopup(MouseEvent event) {
+        showSpecificPopup(keluarPopup);
+    }
+
+    // Handler untuk tombol di dalam Popup Mulai
+    @FXML
+    private void handlePilihLatihanHuruf(MouseEvent event) {
+        System.out.println("Pilihan Latihan: Huruf");
+        closeActivePopup(null);
+    }
+
+    @FXML
+    private void handlePilihLatihanKata(MouseEvent event) {
+        System.out.println("Pilihan Latihan: Kata");
+        closeActivePopup(null);
+    }
+
+    @FXML
+    private void handlePilihLatihanKalimat(MouseEvent event) {
+        System.out.println("Pilihan Latihan: Kalimat");
+        closeActivePopup(null);
+    }
+
+    // Handler untuk tombol di dalam Popup Tutorial
+    @FXML
+    private void handleTutorialLanjut(MouseEvent event) { // Dipanggil dari tutorialPage1Popup
+        System.out.println("Tombol Lanjut Tutorial (dari Hal 1 ke Hal 2) diklik.");
+        showSpecificPopup(tutorialPage2Popup); // Tampilkan halaman 2
+    }
+
+    @FXML
+    private void handleTutorialKembaliKeHalaman1(MouseEvent event) { // Dipanggil dari tutorialPage2Popup
+        System.out.println("Tombol Kembali Tutorial (dari Hal 2 ke Hal 1) diklik.");
+        showSpecificPopup(tutorialPage1Popup); // Tampilkan halaman 1
+    }
+
+
+    // Handler untuk tombol di dalam Popup Keluar
+    @FXML
+    private void handleKeluarYa(MouseEvent event) {
+        System.out.println("Keluar dari aplikasi.");
+        Platform.exit();
+    }
+
+    @FXML
+    private void handleKeluarTidak(MouseEvent event) {
+        System.out.println("Batal keluar.");
+        closeActivePopup(null);
+    }
+
+
+    @FXML
+    private void closeActivePopup(MouseEvent event) {
         boolean popupWasVisible = false;
-        if (overlayPopup.isVisible()) {
-            applyFadeOutAnimation(overlayPopup, () -> overlayPopup.setVisible(false));
-            popupWasVisible = true;
-        }
-        if (settingsPopupAnchorPane.isVisible()) {
-            applyFadeOutAnimation(settingsPopupAnchorPane, () -> settingsPopupAnchorPane.setVisible(false));
-            popupWasVisible = true;
+        for (AnchorPane popup : allPopups) {
+            if (popup != null && popup.isVisible()) {
+                final AnchorPane currentPopup = popup;
+                applyFadeOutAnimation(currentPopup, () -> currentPopup.setVisible(false));
+                popupWasVisible = true;
+                // Hanya satu popup yang seharusnya aktif, jadi bisa break jika mau,
+                // tapi loop melalui semua tidak masalah.
+            }
         }
 
-        if (popupWasVisible && disableLayer.isVisible()) {
+        if (popupWasVisible && disableLayer != null && disableLayer.isVisible()) {
             applyFadeOutAnimation(disableLayer, () -> disableLayer.setVisible(false));
         }
     }
 
     private void applyFadeInAnimation(Node node) {
+        if (node == null) return;
         FadeTransition fadeIn = new FadeTransition(Duration.millis(200), node);
         fadeIn.setFromValue(0.0);
+        node.setOpacity(0.0);
         fadeIn.setToValue(1.0);
         fadeIn.play();
     }
 
     private void applyFadeOutAnimation(Node node, Runnable onFinishedAction) {
+        if (node == null) return;
         FadeTransition fadeOut = new FadeTransition(Duration.millis(200), node);
-        fadeOut.setFromValue(node.getOpacity()); // Mulai dari opacity saat ini
+        fadeOut.setFromValue(node.getOpacity());
         fadeOut.setToValue(0.0);
         if (onFinishedAction != null) {
             fadeOut.setOnFinished(e -> onFinishedAction.run());
         }
         fadeOut.play();
     }
-
-    // --- Konten untuk Info Popup (tidak berubah) ---
+    
+    // ... (createProfilDeveloperContent, createSingleDeveloperVBox, createSumberReferensiContent tetap sama) ...
     private Node createProfilDeveloperContent() {
         HBox developersContainer = new HBox();
         developersContainer.setAlignment(Pos.CENTER);
@@ -326,10 +414,10 @@ public class Controller implements Initializable {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(contentVBox);
         scrollPane.setFitToWidth(true);
-        if (infoContent != null) { // Pastikan infoContent sudah diinisialisasi
+        if (infoContent != null) {
             scrollPane.setPrefSize(infoContent.getPrefWidth() - 10, infoContent.getPrefHeight() - 10);
         } else {
-            scrollPane.setPrefSize(530, 290); // Fallback size
+            scrollPane.setPrefSize(530, 290);
         }
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
