@@ -1,0 +1,7 @@
+agar file .fxml dapat ditampilkan atau dibuka, pathnya harus disesuaikan terlebih dahulu.
+Contohnya, pada image url harus menggunakan @ pada folder (@folder/folder/nama_file.txt)
+Caranya itu tekan ctrl + f (find) terus replace folder tersebut dengan menambahkan @ di depan folder tersebut seperti yang dicontoh.
+Selanjutnya, buka file .fxml tersebut di scene builder, jika menggunakan css, pilih object, ke panel properties, scroll ke bagian JavaFX CSS, isi stylesheets dengan file .css
+
+Jika sudah selesai desain di scene builder, selanjutnya di save dan disesuaikan lagi syntaxnya seperti sebelumnya,
+yaitu menghapus karakter "@" pada image url atau source tersebut. Agar bisa di lakukan run nantinya.

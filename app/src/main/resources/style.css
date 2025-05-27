@@ -1,3 +1,5 @@
+/* mainpage */
+
 .left_pane_background {
   -fx-background-color: #e98888;
 }
@@ -19,8 +21,16 @@
   -fx-text-fill: #000000;
 }
 
+.btn_system:hover {
+  -fx-background-color: #3d9553;
+}
+
 .adn_button_radius {
   -fx-background-radius: 12px;
+}
+
+.medium_button_radius {
+  -fx-background-radius: 24px;
 }
 
 .btn_play {
@@ -75,4 +85,45 @@
 
 .btn_keluar:hover {
   -fx-background-color: #a83c3c;
+}
+
+/* infoPopup */
+
+.disableLayer_background {
+  -fx-background-color: rgba(0, 0, 0, 0.425);
+}
+
+.info_background {
+  -fx-background-color: #3e434a;
+  -fx-effect: dropshadow(gaussian, rgba(34, 34, 34, 0.616), 4, 0, 0, 4);
+}
+
+.info_background_content {
+  -fx-background-color: #313438;
+  -fx-background-radius: 12px;
+}
+
+.info_avatar {
+  -fx-background-color: #5d7474;
+  -fx-background-radius: 110px;
+}
+
+.info_button_kembali {
+  -fx-background-color: #588cd9;
+  -fx-background-radius: 110px;
+  -fx-effect: dropshadow(gaussian, rgba(49, 49, 49, 0.25), 4, 0, 0, 4);
+}
+
+.info_button_kembali:hover {
+  -fx-background-color: #3761a2;
+}
+
+.border_button {
+  -fx-border-color: #55b86e;
+  -fx-border-radius: 110px;
+  -fx-border-width: 1px;
+}
+
+.border_button:hover {
+  -fx-background-color: #3d9553;
 }
