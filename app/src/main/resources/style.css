@@ -105,7 +105,7 @@
 /* infoPopup */
 
 .disableLayer_background {
-  -fx-background-color: rgba(0, 0, 0, 0.425);
+  -fx-background-color: rgba(0, 0, 0, 0.377);
 }
 
 .info_background {
@@ -241,4 +241,17 @@
 .right_pinky_finger {
   -fx-background-color: #57700b;
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.complete_typing {
+  -fx-background-radius: 24px;
+  -fx-background-color: radial-gradient(
+    focus-angle 0deg,
+    focus-distance 0%,
+    center 50.06% 16.03%,
+    radius 111.72%,
+    #c3d8df 0%,
+    #6a7579 100%
+  );
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 7.2, 0, 0, 4);
 }

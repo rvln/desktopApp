@@ -14,7 +14,7 @@
 <StackPane fx:id="rootPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <ImageView fitHeight="800.0" fitWidth="1039.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-preserve-ratio: false;">
       <image>
-         <Image url="@desain/Typing/TypingBackground.png" />
+         <Image url="@desain/Typing/TypingBackground2.png" />
       </image>
    </ImageView>
    <AnchorPane prefWidth="1106.0" styleClass="disableLayer_background" stylesheets="@style.css">
