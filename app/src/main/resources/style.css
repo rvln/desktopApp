@@ -187,3 +187,58 @@
   /* Anda bisa tambahkan styleClass ini ke Circle switch jika mau */
   /* Tidak banyak yang perlu di-style di sini karena fill diatur di Java */
 }
+
+/* untuk halaman latihan */
+
+.inputfield {
+  -fx-background-color: #abaaaa;
+  -fx-background-radius: 16.762;
+  -fx-border-color: rgba(0, 0, 0, 0.8);
+  -fx-border-width: 1;
+  -fx-border-radius: 16.762;
+}
+
+.thumb_finger {
+  -fx-background-color: #9e9992;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.left_index_finger {
+  -fx-background-color: #59e938;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.right_index_finger {
+  -fx-background-color: #962edb;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.left_middle_finger {
+  -fx-background-color: #f84a4a;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.right_middle_finger {
+  -fx-background-color: #e05a31;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.left_ring_finger {
+  -fx-background-color: #4a8ff8;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.right_ring_finger {
+  -fx-background-color: #1abba8;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.left_pinky_finger {
+  -fx-background-color: #ceb305;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
+
+.right_pinky_finger {
+  -fx-background-color: #57700b;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+}
