@@ -14,8 +14,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<StackPane fx:id="rootPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="rootPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopapp.TypingController">
     <AnchorPane fx:id="mainPage" stylesheets="@style.css">
       <children>
          <ImageView fitHeight="800.0" fitWidth="1039.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-preserve-ratio: false;">
@@ -113,169 +114,245 @@
                            </ImageView>
                         </children>
                      </HBox>
-                     <VBox alignment="CENTER" prefHeight="296.0" prefWidth="652.0">
+                     <VBox fx:id="keyboardHuruf" alignment="CENTER" prefHeight="296.0" prefWidth="652.0">
                         <children>
                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="685.0" spacing="15.0">
                               <children>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_pinky_finger" stylesheets="@style.css">
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_pinky_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Q">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_ring_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_ring_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="W">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="W" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_middle_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_middle_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="E">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="R">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="T">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Y">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="U">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="U" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_middle_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_middle_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="I">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_ring_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_ring_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="O">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_pinky_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_pinky_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="P">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
                               </children>
                            </HBox>
                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="15.0">
                               <children>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_pinky_finger" stylesheets="@style.css">
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_pinky_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="A">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_ring_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_ring_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="S">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_middle_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_middle_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="D">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="F">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="H">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="J">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="J" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_middle_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_middle_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="K">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_ring_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_ring_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="L">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_pinky_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_pinky_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0">
+                                       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0">
                                           <children>
                                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
                                                 <font>
@@ -294,8 +371,15 @@
                                                 </VBox.margin>
                                              </Text>
                                           </children>
+                                          <padding>
+                                             <Insets top="-5.0" />
+                                          </padding>
                                        </VBox>
-                                    </children></HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
                               </children>
                               <padding>
                                  <Insets left="20.0" />
@@ -303,65 +387,93 @@
                            </HBox>
                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="15.0">
                               <children>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_pinky_finger" stylesheets="@style.css">
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_pinky_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Z">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Z" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_ring_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_ring_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_middle_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_middle_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="C">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="V">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="V" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="left_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="B">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="N">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_index_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="M">
+                                       <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="M" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_middle_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="38.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_middle_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0">
+                                       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0">
                                           <children>
                                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;">
                                                 <font>
@@ -380,11 +492,18 @@
                                                 </VBox.margin>
                                              </Text>
                                           </children>
+                                          <padding>
+                                             <Insets top="-3.0" />
+                                          </padding>
                                        </VBox>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_ring_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="38.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_ring_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0">
+                                       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0">
                                           <children>
                                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;">
                                                 <font>
@@ -403,11 +522,18 @@
                                                 </VBox.margin>
                                              </Text>
                                           </children>
+                                          <padding>
+                                             <Insets top="-3.0" />
+                                          </padding>
                                        </VBox>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_pinky_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 8;" styleClass="right_pinky_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0">
+                                       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0">
                                           <children>
                                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
                                                 <font>
@@ -419,15 +545,22 @@
                                              </Text>
                                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="/">
                                                 <font>
-                                                   <Font name="Rubik Bold" size="16.0" />
+                                                   <Font name="Rubik Bold" size="14.0" />
                                                 </font>
                                                 <VBox.margin>
                                                    <Insets top="-3.0" />
                                                 </VBox.margin>
                                              </Text>
                                           </children>
+                                          <padding>
+                                             <Insets top="-3.0" />
+                                          </padding>
                                        </VBox>
-                                    </children></HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
                               </children>
                               <padding>
                                  <Insets left="40.0" />
@@ -435,42 +568,54 @@
                            </HBox>
                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="15.0">
                               <children>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="70.0" style="-fx-background-radius: 8;" styleClass="left_pinky_finger" stylesheets="@style.css">
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="70.0" style="-fx-background-radius: 8;" styleClass="left_pinky_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" opacity="0.75" strokeType="OUTSIDE" strokeWidth="0.0" text="SHIFT">
+                                       <Text fill="WHITE" layoutY="20.0" opacity="0.75" strokeType="OUTSIDE" strokeWidth="0.0" text="SHIFT" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="18.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="335.0" style="-fx-background-radius: 8;" styleClass="thumb_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="10.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="335.0" style="-fx-background-radius: 8;" styleClass="thumb_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" opacity="0.75" strokeType="OUTSIDE" strokeWidth="0.0" text="SPACEBAR">
+                                       <Text fill="WHITE" layoutY="20.0" opacity="0.75" strokeType="OUTSIDE" strokeWidth="0.0" text="SPACEBAR" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="24.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
-                                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="70.0" style="-fx-background-radius: 8;" styleClass="right_pinky_finger" stylesheets="@style.css">
+                                    </children>
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </TextFlow>
+                                 <TextFlow maxHeight="-Infinity" prefHeight="40.0" prefWidth="70.0" style="-fx-background-radius: 8;" styleClass="right_pinky_finger" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text fill="WHITE" opacity="0.75" strokeType="OUTSIDE" strokeWidth="0.0" text="SHIFT">
+                                       <Text fill="WHITE" layoutY="20.0" opacity="0.75" strokeType="OUTSIDE" strokeWidth="0.0" text="SHIFT" textOrigin="BOTTOM" wrappingWidth="17.087997436523438">
                                           <font>
                                              <Font name="Rubik Bold" size="18.0" />
                                           </font>
                                        </Text>
-                                    </children></HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets top="10.0" />
+                                    </padding>
+                                 </TextFlow>
                               </children>
                               <padding>
                                  <Insets left="50.0" />
                               </padding>
                            </HBox>
                         </children>
-                        <VBox.margin>
-                           <Insets left="40.0" />
-                        </VBox.margin>
                         <padding>
                            <Insets left="10.0" />
                         </padding>
+                        <VBox.margin>
+                           <Insets left="40.0" />
+                        </VBox.margin>
                      </VBox>
                   </children>
                   <BorderPane.margin>

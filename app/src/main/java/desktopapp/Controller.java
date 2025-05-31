@@ -1,18 +1,18 @@
 package desktopapp;
 
 import javafx.animation.FillTransition;
-// import javafx.animation.TranslateTransition;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-// import javafx.scene.image.Image;
-// import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -21,49 +21,42 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+// import java.util.Objects; // Tidak digunakan secara langsung di sini lagi
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
     @FXML
     private AnchorPane mainPage;
-
-    // Popups
     @FXML
-    private AnchorPane overlayPopup; // Info popup
+    private AnchorPane overlayPopup;
     @FXML
-    private AnchorPane settingsPopupAnchorPane; // Settings popup
+    private AnchorPane settingsPopupAnchorPane;
     @FXML
-    private AnchorPane mulaiPopup; // CTA Mulai popup
+    private AnchorPane mulaiPopup;
     @FXML
-    private AnchorPane tutorialPage1Popup; // CTA Tutorial popup - Halaman 1 (rename dari tutorialPopup)
+    private AnchorPane tutorialPage1Popup;
     @FXML
-    private AnchorPane tutorialPage2Popup; // CTA Tutorial popup - Halaman 2 (BARU)
+    private AnchorPane tutorialPage2Popup;
     @FXML
-    private AnchorPane keluarPopup; // CTA Keluar popup
-
-
+    private AnchorPane keluarPopup;
     @FXML
     private Pane disableLayer;
-
-    // Untuk Info Popup
     @FXML
     private HBox infoProfil;
     @FXML
     private HBox infoSumber;
     @FXML
     private HBox infoContent;
-
-    private Node profilDeveloperNode;
-    private Node sumberReferensiNode;
-
-    // Untuk Settings Popup Switches
     @FXML
     private HBox musicSwitch;
     @FXML
@@ -72,50 +65,37 @@ public class Controller implements Initializable {
     private HBox soundEffectSwitch;
     @FXML
     private Circle soundEffectSwitchCircle;
-
-    // Untuk tombol di dalam Mulai Popup
     @FXML
     private HBox btnLatihanHuruf;
     @FXML
     private HBox btnLatihanKata;
     @FXML
     private HBox btnLatihanKalimat;
-
-    // Untuk tombol di dalam Keluar Popup
     @FXML
     private HBox btnKeluarYa;
     @FXML
     private HBox btnKeluarTidak;
 
-    // Untuk tombol di dalam Tutorial Popup (Page 1 & 2)
-    // fx:id untuk tombol kembali di tutorialPage1Popup mungkin tidak perlu jika hanya memanggil closeActivePopup
-    // fx:id untuk tombol lanjut di tutorialPage1Popup (btnTutorialLanjutPage1) sudah ada di FXML
-    // fx:id untuk tombol kembali di tutorialPage2Popup (btnTutorialKembaliPage2) sudah ada di FXML
-
-
-    // State untuk switches
+    private Node profilDeveloperNode;
+    private Node sumberReferensiNode;
     private boolean isMusicEnabled = true;
     private boolean isSoundEffectsEnabled = true;
-
-    // Konstanta warna untuk switch
     private final Color SWITCH_ON_COLOR = Color.web("#ffffff");
     private final Color SWITCH_OFF_COLOR = Color.web("#79747E");
     private final Color SWITCH_TRACK_ON_COLOR = Color.web("#6FADCF");
     private final Color SWITCH_TRACK_OFF_COLOR = Color.web("#A0A0A0");
-
-
     private static final String STYLE_ACTIVE_BUTTON = "btn_system";
     private static final String STYLE_INACTIVE_BUTTON = "border_button";
     private static final String STYLE_MEDIUM_RADIUS = "medium_button_radius";
     private static final String STYLE_CONTENT_BACKGROUND = "info_background_content";
     private static final String STYLE_CONTENT_RADIUS = "adn_button_radius";
-
     private List<AnchorPane> allPopups;
 
+    private static String selectedTheme = null;
+    private static final Random random = new Random();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Tambahkan tutorialPage2Popup ke daftar dan pastikan nama tutorialPage1Popup benar
         allPopups = new ArrayList<>(Arrays.asList(
                 overlayPopup, settingsPopupAnchorPane,
                 mulaiPopup, tutorialPage1Popup, tutorialPage2Popup, keluarPopup
@@ -136,7 +116,6 @@ public class Controller implements Initializable {
             infoContent.getChildren().setAll(profilDeveloperNode);
         }
         updateButtonStyles(true);
-
         updateSwitchVisuals(musicSwitch, musicSwitchCircle, isMusicEnabled, "Musik");
         updateSwitchVisuals(soundEffectSwitch, soundEffectSwitchCircle, isSoundEffectsEnabled, "Efek Suara");
     }
@@ -147,14 +126,18 @@ public class Controller implements Initializable {
                 popup.setVisible(false);
             }
         }
-
         if (popupToShow != null) {
             popupToShow.setVisible(true);
             applyFadeInAnimation(popupToShow);
         }
         if (disableLayer != null) {
-            disableLayer.setVisible(true);
-            applyFadeInAnimation(disableLayer);
+            boolean shouldDisable = popupToShow != null && popupToShow.isVisible();
+            if (shouldDisable && !disableLayer.isVisible()) {
+                disableLayer.setVisible(true);
+                applyFadeInAnimation(disableLayer);
+            } else if (!shouldDisable && disableLayer.isVisible()) {
+                applyFadeOutAnimation(disableLayer, () -> disableLayer.setVisible(false));
+            }
         }
     }
 
@@ -164,7 +147,6 @@ public class Controller implements Initializable {
         showSpecificPopup(overlayPopup);
     }
 
-    // ... (Metode Info Popup lainnya tetap sama) ...
     @FXML
     void handleInfoProfilClicked(MouseEvent event) {
         showProfilContent();
@@ -177,13 +159,8 @@ public class Controller implements Initializable {
 
     private void updateButtonStyles(boolean isProfilActive) {
         if (infoProfil != null && infoSumber != null) {
-            if (isProfilActive) {
-                infoProfil.getStyleClass().setAll(STYLE_ACTIVE_BUTTON, STYLE_MEDIUM_RADIUS);
-                infoSumber.getStyleClass().setAll(STYLE_INACTIVE_BUTTON, STYLE_MEDIUM_RADIUS);
-            } else {
-                infoSumber.getStyleClass().setAll(STYLE_ACTIVE_BUTTON, STYLE_MEDIUM_RADIUS);
-                infoProfil.getStyleClass().setAll(STYLE_INACTIVE_BUTTON, STYLE_MEDIUM_RADIUS);
-            }
+            infoProfil.getStyleClass().setAll(isProfilActive ? STYLE_ACTIVE_BUTTON : STYLE_INACTIVE_BUTTON, STYLE_MEDIUM_RADIUS);
+            infoSumber.getStyleClass().setAll(!isProfilActive ? STYLE_ACTIVE_BUTTON : STYLE_INACTIVE_BUTTON, STYLE_MEDIUM_RADIUS);
         }
     }
 
@@ -204,19 +181,17 @@ public class Controller implements Initializable {
         }
     }
 
-
     @FXML
     private void showSettingsPopup(MouseEvent event) {
         showSpecificPopup(settingsPopupAnchorPane);
     }
 
-    // ... (Metode Settings Popup lainnya tetap sama) ...
     @FXML
     private void toggleMusic(MouseEvent event) {
         isMusicEnabled = !isMusicEnabled;
         updateSwitchVisuals(musicSwitch, musicSwitchCircle, isMusicEnabled, "Musik");
         System.out.println("Musik: " + (isMusicEnabled ? "ON" : "OFF"));
-        // TODO: Tambahkan logika untuk benar-benar memutar/menghentikan musik
+        // TODO: Implementasikan logika play/stop musik
     }
 
     @FXML
@@ -224,20 +199,14 @@ public class Controller implements Initializable {
         isSoundEffectsEnabled = !isSoundEffectsEnabled;
         updateSwitchVisuals(soundEffectSwitch, soundEffectSwitchCircle, isSoundEffectsEnabled, "Efek Suara");
         System.out.println("Efek Suara: " + (isSoundEffectsEnabled ? "ON" : "OFF"));
-        // TODO: Tambahkan logika untuk benar-benar mengaktifkan/menonaktifkan efek suara
+        // TODO: Implementasikan logika on/off efek suara
     }
 
     private void updateSwitchVisuals(HBox switchBox, Circle switchCircle, boolean isEnabled, String switchName) {
         if (switchBox == null || switchCircle == null) return;
-        if (isEnabled) {
-            switchBox.setAlignment(Pos.CENTER_RIGHT);
-            switchBox.setStyle("-fx-background-color: " + toWebColor(SWITCH_TRACK_ON_COLOR) + "; -fx-background-radius: 20;");
-            switchCircle.setFill(SWITCH_ON_COLOR);
-        } else {
-            switchBox.setAlignment(Pos.CENTER_LEFT);
-            switchBox.setStyle("-fx-background-color: " + toWebColor(SWITCH_TRACK_OFF_COLOR) + "; -fx-background-radius: 20;");
-            switchCircle.setFill(SWITCH_OFF_COLOR);
-        }
+        switchBox.setAlignment(isEnabled ? Pos.CENTER_RIGHT : Pos.CENTER_LEFT);
+        switchBox.setStyle("-fx-background-color: " + toWebColor(isEnabled ? SWITCH_TRACK_ON_COLOR : SWITCH_TRACK_OFF_COLOR) + "; -fx-background-radius: 20;");
+        // Animasikan fill circle jika diinginkan
         FillTransition ft = new FillTransition(Duration.millis(150), switchCircle);
         ft.setToValue(isEnabled ? SWITCH_ON_COLOR : SWITCH_OFF_COLOR);
         ft.play();
@@ -245,19 +214,18 @@ public class Controller implements Initializable {
 
     private String toWebColor(Color color) {
         return String.format("#%02X%02X%02X",
-            (int)(color.getRed() * 255),
-            (int)(color.getGreen() * 255),
-            (int)(color.getBlue() * 255));
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 
-    // --- Metode untuk CTA Popups ---
     @FXML
     private void showMulaiPopup(MouseEvent event) {
         showSpecificPopup(mulaiPopup);
     }
 
     @FXML
-    private void showTutorialPopup(MouseEvent event) { // Ini akan menampilkan halaman 1 tutorial
+    private void showTutorialPopup(MouseEvent event) {
         showSpecificPopup(tutorialPage1Popup);
     }
 
@@ -266,40 +234,101 @@ public class Controller implements Initializable {
         showSpecificPopup(keluarPopup);
     }
 
-    // Handler untuk tombol di dalam Popup Mulai
+    private void ensureThemeSelected() {
+        if (selectedTheme == null) {
+            selectedTheme = random.nextBoolean() ? "ori" : "darkmode"; // Menggunakan "darkmode"
+            System.out.println("Tema dipilih untuk sesi ini: " + selectedTheme);
+        }
+    }
+
     @FXML
     private void handlePilihLatihanHuruf(MouseEvent event) {
         System.out.println("Pilihan Latihan: Huruf");
+        ensureThemeSelected();
+        switchToLatihanScene("huruf", selectedTheme);
         closeActivePopup(null);
     }
 
     @FXML
     private void handlePilihLatihanKata(MouseEvent event) {
         System.out.println("Pilihan Latihan: Kata");
+        ensureThemeSelected();
+        switchToLatihanScene("kata", selectedTheme);
         closeActivePopup(null);
     }
 
     @FXML
     private void handlePilihLatihanKalimat(MouseEvent event) {
         System.out.println("Pilihan Latihan: Kalimat");
+        ensureThemeSelected();
+        switchToLatihanScene("kalimat", selectedTheme);
         closeActivePopup(null);
     }
 
-    // Handler untuk tombol di dalam Popup Tutorial
+    private void switchToLatihanScene(String category, String theme) {
+        try {
+            String fxmlFileSuffix = theme.equals("darkmode") ? "_darkmode.fxml" : ".fxml";
+            if (theme.equals("ori")) { // Untuk tema ori, tidak ada suffix tema
+                 fxmlFileSuffix = ".fxml";
+            }
+            String fxmlFile = "/latihan_" + category + (theme.equals("ori") ? "" : "_" + theme) + ".fxml";
+            // Jika tema ori, nama file seperti "latihan_huruf.fxml"
+            // Jika tema darkmode, nama file seperti "latihan_huruf_darkmode.fxml"
+            if (theme.equals("ori")) {
+                 fxmlFile = "/latihan_" + category + ".fxml";
+            } else {
+                 fxmlFile = "/latihan_" + category + "_" + theme + ".fxml"; // theme di sini akan "darkmode"
+            }
+
+            System.out.println("Mencoba memuat: " + fxmlFile);
+
+            FXMLLoader loader = App.getLoader(fxmlFile);
+            Parent typingRoot = loader.load();
+
+            TypingController typingController = loader.getController();
+            if (typingController == null) {
+                System.err.println("TypingController tidak terinisialisasi dari FXML: " + fxmlFile +
+                                   ". Pastikan fx:controller=\"desktopapp.TypingController\" ada di FXML latihan.");
+                return;
+            }
+            typingController.initContent(category, theme);
+
+            Stage primaryStage = App.getPrimaryStage();
+            Scene scene = new Scene(typingRoot, primaryStage.getWidth(), primaryStage.getHeight());
+            String cssPath = getClass().getResource("/style.css").toExternalForm();
+             if (cssPath != null) {
+                scene.getStylesheets().add(cssPath);
+            } else {
+                System.err.println("Stylesheet /style.css tidak ditemukan untuk scene latihan.");
+            }
+            primaryStage.setScene(scene);
+
+        } catch (IOException e) {
+            System.err.println("Gagal memuat halaman latihan: " + category + " tema: " + theme);
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.err.println("NullPointerException saat memuat FXML. Pastikan path FXML benar dan file ada.");
+            System.err.println("Path yang dicoba: " + "/latihan_" + category + "_" + theme + ".fxml"); // Akan menampilkan path yang salah jika ori
+            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            System.err.println("Error mendapatkan primary stage: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
-    private void handleTutorialLanjut(MouseEvent event) { // Dipanggil dari tutorialPage1Popup
+    private void handleTutorialLanjut(MouseEvent event) {
         System.out.println("Tombol Lanjut Tutorial (dari Hal 1 ke Hal 2) diklik.");
-        showSpecificPopup(tutorialPage2Popup); // Tampilkan halaman 2
+        showSpecificPopup(tutorialPage2Popup);
     }
 
     @FXML
-    private void handleTutorialKembaliKeHalaman1(MouseEvent event) { // Dipanggil dari tutorialPage2Popup
+    private void handleTutorialKembaliKeHalaman1(MouseEvent event) {
         System.out.println("Tombol Kembali Tutorial (dari Hal 2 ke Hal 1) diklik.");
-        showSpecificPopup(tutorialPage1Popup); // Tampilkan halaman 1
+        showSpecificPopup(tutorialPage1Popup);
     }
 
-
-    // Handler untuk tombol di dalam Popup Keluar
     @FXML
     private void handleKeluarYa(MouseEvent event) {
         System.out.println("Keluar dari aplikasi.");
@@ -312,7 +341,6 @@ public class Controller implements Initializable {
         closeActivePopup(null);
     }
 
-
     @FXML
     private void closeActivePopup(MouseEvent event) {
         boolean popupWasVisible = false;
@@ -321,11 +349,8 @@ public class Controller implements Initializable {
                 final AnchorPane currentPopup = popup;
                 applyFadeOutAnimation(currentPopup, () -> currentPopup.setVisible(false));
                 popupWasVisible = true;
-                // Hanya satu popup yang seharusnya aktif, jadi bisa break jika mau,
-                // tapi loop melalui semua tidak masalah.
             }
         }
-
         if (popupWasVisible && disableLayer != null && disableLayer.isVisible()) {
             applyFadeOutAnimation(disableLayer, () -> disableLayer.setVisible(false));
         }
@@ -350,15 +375,14 @@ public class Controller implements Initializable {
         }
         fadeOut.play();
     }
-    
-    // ... (createProfilDeveloperContent, createSingleDeveloperVBox, createSumberReferensiContent tetap sama) ...
+
     private Node createProfilDeveloperContent() {
         HBox developersContainer = new HBox();
         developersContainer.setAlignment(Pos.CENTER);
         developersContainer.setSpacing(25.0);
-        VBox fricoVBox = createSingleDeveloperVBox("@desain/default_avatar.png", "Frico Putung", "220211060359", 130.0);
-        VBox syifabelaVBox = createSingleDeveloperVBox("@desain/default_avatar.png", "Syifabela Suratinoyo", "220211060344", 150.0);
-        VBox kevinVBox = createSingleDeveloperVBox("@desain/default_avatar.png", "Kevin Rimper", "220211060364", 130.0);
+        VBox fricoVBox = createSingleDeveloperVBox("/desain/default_avatar.png", "Frico Putung", "220211060359", 130.0);
+        VBox syifabelaVBox = createSingleDeveloperVBox("/desain/default_avatar.png", "Syifabela Suratinoyo", "220211060344", 150.0);
+        VBox kevinVBox = createSingleDeveloperVBox("/desain/default_avatar.png", "Kevin Rimper", "220211060364", 130.0);
         developersContainer.getChildren().addAll(fricoVBox, syifabelaVBox, kevinVBox);
         return developersContainer;
     }
@@ -375,10 +399,16 @@ public class Controller implements Initializable {
         avatarHBox.setPrefHeight(100.0);
         avatarHBox.setPrefWidth(100.0);
         avatarHBox.getStyleClass().addAll("info_background", "info_avatar");
-        HBox namaHBox = new HBox(new Label(nama) {{ setTextFill(Color.WHITE); setFont(Font.font("Lapsus Pro Bold", 18.0)); }});
+        Label namaLabel = new Label(nama);
+        namaLabel.setTextFill(Color.WHITE);
+        namaLabel.setFont(Font.font("Lapsus Pro Bold", 18.0));
+        HBox namaHBox = new HBox(namaLabel);
         namaHBox.setAlignment(Pos.CENTER);
         namaHBox.setPrefHeight(30.0);
-        HBox nimHBox = new HBox(new Label(nim) {{ setTextFill(Color.WHITE); setFont(Font.font("Lapsus Pro Bold", 16.0)); }});
+        Label nimLabel = new Label(nim);
+        nimLabel.setTextFill(Color.WHITE);
+        nimLabel.setFont(Font.font("Lapsus Pro Bold", 16.0));
+        HBox nimHBox = new HBox(nimLabel);
         nimHBox.setAlignment(Pos.CENTER);
         nimHBox.setPrefHeight(30.0);
         VBox.setMargin(nimHBox, new Insets(-30.0, 0, 0, 0));

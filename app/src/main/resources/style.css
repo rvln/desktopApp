@@ -255,3 +255,79 @@
   );
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 7.2, 0, 0, 4);
 }
+
+/* update untuk halaman latihan */
+/* Style dasar untuk semua tombol keyboard virtual */
+.key-base {
+  -fx-pref-height: 40px;
+  -fx-pref-width: 40px; /* Lebar default, bisa di-override untuk tombol panjang */
+  -fx-background-radius: 8px;
+  -fx-alignment: center; /* Untuk TextFlow agar Text di dalamnya center */
+  -fx-padding: 5px; /* Padding internal untuk TextFlow */
+}
+
+.key-base Text {
+  /* Style untuk Text di dalam TextFlow tombol */
+  -fx-fill: white;
+  -fx-font-family: "Rubik Bold";
+  -fx-font-size: 20px; /* Ukuran font default untuk tombol */
+  -fx-text-origin: center; /* Coba VPOS_CENTER atau CENTER untuk vertikal alignment */
+}
+
+/* Untuk tombol dengan dua karakter (atas kecil, bawah besar) */
+.key-char-small {
+  -fx-font-size: 12px; /* Ukuran lebih kecil untuk karakter atas */
+  -fx-translate-y: -2px; /* Sedikit ke atas */
+}
+.key-char-main {
+  -fx-font-size: 18px; /* Ukuran normal untuk karakter utama/bawah */
+  -fx-translate-y: 2px; /* Sedikit ke bawah */
+}
+
+/* Untuk tombol modifier seperti SHIFT */
+.key-modifier {
+  -fx-pref-width: 70px; /* Lebar lebih besar untuk SHIFT */
+}
+.key-char-modifier Text {
+  /* Teks di dalam tombol SHIFT */
+  -fx-font-size: 16px;
+  -fx-opacity: 0.75;
+}
+
+/* Untuk tombol SPACEBAR */
+.key-char-space Text {
+  -fx-font-size: 20px;
+  -fx-opacity: 0.75;
+}
+
+/* Style class untuk highlight tombol aktif (dari TypingController) */
+.key-highlighted-active {
+  -fx-background-color: #1c5df4; /* Warna highlight biru */
+  -fx-border-color: #0d3c73;
+  -fx-border-width: 2px;
+  /* Efek blink bisa ditambahkan dengan animasi jika diperlukan */
+}
+.key-highlighted-active Text {
+  -fx-fill: white; /* Pastikan teks tetap terlihat */
+}
+
+/* Style class untuk highlight jari (Circle) */
+.finger-highlighted {
+  /* Efek DropShadow akan ditambahkan via Java */
+  /* Anda bisa menambahkan stroke di sini jika mau */
+  /* -fx-stroke: #1C5DF4; */
+  /* -fx-stroke-width: 2px; */
+}
+
+/* Style untuk TextFlow yang menampilkan teks latihan */
+#textToTypeDisplay {
+  /* Menggunakan ID selector */
+  /* -fx-font-family: "Rubik Bold"; /* Font default jika tidak di-override per karakter */
+  /* -fx-font-size: 42px; /* Ukuran font default */
+  /* -fx-text-alignment: center; /* Alignment teks di dalam TextFlow */
+  /* -fx-line-spacing: 5px; /* Jarak antar baris jika teks wrap */
+}
+
+/* Style class untuk Text di dalam textToTypeDisplay (diatur via Java) */
+/* .text-flow-pending, .text-flow-current, .text-flow-correct, .text-flow-incorrect */
+/* Sudah ada di instruksi sebelumnya, pastikan warnanya sesuai keinginan Anda */
