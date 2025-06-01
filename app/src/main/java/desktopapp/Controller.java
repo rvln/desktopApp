@@ -265,56 +265,57 @@ public class Controller implements Initializable {
         closeActivePopup(null);
     }
 
-    private void switchToLatihanScene(String category, String theme) {
-        try {
-            String fxmlFileSuffix = theme.equals("darkmode") ? "_darkmode.fxml" : ".fxml";
-            if (theme.equals("ori")) { // Untuk tema ori, tidak ada suffix tema
-                 fxmlFileSuffix = ".fxml";
+    // Di dalam Controller.java
+        private void switchToLatihanScene(String category, String theme) {
+            try {
+                String fxmlFile;
+                if (theme.equals("ori")) {
+                    fxmlFile = "/latihan_" + category + ".fxml";
+                } else { // theme is "darkmode"
+                    fxmlFile = "/latihan_" + category + "_" + theme + ".fxml";
+                }
+                System.out.println("Controller: Mencoba memuat FXML: " + fxmlFile);
+
+                FXMLLoader loader = App.getLoader(fxmlFile); // Menggunakan helper dari App.java
+                Parent typingRoot = loader.load();
+
+                TypingController typingController = loader.getController();
+                if (typingController == null) {
+                    System.err.println("Controller ERROR: TypingController tidak terinisialisasi dari FXML: " + fxmlFile);
+                    return;
+                }
+
+                Stage primaryStage = App.getPrimaryStage();
+                Scene scene = new Scene(typingRoot, primaryStage.getWidth(), primaryStage.getHeight());
+                String cssPath = getClass().getResource("/style.css").toExternalForm();
+                if (cssPath != null) {
+                    scene.getStylesheets().add(cssPath);
+                } else {
+                    System.err.println("Controller WARNING: Stylesheet /style.css tidak ditemukan untuk scene latihan.");
+                }
+                
+                // === KRUSIAL: MEMASANG EVENT HANDLER PADA SCENE BARU ===
+                System.out.println("Controller: Memasang setOnKeyPressed pada scene untuk TypingController. Scene null? " + (scene == null) + ". TypingController null? " + (typingController == null));
+                scene.setOnKeyPressed(typingController::handleKeyPress); // Pastikan baris ini ada dan dieksekusi
+                // ======================================================
+
+                primaryStage.setScene(scene);
+                System.out.println("Controller: Scene latihan telah di-set.");
+                
+                // Panggil initContent SETELAH scene di-set dan controller didapatkan
+                typingController.initContent(category, theme);
+
+            } catch (IOException e) {
+                System.err.println("Controller ERROR: Gagal memuat halaman latihan: " + category + " tema: " + theme);
+                e.printStackTrace();
+            } catch (NullPointerException e) {
+                System.err.println("Controller ERROR: NullPointerException saat memuat FXML latihan.");
+                e.printStackTrace();
+            } catch (IllegalStateException e) {
+                System.err.println("Controller ERROR: Error mendapatkan primary stage: " + e.getMessage());
+                e.printStackTrace();
             }
-            String fxmlFile = "/latihan_" + category + (theme.equals("ori") ? "" : "_" + theme) + ".fxml";
-            // Jika tema ori, nama file seperti "latihan_huruf.fxml"
-            // Jika tema darkmode, nama file seperti "latihan_huruf_darkmode.fxml"
-            if (theme.equals("ori")) {
-                 fxmlFile = "/latihan_" + category + ".fxml";
-            } else {
-                 fxmlFile = "/latihan_" + category + "_" + theme + ".fxml"; // theme di sini akan "darkmode"
-            }
-
-            System.out.println("Mencoba memuat: " + fxmlFile);
-
-            FXMLLoader loader = App.getLoader(fxmlFile);
-            Parent typingRoot = loader.load();
-
-            TypingController typingController = loader.getController();
-            if (typingController == null) {
-                System.err.println("TypingController tidak terinisialisasi dari FXML: " + fxmlFile +
-                                   ". Pastikan fx:controller=\"desktopapp.TypingController\" ada di FXML latihan.");
-                return;
-            }
-            typingController.initContent(category, theme);
-
-            Stage primaryStage = App.getPrimaryStage();
-            Scene scene = new Scene(typingRoot, primaryStage.getWidth(), primaryStage.getHeight());
-            String cssPath = getClass().getResource("/style.css").toExternalForm();
-             if (cssPath != null) {
-                scene.getStylesheets().add(cssPath);
-            } else {
-                System.err.println("Stylesheet /style.css tidak ditemukan untuk scene latihan.");
-            }
-            primaryStage.setScene(scene);
-
-        } catch (IOException e) {
-            System.err.println("Gagal memuat halaman latihan: " + category + " tema: " + theme);
-            e.printStackTrace();
-        } catch (NullPointerException e) {
-            System.err.println("NullPointerException saat memuat FXML. Pastikan path FXML benar dan file ada.");
-            System.err.println("Path yang dicoba: " + "/latihan_" + category + "_" + theme + ".fxml"); // Akan menampilkan path yang salah jika ori
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
-            System.err.println("Error mendapatkan primary stage: " + e.getMessage());
-            e.printStackTrace();
         }
-    }
 
 
     @FXML
