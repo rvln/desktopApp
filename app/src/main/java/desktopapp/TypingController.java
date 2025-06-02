@@ -75,18 +75,21 @@ public class TypingController implements Initializable {
     private Map<Character, String> charToFingerFxIdMap;
 
     private AnchorPane completePopupNode;
-    private Text durasiTextComplete;
-    private HBox btnLanjutkanComplete, btnCobaLagiComplete, btnKembaliComplete;
+    private Text durasiTextComplete; // fx:id="durasiTextComplete" di complete_popup.fxml
+    private HBox btnLanjutkanComplete; // fx:id="btnLanjutkanComplete"
+    private HBox btnCobaLagiComplete;   // fx:id="btnCobaLagiComplete"
+    private HBox btnKembaliComplete;   // fx:id="btnKembaliComplete"
 
     private String currentCategory;
     private String currentTheme;
-    private List<String> currentExerciseList;
-    private int currentExerciseIndex = 0;
+    private List<String> exerciseSessionsList; // Mengganti nama currentExerciseList
+    private int currentSessionIndex = 0;       // Mengganti nama currentExerciseIndex
     private String currentTextToType;
     private int currentTypedCharIndex = 0;
 
     private Timeline timerTimeline;
-    private long startTimeMillis;
+    private long categoryStartTimeMillis; // Timer untuk keseluruhan kategori
+
     private final Random random = new Random();
 
     private List<String> educationalSnippets;
@@ -95,7 +98,7 @@ public class TypingController implements Initializable {
         "Matahari sumber energi utama.", "Air penting untuk kehidupan."
     );
     private int snippetDisplayCounter = 0;
-    private final int SNIPPET_FREQUENCY = 3;
+    private final int SNIPPET_FREQUENCY = 3; // Tampilkan materi setiap 3 kata (spasi)
     private String lastHighlightedKeyString = null;
     private Circle lastHighlightedFingerCircle = null;
 
@@ -133,7 +136,7 @@ public class TypingController implements Initializable {
         }
 
         if (textToTypeDisplay == null) {
-             System.err.println("TypingController FXML Injection Error: textToTypeDisplay (TextFlow) is null.");
+             System.err.println("TypingController FXML Injection Error: textToTypeDisplay (TextFlow) is null. Pastikan fx:id='textToTypeDisplay' dan elemennya adalah TextFlow.");
         } else {
             System.out.println("TypingController: textToTypeDisplay injected successfully.");
         }
@@ -169,20 +172,19 @@ public class TypingController implements Initializable {
         int nullKeyCount = 0;
         for(Map.Entry<String, TextFlow> entry : virtualKeyboardNodeMap.entrySet()){
             if(entry.getValue() == null){
-                System.err.println("TypingController WARNING: Tombol keyboard virtual TextFlow untuk fx:id='key_" + entry.getKey().replace(";", "SEMICOLON").replace(",", "COMMA").replace(".", "PERIOD").replace("/", "SLASH").replace(" ", "SPACE") + "' TIDAK TER-INJECT (null).");
+                System.err.println("TypingController WARNING: Tombol keyboard virtual TextFlow untuk fx:id='key_" + entry.getKey().replace(";", "SEMICOLON").replace(",", "COMMA").replace(".", "PERIOD").replace("/", "SLASH").replace(" ", "SPACE") + "' TIDAK TER-INJECT (null). Highlight tombol ini tidak akan berfungsi.");
                 nullKeyCount++;
             }
         }
         if (nullKeyCount == 0) {
-            System.out.println("TypingController: Semua tombol keyboard virtual berhasil di-map.");
+            System.out.println("TypingController: Semua field @FXML tombol keyboard virtual berhasil di-map (jika FXML memiliki fx:id yang cocok).");
         } else {
-            System.err.println("TypingController ERROR: " + nullKeyCount + " tombol keyboard virtual gagal di-inject.");
+            System.err.println("TypingController ERROR: " + nullKeyCount + " field @FXML tombol keyboard virtual adalah null. Periksa fx:id di FXML Anda!");
         }
         System.out.println("TypingController: initializeVirtualKeyboardNodeMap END");
     }
 
     private void initializeFingerMapping() {
-        // ... (sama seperti sebelumnya, tambahkan log jika perlu) ...
         fingerNodeMap = new HashMap<>();
         charToFingerFxIdMap = new HashMap<>();
 
@@ -208,6 +210,7 @@ public class TypingController implements Initializable {
         for (char c : "IK8*".toCharArray()) charToFingerFxIdMap.put(c, "keyRMiddle"); charToFingerFxIdMap.put(',', "keyRMiddle"); charToFingerFxIdMap.put('<', "keyRMiddle");
         for (char c : "OL9(".toCharArray()) charToFingerFxIdMap.put(c, "keyRRing"); charToFingerFxIdMap.put('.', "keyRRing"); charToFingerFxIdMap.put('>', "keyRRing");
         for (char c : "P0)".toCharArray()) charToFingerFxIdMap.put(c, "keyRPinky"); charToFingerFxIdMap.put(';', "keyRPinky"); charToFingerFxIdMap.put(':', "keyRPinky"); charToFingerFxIdMap.put('/', "keyRPinky"); charToFingerFxIdMap.put('?', "keyRPinky");
+        
         System.out.println("TypingController: initializeFingerMapping COMPLETE");
     }
 
@@ -216,19 +219,19 @@ public class TypingController implements Initializable {
         System.out.println("TypingController: initContent START - Category: " + category + ", Theme: " + theme);
         this.currentCategory = category;
         this.currentTheme = theme;
-        this.currentExerciseIndex = 0;
+        this.currentSessionIndex = 0; // Reset sesi untuk kategori baru
         this.currentTypedCharIndex = 0;
 
         loadExercisesForCategory(category);
-        startNextExercise();
+        startNextSession(); 
 
         if (rootPage != null) {
             Platform.runLater(() -> {
                 if (rootPage.getScene() != null) {
-                    System.out.println("TypingController: Requesting focus for rootPage.");
-                    rootPage.requestFocus(); // Penting untuk memastikan rootPage bisa menerima event jika Scene tidak secara eksplisit
+                    System.out.println("TypingController: Requesting focus for rootPage in initContent.");
+                    rootPage.requestFocus();
                 } else {
-                    System.err.println("TypingController: rootPage.getScene() is null in initContent's Platform.runLater. Fokus mungkin tidak ter-set.");
+                    System.err.println("TypingController: rootPage.getScene() is null in initContent's Platform.runLater.");
                 }
             });
         } else {
@@ -239,75 +242,97 @@ public class TypingController implements Initializable {
 
     private void loadExercisesForCategory(String category) {
         System.out.println("TypingController: loadExercisesForCategory - " + category);
-        currentExerciseList = new ArrayList<>();
+        exerciseSessionsList = new ArrayList<>(); // Menggunakan exerciseSessionsList
         switch (category.toLowerCase()) {
             case "huruf":
-                currentExerciseList.addAll(Arrays.asList("ASDF JKL;", "FJDKSLA;", "QWERT YUIOP", "ASDFGHJKL;", "ZXCVBNM,./"));
+                exerciseSessionsList.addAll(Arrays.asList(
+                        "A AA AAA AAAA B BB BBB BBBB", // Sesi 1
+                        "C CC CCC CCCC D DD DDD DDDD", // Sesi 2
+                        "E EE EEE EEEE I II III IIII", // Sesi 3
+                        "F FF FFF FFFF J JJ JJJ JJJJ", // Sesi 4
+                        "G GG GGG GGGG H HH HHH HHHH", // Sesi 5
+                        "K KK KKK KKKK L LL LLL LLLL", // Sesi 6
+                        "M MM MMM MMMM N NN NNN NNNN", // Sesi 7
+                        "O OO OOO OOOO P PP PPP PPPP", // Sesi 8
+                        "Q QQ QQQ QQQQ R RR RRR RRRR", // Sesi 9
+                        "S SS SSS SSSS T TT TTT TTTT"  // Sesi 10 (Contoh 10 sesi)
+                        // "U UU UUU UUUU V VV VVV VVVV",
+                        // "W WW WWW WWWW X XX XXX XXXX",
+                        // "Y YY YYY YY YY Z ZZ ZZZ ZZZZ",
+                        // "ASDF JKL;", "QWERT YUIOP" // Ini bisa jadi sesi tambahan atau level berbeda
+                ));
                 break;
             case "kata":
-                currentExerciseList.addAll(Arrays.asList("RUMAH", "SEKOLAH", "BELAJAR", "KOMPUTER", "ANAK", "PINTAR", "CERDAS"));
+                 exerciseSessionsList.addAll(Arrays.asList(
+                        "AKU KAMU DIA KITA", 
+                        "SAYA MEREKA ITU INI",
+                        "RUMAH SEKOLAH BUKU PENSIL",
+                        "MEJA KURSI LAMPU PINTU",
+                        "MERAH PUTIH HIJAU BIRU" // Contoh 5 sesi kata
+                ));
                 break;
             case "kalimat":
-                currentExerciseList.addAll(Arrays.asList("SAYA SUKA BELAJAR MENGETIK.", "MARI KITA JAGA KEBERSIHAN LINGKUNGAN.", "INDONESIA TANAH AIRKU."));
+                exerciseSessionsList.addAll(Arrays.asList(
+                        "AKU SUKA APEL", 
+                        "SAYA CINTA INDONESIA", 
+                        "MARI BELAJAR MENGETIK", 
+                        "INI ADALAH RUMAH SAYA", 
+                        "BUKU ITU DI ATAS MEJA" // Contoh 5 sesi kalimat
+                ));
                 break;
             default:
-                currentExerciseList.add("KATEGORI TIDAK ADA");
+                exerciseSessionsList.add("KATEGORI TIDAK DIKENALI.");
         }
-        Collections.shuffle(currentExerciseList);
-        System.out.println("TypingController: Exercises loaded: " + currentExerciseList.size());
+        // Collections.shuffle(exerciseSessionsList); // Hapus shuffle jika ingin urutan sesi tetap
+        System.out.println("TypingController: Exercises loaded ("+ exerciseSessionsList.size() +" sesi) untuk kategori " + category);
     }
 
-    private void startNextExercise() {
-        System.out.println("TypingController: startNextExercise - Index: " + currentExerciseIndex);
-        if (currentExerciseIndex < currentExerciseList.size()) {
-            currentTextToType = currentExerciseList.get(currentExerciseIndex).toUpperCase();
-            System.out.println("TypingController: Current text to type: " + currentTextToType);
+    private void startNextSession() {
+        System.out.println("TypingController: startNextSession - Index: " + currentSessionIndex);
+        if (currentSessionIndex < exerciseSessionsList.size()) {
+            currentTextToType = exerciseSessionsList.get(currentSessionIndex).toUpperCase();
+            System.out.println("TypingController: Sesi " + (currentSessionIndex + 1) + ": " + currentTextToType);
             currentTypedCharIndex = 0;
-            snippetDisplayCounter = 0;
+            snippetDisplayCounter = 0; 
             if (textToTypeDisplay != null) {
                  updateTextDisplay();
             } else {
-                System.err.println("TypingController Error: textToTypeDisplay (TextFlow) is null when starting exercise.");
+                System.err.println("TypingController Error: textToTypeDisplay (TextFlow) is null. Tidak bisa memulai sesi.");
                 return;
             }
-            startTimer();
+            if (currentSessionIndex == 0) { 
+                startTimer(); // Mulai timer utama hanya di awal kategori (sesi pertama)
+            }
             highlightCharacterVisuals();
         } else {
-            System.out.println("TypingController: Semua latihan untuk kategori " + currentCategory + " selesai.");
-            handleExitToMainMenu();
+            System.out.println("TypingController: Semua sesi untuk kategori " + currentCategory + " selesai.");
+            stopTimer();
+            showCompletePopup();
         }
     }
 
     private void startTimer() {
-        System.out.println("TypingController: startTimer");
-        startTimeMillis = System.currentTimeMillis();
+        System.out.println("TypingController: startTimer (untuk kategori)");
+        categoryStartTimeMillis = System.currentTimeMillis(); // Menggunakan categoryStartTimeMillis
         if (timerTimeline != null) timerTimeline.stop();
         timerTimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            long elapsedMillis = System.currentTimeMillis() - startTimeMillis;
+            long elapsedMillis = System.currentTimeMillis() - categoryStartTimeMillis;
             String timeFormatted = String.format("%02d:%02d",
                     TimeUnit.MILLISECONDS.toMinutes(elapsedMillis),
                     TimeUnit.MILLISECONDS.toSeconds(elapsedMillis) % 60);
-            if (timerLabel != null) {
-                timerLabel.setText(timeFormatted);
-            } else {
-                // System.err.println("TypingController: timerLabel is null during timer update."); // Bisa terlalu berisik
-            }
+            if (timerLabel != null) timerLabel.setText(timeFormatted);
         }));
         timerTimeline.setCycleCount(Timeline.INDEFINITE);
         timerTimeline.play();
     }
 
     private void stopTimer() {
-        System.out.println("TypingController: stopTimer");
+        System.out.println("TypingController: stopTimer (untuk kategori)");
         if (timerTimeline != null) timerTimeline.stop();
     }
 
     private void updateTextDisplay() {
-        // System.out.println("TypingController: updateTextDisplay"); // Bisa terlalu berisik
-        if (textToTypeDisplay == null || currentTextToType == null) {
-             System.err.println("TypingController Error: updateTextDisplay called with null textToTypeDisplay or currentTextToType.");
-            return;
-        }
+        if (textToTypeDisplay == null || currentTextToType == null) return;
         textToTypeDisplay.getChildren().clear();
 
         for (int i = 0; i < currentTextToType.length(); i++) {
@@ -315,23 +340,19 @@ public class TypingController implements Initializable {
             charTextNode.setFont(TEXT_FONT);
 
             if (i < currentTypedCharIndex) {
-                charTextNode.setFill(Color.web(CORRECT_CHAR_COLOR));
-                charTextNode.setOpacity(DEFAULT_OPACITY);
+                charTextNode.setFill(Color.web(CORRECT_CHAR_COLOR, DEFAULT_OPACITY));
             } else if (i == currentTypedCharIndex) {
-                charTextNode.setFill(Color.web(CURRENT_CHAR_COLOR));
-                charTextNode.setOpacity(DEFAULT_OPACITY);
+                charTextNode.setFill(Color.web(CURRENT_CHAR_COLOR, DEFAULT_OPACITY));
                 charTextNode.setStyle(charTextNode.getStyle() + "-fx-font-weight: bold;");
             } else {
-                charTextNode.setFill(Color.web(PENDING_CHAR_COLOR));
-                charTextNode.setOpacity(DEFAULT_OPACITY);
+                charTextNode.setFill(Color.web(PENDING_CHAR_COLOR, DEFAULT_OPACITY));
             }
             textToTypeDisplay.getChildren().add(charTextNode);
         }
     }
 
     private void highlightCharacterVisuals() {
-        // System.out.println("TypingController: highlightCharacterVisuals"); // Bisa terlalu berisik
-        if (lastHighlightedKeyString != null) {
+        if (lastHighlightedKeyString != null && virtualKeyboardNodeMap != null) {
             TextFlow prevKeyNode = virtualKeyboardNodeMap.get(lastHighlightedKeyString);
             if (prevKeyNode != null) {
                 prevKeyNode.getStyleClass().remove("key-highlighted-active");
@@ -346,16 +367,18 @@ public class TypingController implements Initializable {
             char charToHighlight = currentTextToType.charAt(currentTypedCharIndex);
             String charKeyForKeyboard = String.valueOf(charToHighlight);
 
-            TextFlow currentKeyNode = virtualKeyboardNodeMap.get(charKeyForKeyboard);
-            if (currentKeyNode != null) {
-                currentKeyNode.getStyleClass().add("key-highlighted-active");
-                lastHighlightedKeyString = charKeyForKeyboard;
-            } else {
-                System.out.println("TypingController Highlight: Tombol virtual (TextFlow) untuk '" + charKeyForKeyboard + "' tidak ditemukan di map.");
+            if (virtualKeyboardNodeMap != null) {
+                TextFlow currentKeyNode = virtualKeyboardNodeMap.get(charKeyForKeyboard);
+                if (currentKeyNode != null) {
+                    currentKeyNode.getStyleClass().add("key-highlighted-active");
+                    lastHighlightedKeyString = charKeyForKeyboard;
+                } else {
+                    // System.out.println("TypingController Highlight: Tombol virtual (TextFlow) untuk '" + charKeyForKeyboard + "' tidak ditemukan di map.");
+                }
             }
 
             String fingerFxId = charToFingerFxIdMap.get(charToHighlight);
-            if (fingerFxId != null) {
+            if (fingerFxId != null && fingerNodeMap != null) {
                 Circle fingerCircle = fingerNodeMap.get(fingerFxId);
                 if (fingerCircle != null) {
                     fingerCircle.getStyleClass().add("finger-highlighted");
@@ -363,47 +386,60 @@ public class TypingController implements Initializable {
                     fingerCircle.setEffect(dropShadow);
                     lastHighlightedFingerCircle = fingerCircle;
                 } else {
-                     System.out.println("TypingController Highlight: Circle untuk jari fx:id='" + fingerFxId + "' tidak ditemukan.");
+                    //  System.out.println("TypingController Highlight: Circle untuk jari fx:id='" + fingerFxId + "' tidak ditemukan.");
                 }
             } else {
-                System.out.println("TypingController Highlight: Mapping jari untuk karakter '" + charToHighlight + "' tidak ditemukan.");
+                // System.out.println("TypingController Highlight: Mapping jari untuk karakter '" + charToHighlight + "' tidak ditemukan.");
             }
         }
         updateTextDisplay();
     }
 
     public void handleKeyPress(KeyEvent event) {
-        System.out.println("--- TypingController: KeyPress Event: " + event.getCode() + " | Text: '" + event.getText() + "' | Char: '" + event.getCharacter() + "' ---");
+        System.out.println("--- TypingController: KeyPress Event RECEIVED: " + event.getCode() + " | Text: '" + event.getText() + "' ---");
 
         if (completePopupNode != null && completePopupNode.isVisible()) {
             System.out.println("TypingController: Popup visible, ignoring key press.");
             event.consume();
             return;
         }
+        // Cek apakah semua sesi sudah selesai SEBELUM memproses input untuk sesi yang mungkin tidak ada
+        if (currentSessionIndex >= exerciseSessionsList.size()) {
+             System.out.println("TypingController: Semua sesi sudah selesai (currentSessionIndex >= list size), menunggu popup. Mengabaikan key press.");
+             event.consume();
+             return;
+        }
         if (currentTextToType == null || currentTypedCharIndex >= currentTextToType.length()) {
-            System.out.println("TypingController: Exercise complete or not started, ignoring key press.");
+            // Ini berarti sesi teks saat ini sudah selesai, tapi belum pindah sesi. Seharusnya tidak terjadi jika startNextSession dipanggil dengan benar.
+            System.out.println("TypingController: Teks sesi saat ini selesai ATAU currentTextToType null, menunggu sesi berikutnya. Mengabaikan key press.");
             event.consume();
             return;
         }
 
-        String typedTextFromEvent = event.getText(); // Ini bisa berbeda dari event.getCharacter()
+
+        String typedTextFromEvent = event.getText();
         KeyCode code = event.getCode();
         char typedCharInput = 0;
 
         if (code.isLetterKey()) {
-            typedCharInput = typedTextFromEvent.toUpperCase().charAt(0);
+            if (typedTextFromEvent != null && !typedTextFromEvent.isEmpty()) {
+                typedCharInput = typedTextFromEvent.toUpperCase().charAt(0);
+            } else {
+                event.consume(); return;
+            }
         } else if (code == KeyCode.SPACE) {
             typedCharInput = ' ';
-        } else if (code == KeyCode.SEMICOLON) { // Titik koma atau titik dua
+        } else if (code == KeyCode.SEMICOLON) {
             typedCharInput = event.isShiftDown() ? ':' : ';';
-        } else if (code == KeyCode.COMMA) { // Koma atau <
+        } else if (code == KeyCode.COMMA) {
             typedCharInput = event.isShiftDown() ? '<' : ',';
-        } else if (code == KeyCode.PERIOD) { // Titik atau >
+        } else if (code == KeyCode.PERIOD) {
             typedCharInput = event.isShiftDown() ? '>' : '.';
-        } else if (code == KeyCode.SLASH) { // Garis miring atau ?
+        } else if (code == KeyCode.SLASH) {
             typedCharInput = event.isShiftDown() ? '?' : '/';
-        } else if (code.isDigitKey()) { // Angka di baris atas (bukan numpad)
-            if (event.isShiftDown()) { // Angka dengan Shift (simbol)
+        }
+        else if (code.isDigitKey()) {
+             if (event.isShiftDown()) {
                 switch (code) {
                     case DIGIT1: typedCharInput = '!'; break;
                     case DIGIT2: typedCharInput = '@'; break;
@@ -417,32 +453,28 @@ public class TypingController implements Initializable {
                     case DIGIT0: typedCharInput = ')'; break;
                     default: break;
                 }
-            } else { // Angka tanpa Shift
-                 if (typedTextFromEvent != null && !typedTextFromEvent.isEmpty()) {
+            } else {
+                if (typedTextFromEvent != null && !typedTextFromEvent.isEmpty()) {
                     typedCharInput = typedTextFromEvent.charAt(0);
                 }
             }
         }
-        // Tambahkan simbol lain jika perlu
         else if (code == KeyCode.MINUS) typedCharInput = event.isShiftDown() ? '_' : '-';
         else if (code == KeyCode.EQUALS) typedCharInput = event.isShiftDown() ? '+' : '=';
         else if (code == KeyCode.OPEN_BRACKET) typedCharInput = event.isShiftDown() ? '{' : '[';
         else if (code == KeyCode.CLOSE_BRACKET) typedCharInput = event.isShiftDown() ? '}' : ']';
         else if (code == KeyCode.BACK_SLASH) typedCharInput = event.isShiftDown() ? '|' : '\\';
         else if (code == KeyCode.QUOTE) typedCharInput = event.isShiftDown() ? '"' : '\'';
-        else if (code == KeyCode.SHIFT) {
-            // System.out.println("TypingController: SHIFT key pressed, consuming.");
-            event.consume(); // Konsumsi event SHIFT agar tidak diproses sebagai karakter
+        else if (code == KeyCode.SHIFT || code == KeyCode.CONTROL || code == KeyCode.ALT || code == KeyCode.CAPS) {
+            event.consume();
             return;
         }
         else {
-            // System.out.println("TypingController: Unhandled key code: " + code);
             event.consume();
             return;
         }
 
-        if (typedCharInput == 0) { // Jika tidak ada karakter yang valid dihasilkan
-            // System.out.println("TypingController: No valid character from key press.");
+        if (typedCharInput == 0) {
             event.consume();
             return;
         }
@@ -456,12 +488,13 @@ public class TypingController implements Initializable {
                 wrongIcon.setManaged(false);
             }
             currentTypedCharIndex++;
-            highlightCharacterVisuals();
-
-            if (currentTypedCharIndex == currentTextToType.length()) {
-                stopTimer();
-                showCompletePopup();
-            } else {
+            
+            if (currentTypedCharIndex == currentTextToType.length()) { // Sesi teks saat ini selesai
+                currentSessionIndex++; // Pindah ke sesi/teks berikutnya
+                System.out.println("TypingController: Sesi teks selesai. Pindah ke sesi index: " + currentSessionIndex);
+                startNextSession(); // Ini akan memuat sesi berikutnya atau memicu popup jika semua selesai
+            } else { // Masih ada karakter dalam sesi teks saat ini
+                highlightCharacterVisuals(); // Highlight karakter berikutnya
                 if (expectedChar == ' ') {
                     snippetDisplayCounter++;
                     if (snippetDisplayCounter % SNIPPET_FREQUENCY == 0) {
@@ -469,7 +502,7 @@ public class TypingController implements Initializable {
                     }
                 }
             }
-        } else {
+        } else { // Salah ketik
             System.out.println("TypingController: Salah ketik!");
             if (wrongIcon != null) {
                 wrongIcon.setVisible(true);
@@ -489,7 +522,10 @@ public class TypingController implements Initializable {
                     Text textNode = (Text) charNode;
                     textNode.setFill(Color.web(INCORRECT_CHAR_COLOR));
                     textNode.setFont(TEXT_FONT);
-                    textNode.setStyle(textNode.getStyle().replace("-fx-font-weight: normal;", "-fx-font-weight: bold;").replace("-fx-font-weight: bold;", "-fx-font-weight: bold;"));
+                    String currentStyle = textNode.getStyle();
+                    if (!currentStyle.contains("-fx-font-weight: bold;")) {
+                         textNode.setStyle(currentStyle + "-fx-font-weight: bold;");
+                    }
 
                     PauseTransition pt = new PauseTransition(Duration.millis(500));
                     pt.setOnFinished(e -> {
@@ -497,7 +533,7 @@ public class TypingController implements Initializable {
                             textToTypeDisplay.getChildren().size() > currentTypedCharIndex &&
                             textToTypeDisplay.getChildren().get(currentTypedCharIndex) == textNode) {
                              textNode.setFill(Color.web(CURRENT_CHAR_COLOR));
-                             textNode.setStyle("-fx-font-weight: bold; -fx-opacity: " + DEFAULT_OPACITY + ";");
+                             textNode.setStyle("-fx-opacity: " + DEFAULT_OPACITY + "; -fx-font-weight: bold;");
                              textNode.setFont(TEXT_FONT);
                         }
                     });
@@ -509,7 +545,6 @@ public class TypingController implements Initializable {
     }
 
     private void showEducationalSnippet() {
-        // ... (sama seperti sebelumnya) ...
         if (educationalSnippets.isEmpty() || rootPage == null) return;
         String snippet = educationalSnippets.get(random.nextInt(educationalSnippets.size()));
         Label snippetLabel = new Label(snippet);
@@ -531,7 +566,7 @@ public class TypingController implements Initializable {
     }
 
     private void showCompletePopup() {
-        // ... (sama seperti sebelumnya) ...
+        System.out.println("TypingController: showCompletePopup dipanggil.");
         try {
             String fxmlFile;
             if ("darkmode".equalsIgnoreCase(currentTheme)) {
@@ -564,14 +599,16 @@ public class TypingController implements Initializable {
             btnKembaliComplete = (HBox) completePopupNode.lookup("#btnKembaliComplete");
 
             if (durasiTextComplete == null) System.err.println("#durasiTextComplete tidak ditemukan di popup.");
-            // ... (cek null lainnya) ...
+            if (btnLanjutkanComplete == null && !currentCategory.equals("kalimat")) System.err.println("#btnLanjutkanComplete tidak ditemukan di popup, padahal dibutuhkan.");
+            if (btnCobaLagiComplete == null) System.err.println("#btnCobaLagiComplete tidak ditemukan di popup.");
+            if (btnKembaliComplete == null) System.err.println("#btnKembaliComplete tidak ditemukan di popup.");
 
-            long elapsedMillis = System.currentTimeMillis() - startTimeMillis;
+            long elapsedMillis = System.currentTimeMillis() - categoryStartTimeMillis; // Menggunakan categoryStartTimeMillis
             String timeFormatted = String.format("%02d:%02d",
                     TimeUnit.MILLISECONDS.toMinutes(elapsedMillis),
                     TimeUnit.MILLISECONDS.toSeconds(elapsedMillis) % 60);
             
-            if (durasiTextComplete != null) durasiTextComplete.setText("Durasi " + timeFormatted + " Menit");
+            if (durasiTextComplete != null) durasiTextComplete.setText("Durasi " + timeFormatted);
             
             if (btnCobaLagiComplete != null) btnCobaLagiComplete.setOnMouseClicked(event -> handleCobaLagi());
             if (btnKembaliComplete != null) btnKembaliComplete.setOnMouseClicked(event -> handleKembaliKeMenu());
@@ -590,6 +627,7 @@ public class TypingController implements Initializable {
             if (rootPage != null) {
                 rootPage.getChildren().add(completePopupNode);
                 completePopupNode.requestFocus();
+                 System.out.println("TypingController: Complete popup ditampilkan.");
             }
 
         } catch (Exception e) {
@@ -599,10 +637,10 @@ public class TypingController implements Initializable {
     }
 
     private void hideCompletePopup() {
-        // ... (sama seperti sebelumnya) ...
         if (completePopupNode != null && rootPage != null) {
             rootPage.getChildren().remove(completePopupNode);
             completePopupNode = null;
+            System.out.println("TypingController: Complete popup disembunyikan.");
             Platform.runLater(() -> {
                 if (rootPage != null && rootPage.getScene() != null && rootPage.getScene().getWindow() != null && rootPage.getScene().getWindow().isShowing()) {
                      rootPage.requestFocus();
@@ -612,7 +650,7 @@ public class TypingController implements Initializable {
     }
 
     private void handleLanjutkan() {
-        // ... (sama seperti sebelumnya, pastikan scene.setOnKeyPressed(nextTypingController::handleKeyPress) ada) ...
+        System.out.println("TypingController: handleLanjutkan dipanggil.");
         hideCompletePopup();
         String nextCategory = "";
         if (currentCategory.equals("huruf")) nextCategory = "kata";
@@ -638,34 +676,31 @@ public class TypingController implements Initializable {
                 String cssPath = getClass().getResource("/style.css").toExternalForm();
                 if (cssPath != null) scene.getStylesheets().add(cssPath);
                 
-                // PENTING: Set handler di scene baru
+                System.out.println("TypingController: Memasang KeyPress handler untuk scene latihan berikutnya.");
                 scene.setOnKeyPressed(nextTypingController::handleKeyPress);
                 primaryStage.setScene(scene);
-                nextTypingController.initContent(nextCategory, currentTheme);
+                nextTypingController.initContent(nextCategory, currentTheme); // Panggil initContent untuk controller baru
 
             } catch (Exception e) {
                 e.printStackTrace();
                 System.err.println("Gagal memuat halaman latihan berikutnya: " + e.getMessage());
             }
+        } else {
+            System.out.println("TypingController: Tidak ada kategori berikutnya, kembali ke menu.");
+            handleKembaliKeMenu();
         }
     }
 
     private void handleCobaLagi() {
-        // ... (sama seperti sebelumnya) ...
+        System.out.println("TypingController: handleCobaLagi dipanggil.");
         hideCompletePopup();
+        currentSessionIndex = 0; // Reset ke sesi pertama
         currentTypedCharIndex = 0;
-        if (textToTypeDisplay != null) updateTextDisplay();
-        startTimer();
-        highlightCharacterVisuals();
-        Platform.runLater(() -> {
-            if (rootPage != null && rootPage.getScene() != null && rootPage.getScene().getWindow() != null && rootPage.getScene().getWindow().isShowing()) {
-                rootPage.requestFocus();
-            }
-        });
+        startNextSession(); // Mulai lagi dari sesi pertama kategori ini
     }
 
     private void handleKembaliKeMenu() {
-        // ... (sama seperti sebelumnya) ...
+        System.out.println("TypingController: handleKembaliKeMenu dipanggil.");
         hideCompletePopup();
         stopTimer();
         try {
@@ -683,7 +718,7 @@ public class TypingController implements Initializable {
     }
     
     private void handleExitToMainMenu() {
-        // ... (sama seperti sebelumnya) ...
+        System.out.println("TypingController: handleExitToMainMenu dipanggil (tombol X).");
         stopTimer();
         try {
             FXMLLoader loader = App.getLoader("/mainpage.fxml");
