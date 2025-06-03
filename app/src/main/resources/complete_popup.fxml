@@ -70,8 +70,8 @@
                                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="423.0" stylesheets="@style.css">
                                           <styleClass>
                                              <String fx:value="medium_button_radius" />
-                                             <String fx:value="btn_system" />
                                              <String fx:value="stroked-hbox" />
+                                             <String fx:value="bottom_pane_background" />
                                           </styleClass>
                                           <children>
                                              <Text fx:id="durasiTextComplete" fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">

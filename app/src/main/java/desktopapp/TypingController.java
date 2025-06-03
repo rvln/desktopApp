@@ -92,15 +92,12 @@ public class TypingController implements Initializable {
     private Timeline timerTimeline;
     private long categoryStartTimeMillis;
 
-    private final Random random = new Random();
+    // Variabel dan konstanta terkait Educational Snippet DIHAPUS
+    // private List<String> educationalSnippets;
+    // private static final List<String> MATERI_SD_KELAS_1_6 = ...;
+    // private int snippetDisplayCounter = 0;
+    // private final int SNIPPET_FREQUENCY = 3;
 
-    private List<String> educationalSnippets;
-    private static final List<String> MATERI_SD_KELAS_1_6 = Arrays.asList(
-        "Indonesia negara kepulauan terbesar!", "Pancasila dasar negara kita.", "Bhinneka Tunggal Ika.",
-        "Matahari sumber energi utama.", "Air penting untuk kehidupan."
-    );
-    private int snippetDisplayCounter = 0;
-    private final int SNIPPET_FREQUENCY = 3;
     private String lastHighlightedKeyString = null;
     private Circle lastHighlightedFingerCircle = null;
 
@@ -140,15 +137,14 @@ public class TypingController implements Initializable {
 
         if (disableLayer != null) {
             disableLayer.setVisible(false);
-            disableLayer.setOpacity(1.0); // Opacity diatur oleh CSS background rgba
+            disableLayer.setOpacity(1.0);
         } else {
             System.err.println("TypingController FXML Injection Error: disableLayer is null.");
         }
 
         initializeVirtualKeyboardNodeMap();
         initializeFingerMapping();
-        educationalSnippets = new ArrayList<>(MATERI_SD_KELAS_1_6);
-        Collections.shuffle(educationalSnippets);
+        // Inisialisasi educationalSnippets DIHAPUS
         System.out.println("TypingController: initialize END");
     }
 
@@ -172,7 +168,7 @@ public class TypingController implements Initializable {
         virtualKeyboardNodeMap.put("LSHIFT", key_LSHIFT);
         virtualKeyboardNodeMap.put("RSHIFT", key_RSHIFT);
 
-        // Verifikasi injeksi (opsional, bisa dihapus jika sudah yakin)
+        // Verifikasi (opsional)
         // virtualKeyboardNodeMap.forEach((key, node) -> {
         //     if (node == null) System.err.println("Key " + key + " is null in virtualKeyboardNodeMap");
         // });
@@ -263,7 +259,6 @@ public class TypingController implements Initializable {
             currentTextToType = exerciseSessionsList.get(currentSessionIndex).toUpperCase();
             System.out.println("TypingController: Sesi " + (currentSessionIndex + 1) + ": " + currentTextToType);
             currentTypedCharIndex = 0;
-            snippetDisplayCounter = 0; 
             if (textToTypeDisplay != null) {
                  updateTextDisplay();
             } else {
@@ -360,20 +355,17 @@ public class TypingController implements Initializable {
     }
 
     public void handleKeyPress(KeyEvent event) {
-        System.out.println("--- TypingController: KeyPress Event RECEIVED: " + event.getCode() + " | Text: '" + event.getText() + "' ---");
+        // System.out.println("--- TypingController: KeyPress Event RECEIVED: " + event.getCode() + " | Text: '" + event.getText() + "' ---"); // Bisa diaktifkan untuk debug detail
 
         if (completePopupNode != null && completePopupNode.isVisible()) {
-            System.out.println("TypingController: Popup visible, ignoring key press.");
             event.consume();
             return;
         }
         if (currentSessionIndex >= exerciseSessionsList.size()) {
-             System.out.println("TypingController: Semua sesi sudah selesai, mengabaikan key press.");
              event.consume();
              return;
         }
         if (currentTextToType == null || currentTypedCharIndex >= currentTextToType.length()) {
-            System.out.println("TypingController: Teks sesi saat ini selesai atau null, menunggu sesi berikutnya. Mengabaikan key press.");
             event.consume();
             return;
         }
@@ -441,7 +433,6 @@ public class TypingController implements Initializable {
         }
 
         char expectedChar = currentTextToType.charAt(currentTypedCharIndex);
-        System.out.println("TypingController: Expected: '" + expectedChar + "', Typed: '" + typedCharInput + "'");
 
         if (typedCharInput == expectedChar) {
             if (wrongIcon != null) {
@@ -452,19 +443,13 @@ public class TypingController implements Initializable {
             
             if (currentTypedCharIndex == currentTextToType.length()) {
                 currentSessionIndex++;
-                System.out.println("TypingController: Sesi teks selesai. Pindah ke sesi index: " + currentSessionIndex);
                 startNextSession();
             } else {
                 highlightCharacterVisuals();
-                if (expectedChar == ' ') {
-                    snippetDisplayCounter++;
-                    if (snippetDisplayCounter % SNIPPET_FREQUENCY == 0) {
-                        showEducationalSnippet();
-                    }
-                }
+                // Logika educational snippet DIHAPUS dari sini
             }
         } else {
-            System.out.println("TypingController: Salah ketik!");
+            System.out.println("TypingController: Salah ketik! Diharapkan: '" + expectedChar + "', Diketik: '" + typedCharInput + "'");
             if (wrongIcon != null) {
                 wrongIcon.setVisible(true);
                 wrongIcon.setManaged(true);
@@ -505,40 +490,20 @@ public class TypingController implements Initializable {
         event.consume();
     }
 
-    private void showEducationalSnippet() {
-        if (educationalSnippets.isEmpty() || rootPage == null) return;
-        String snippet = educationalSnippets.get(random.nextInt(educationalSnippets.size()));
-        Label snippetLabel = new Label(snippet);
-        snippetLabel.getStyleClass().add("educational-snippet");
-        StackPane.setAlignment(snippetLabel, Pos.BOTTOM_CENTER);
-        snippetLabel.setTranslateY(-180);
-        snippetLabel.setOpacity(0);
-        rootPage.getChildren().add(snippetLabel);
-        FadeTransition fadeIn = new FadeTransition(Duration.millis(500), snippetLabel);
-        fadeIn.setToValue(1);
-        PauseTransition pause = new PauseTransition(Duration.seconds(4));
-        FadeTransition fadeOut = new FadeTransition(Duration.millis(500), snippetLabel);
-        fadeOut.setToValue(0);
-        fadeOut.setOnFinished(e -> {
-            if (rootPage != null) rootPage.getChildren().remove(snippetLabel);
-        });
-        SequentialTransition seq = new SequentialTransition(fadeIn, pause, fadeOut);
-        seq.play();
-    }
+    // Metode showEducationalSnippet() DIHAPUS
 
-    // Metode animasi (bisa juga dibuat sebagai static utility jika dipakai di banyak controller)
     private void applyFadeInAnimation(Node node) {
         if (node == null) return;
-        FadeTransition fadeIn = new FadeTransition(Duration.millis(200), node); // Durasi lebih cepat
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(200), node);
         fadeIn.setFromValue(0.0);
         node.setOpacity(0.0);
-        fadeIn.setToValue(1.0);
+        fadeIn.setToValue(1.0); // Untuk disableLayer, opacity target bisa lebih rendah jika diatur di CSS
         fadeIn.play();
     }
 
     private void applyFadeOutAnimation(Node node, Runnable onFinishedAction) {
         if (node == null) return;
-        FadeTransition fadeOut = new FadeTransition(Duration.millis(200), node); // Durasi lebih cepat
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(200), node);
         fadeOut.setFromValue(node.getOpacity());
         fadeOut.setToValue(0.0);
         if (onFinishedAction != null) {
@@ -607,20 +572,17 @@ public class TypingController implements Initializable {
             }
             
             if (rootPage != null) {
-                // 1. Tampilkan disableLayer dulu (instan atau fade cepat)
                 if (disableLayer != null) {
-                    disableLayer.setOpacity(0.0); // Mulai dari transparan
+                    disableLayer.setOpacity(0.0);
                     disableLayer.setVisible(true);
-                    applyFadeInAnimation(disableLayer); // Fade in disableLayer
-                    System.out.println("TypingController: disableLayer fade-in dimulai.");
+                    applyFadeInAnimation(disableLayer);
+                    System.out.println("TypingController: disableLayer ditampilkan untuk popup.");
                 }
-
-                // 2. Tambahkan popup dan fade in popup
-                completePopupNode.setOpacity(0.0); // Mulai transparan
+                completePopupNode.setOpacity(0.0);
                 rootPage.getChildren().add(completePopupNode);
                 applyFadeInAnimation(completePopupNode);
                 completePopupNode.requestFocus();
-                System.out.println("TypingController: Complete popup ditampilkan dan fade-in dimulai.");
+                 System.out.println("TypingController: Complete popup ditampilkan.");
             }
 
         } catch (Exception e) {
@@ -639,7 +601,6 @@ public class TypingController implements Initializable {
                 if (rootPage != null) {
                     rootPage.getChildren().remove(nodeToRemove);
                 }
-                // Sembunyikan disableLayer SETELAH popup selesai fade out dan dihapus
                 if (disableLayer != null && disableLayer.isVisible()) {
                     applyFadeOutAnimation(disableLayer, () -> {
                         if (disableLayer != null) {
@@ -649,9 +610,8 @@ public class TypingController implements Initializable {
                     });
                 }
             });
-            this.completePopupNode = null;
+            this.completePopupNode = null; // Set null setelah animasi dimulai
         } else {
-            // Jika tidak ada popup, tapi disableLayer mungkin masih terlihat
             if (disableLayer != null && disableLayer.isVisible()) {
                  applyFadeOutAnimation(disableLayer, () -> {
                     if (disableLayer != null) {
