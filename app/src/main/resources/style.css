@@ -1,5 +1,35 @@
 /* mainpage */
 
+/* Contoh di style.css */
+.root {
+  /* Style default untuk seluruh aplikasi */
+  -fx-font-family: "Rubik Regular"; /* Atau "Rubik Regular" jika itu nama keluarganya */
+}
+
+/* .label {
+  /* Mengubah font default untuk semua Label
+-fx-font-family: "Rubik";
+/* Ukuran font bisa diatur di sini atau per elemen spesifik
+} */
+
+.text-lapsus-bold {
+  -fx-font-family: "Lapsus Pro Bold";
+}
+
+/* Contoh untuk teks di dalam tombol keyboard virtual */
+.key-text {
+  /* Jika Anda menggunakan styleClass ini untuk elemen Text di tombol */
+  -fx-font-family: "Rubik Bold"; /* Atau font lain yang Anda inginkan */
+  -fx-font-size: 20px; /* Sesuaikan */
+  -fx-fill: white; /* Warna teks di tombol */
+}
+
+/* Contoh untuk judul */
+.title-text {
+  -fx-font-family: "Lapsus Pro Bold";
+  -fx-font-size: 28px; /* Sesuaikan */
+}
+
 .left_pane_background {
   -fx-background-color: #e98888;
 }

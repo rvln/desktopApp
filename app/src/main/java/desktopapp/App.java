@@ -4,19 +4,51 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent; // Menggunakan Parent untuk fleksibilitas
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 // import javafx.scene.layout.Pane; // Bisa diganti dengan Parent
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 
 public class App extends Application {
 
     private static Stage primaryStageInstance; // Variabel statis untuk menyimpan primaryStage
 
+// Metode untuk memuat font dengan path yang benar
+    private void loadCustomFonts() {
+        String[] fontPaths = {
+            "/fonts/static/Rubik-Regular.ttf", // Ganti dengan nama file font Rubik Anda
+            "/fonts/static/Rubik-Bold.ttf",   // Contoh jika ada Rubik Bold
+            "/fonts/static/LapsusPro-Bold.otf" // Ganti dengan nama file font Lapsus Pro Anda
+            // Tambahkan path font lainnya jika ada
+        };
+
+        for (String fontPath : fontPaths) {
+            try (InputStream fontStream = getClass().getResourceAsStream(fontPath)) {
+                if (fontStream != null) {
+                    Font.loadFont(fontStream, 10); // Ukuran 10 di sini hanya dummy, tidak mempengaruhi penggunaan di CSS
+                    System.out.println("Font loaded: " + fontPath);
+                } else {
+                    System.err.println("Error loading font: Cannot find font resource at " + fontPath);
+                }
+            } catch (Exception e) {
+                System.err.println("Error loading font " + fontPath + ": " + e.getMessage());
+                // e.printStackTrace(); // Aktifkan jika perlu debug lebih detail
+            }
+        }
+    }
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStageInstance = primaryStage; // Simpan instance primaryStage
+
+
+        // 1. Muat Font Custom Anda di sini
+        loadCustomFonts();
+        System.out.println("Available font families: " + Font.getFamilies());
 
         // Load mainpage.fxml
         // Pastikan path "/mainpage.fxml" benar (artinya file ada di root classpath)
