@@ -90,14 +90,15 @@
                 <center>
                     <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="654.0" spacing="20.0" BorderPane.alignment="CENTER">
                         <children>
-                            <ImageView fx:id="wrongIcon" fitHeight="60.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
-                                <image>
-                                    <Image url="@desain/Typing/X.png" />
-                                </image>
-                                <VBox.margin>
-                                    <Insets top="10.0" />
-                                </VBox.margin>
-                            </ImageView>
+                     <HBox alignment="CENTER" prefHeight="60.0" prefWidth="64.0">
+                        <children>
+                                  <ImageView fx:id="wrongIcon" fitHeight="60.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                          <Image url="@desain/Typing/X.png" />
+                                      </image>
+                                  </ImageView>
+                        </children>
+                     </HBox>
                             
                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="669.0" styleClass="inputfield" stylesheets="@style.css">
                                 <children>
