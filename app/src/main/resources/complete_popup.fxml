@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -76,7 +77,7 @@
                                              <String fx:value="stroked-hbox" />
                                           </styleClass>
                                           <children>
-                                             <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
+                                             <Text fx:id="durasiTextComplete" fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
                                                 <font>
                                                    <Font name="Lapsus Pro Bold" size="42.0" />
                                                 </font>
@@ -91,31 +92,54 @@
                      </HBox>
                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                         <children>
-                           <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" stylesheets="@style.css">
+                           <HBox fx:id="btnKembaliComplete" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" stylesheets="@style.css">
                               <styleClass>
-                                 <String fx:value="btn_system_red" />
+                                 <String fx:value="info_button_kembali" />
                                  <String fx:value="medium_button_radius" />
                                  <String fx:value="stroked-hbox" />
                               </styleClass>
                               <children>
                                  <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Kembali">
                                     <font>
-                                       <Font name="Lapsus Pro Bold" size="48.0" />
+                                       <Font name="Lapsus Pro Bold" size="42.0" />
                                     </font>
+                                    <HBox.margin>
+                                       <Insets left="20.0" right="20.0" />
+                                    </HBox.margin>
                                  </Text>
                               </children>
                            </HBox>
-                           <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" stylesheets="@style.css">
+                           <HBox fx:id="btnCobaLagiComplete" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" stylesheets="@style.css">
                               <styleClass>
-                                 <String fx:value="btn_system" />
+                                 <String fx:value="btn_system_red" />
                                  <String fx:value="medium_button_radius" />
                                  <String fx:value="stroked-hbox" />
                               </styleClass>
                               <children>
                                  <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Coba Lagi">
                                     <font>
-                                       <Font name="Lapsus Pro Bold" size="48.0" />
+                                       <Font name="Lapsus Pro Bold" size="42.0" />
                                     </font>
+                                    <HBox.margin>
+                                       <Insets left="20.0" right="20.0" />
+                                    </HBox.margin>
+                                 </Text>
+                              </children>
+                           </HBox>
+                           <HBox fx:id="btnLanjutkanComplete" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" stylesheets="@style.css">
+                              <styleClass>
+                                 <String fx:value="btn_system" />
+                                 <String fx:value="medium_button_radius" />
+                                 <String fx:value="stroked-hbox" />
+                              </styleClass>
+                              <children>
+                                 <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Lanjutkan">
+                                    <font>
+                                       <Font name="Lapsus Pro Bold" size="42.0" />
+                                    </font>
+                                    <HBox.margin>
+                                       <Insets left="20.0" right="20.0" />
+                                    </HBox.margin>
                                  </Text>
                               </children>
                            </HBox>

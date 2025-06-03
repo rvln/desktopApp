@@ -608,7 +608,7 @@ public class TypingController implements Initializable {
                     TimeUnit.MILLISECONDS.toMinutes(elapsedMillis),
                     TimeUnit.MILLISECONDS.toSeconds(elapsedMillis) % 60);
             
-            if (durasiTextComplete != null) durasiTextComplete.setText("Durasi " + timeFormatted);
+            if (durasiTextComplete != null) durasiTextComplete.setText("Durasi " + timeFormatted + " Menit");
             
             if (btnCobaLagiComplete != null) btnCobaLagiComplete.setOnMouseClicked(event -> handleCobaLagi());
             if (btnKembaliComplete != null) btnKembaliComplete.setOnMouseClicked(event -> handleKembaliKeMenu());
