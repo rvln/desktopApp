@@ -13,7 +13,7 @@
 }
 
 .bottom_pane_background {
-  -fx-background-color: #ec7a38d8;
+  -fx-background-color: #fcf952d8;
 }
 
 .btn_system_red {
@@ -250,8 +250,8 @@
     focus-distance 0%,
     center 50.06% 16.03%,
     radius 111.72%,
-    #c3d8df 0%,
-    #6a7579 100%
+    #dd4f4f 0%,
+    #480ece 100%
   );
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 7.2, 0, 0, 4);
 }
@@ -315,8 +315,8 @@
 .finger-highlighted {
   /* Efek DropShadow akan ditambahkan via Java */
   /* Anda bisa menambahkan stroke di sini jika mau */
-  /* -fx-stroke: #1C5DF4; */
-  /* -fx-stroke-width: 2px; */
+  -fx-stroke: #1c5df4;
+  -fx-stroke-width: 2px;
 }
 
 /* Style untuk TextFlow yang menampilkan teks latihan */

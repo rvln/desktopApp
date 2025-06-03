@@ -54,12 +54,12 @@
                                     <children>
                                        <VBox alignment="CENTER" prefHeight="108.0" prefWidth="425.0" spacing="5.0">
                                           <children>
-                                             <Text fill="#3e434a" strokeType="OUTSIDE" strokeWidth="0.0" text="Selamat!" textAlignment="CENTER" wrappingWidth="332.0558319091797">
+                                             <Text fill="#fcd8a2" stroke="#254e5b" strokeType="OUTSIDE" text="Selamat!" textAlignment="CENTER" wrappingWidth="332.0558319091797">
                                                 <font>
                                                    <Font name="Lapsus Pro Bold" size="33.0" />
                                                 </font>
                                              </Text>
-                                             <Text fill="#3e434a" strokeType="OUTSIDE" strokeWidth="0.0" text="anda telah menyelesaikannya~" textAlignment="CENTER" wrappingWidth="402.72251892089844">
+                                             <Text fill="#fad7a2" stroke="#254e5b" strokeType="OUTSIDE" text="anda telah menyelesaikannya~" textAlignment="CENTER" wrappingWidth="402.72251892089844">
                                                 <font>
                                                    <Font name="Lapsus Pro Bold" size="33.0" />
                                                 </font>
@@ -73,11 +73,11 @@
                                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="423.0" stylesheets="@style.css">
                                           <styleClass>
                                              <String fx:value="medium_button_radius" />
-                                             <String fx:value="btn_system" />
+                                             <String fx:value="stroked-hbox" />
                                              <String fx:value="bottom_pane_background" />
                                           </styleClass>
                                           <children>
-                                             <Text fx:id="durasiTextComplete" fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
+                                             <Text fx:id="durasiTextComplete1" fill="#3feb97" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
                                                 <font>
                                                    <Font name="Lapsus Pro Bold" size="42.0" />
                                                 </font>
