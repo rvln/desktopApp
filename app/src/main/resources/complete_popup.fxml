@@ -18,10 +18,7 @@
          <Image url="@desain/Typing/TypingBackground.png" />
       </image>
    </ImageView>
-   <AnchorPane prefWidth="1106.0" styleClass="disableLayer_background" stylesheets="@style.css">
-      <children>
-         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="106.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true" />
-      </children></AnchorPane>
+   <AnchorPane prefWidth="1106.0" styleClass="disableLayer_background" stylesheets="@style.css" />
     <AnchorPane fx:id="mainPage" prefWidth="1077.0" stylesheets="@style.css">
       <children>
          <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
