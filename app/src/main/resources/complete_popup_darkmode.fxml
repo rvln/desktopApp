@@ -77,7 +77,7 @@
                                              <String fx:value="bottom_pane_background" />
                                           </styleClass>
                                           <children>
-                                             <Text fx:id="durasiTextComplete1" fill="#3feb97" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
+                                             <Text fx:id="durasiTextComplete" fill="#3feb97" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
                                                 <font>
                                                    <Font name="Lapsus Pro Bold" size="42.0" />
                                                 </font>
