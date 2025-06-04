@@ -102,18 +102,29 @@
                             
                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="669.0" styleClass="inputfield" stylesheets="@style.css">
                                 <children>
-                                    <TextFlow fx:id="textToTypeDisplay" prefHeight="80.0" prefWidth="620.0" style="-fx-text-alignment: center; -fx-line-spacing: 5px;" textAlignment="CENTER" />
+                           <AnchorPane>
+                              <children>
+                                 <Label fx:id="promptLabel" contentDisplay="CENTER" prefHeight="17.0" prefWidth="204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <font>
+                                       <Font name="Rubik Regular" size="42.0" />
+                                    </font></Label>
+                                <TextFlow fx:id="textToTypeDisplay" prefHeight="80.0" prefWidth="620.0" style="-fx-text-alignment: center; -fx-line-spacing: 5px;" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              </children>
+                           </AnchorPane>
                                 </children>
                                 <padding>
                                     <Insets left="20.0" right="20.0" />
                                 </padding>
                             </HBox>
-
-                            <ImageView fitHeight="130.0" fitWidth="673.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@desain/Typing/Panduan.png" />
-                                </image>
-                            </ImageView>
+                     <HBox alignment="CENTER" prefHeight="130.0" prefWidth="673.0">
+                        <children>
+                                  <ImageView fx:id="panduanMateri" fitHeight="130.0" fitWidth="673.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                          <Image url="@desain/Typing/Panduan.png" />
+                                      </image>
+                                  </ImageView>
+                        </children>
+                     </HBox>
                             
                             <VBox fx:id="keyboardHuruf" alignment="CENTER" prefHeight="296.0" prefWidth="652.0" spacing="10.0">
                                 <children>

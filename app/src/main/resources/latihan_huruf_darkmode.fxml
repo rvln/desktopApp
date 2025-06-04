@@ -102,18 +102,30 @@
                             
                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="669.0" styleClass="inputfield" stylesheets="@style.css">
                                 <children>
-                                    <TextFlow fx:id="textToTypeDisplay" prefHeight="80.0" prefWidth="620.0" style="-fx-text-alignment: center; -fx-line-spacing: 5px;" textAlignment="CENTER" />
+                           <AnchorPane>
+                              <children>
+                                 <Label fx:id="promptLabel" contentDisplay="CENTER" prefHeight="17.0" prefWidth="204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <font>
+                                       <Font name="Rubik Regular" size="42.0" />
+                                    </font></Label>
+                                <TextFlow fx:id="textToTypeDisplay" prefHeight="80.0" prefWidth="620.0" style="-fx-text-alignment: center; -fx-line-spacing: 5px;" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              </children>
+                           </AnchorPane>
                                 </children>
                                 <padding>
                                     <Insets left="20.0" right="20.0" />
                                 </padding>
                             </HBox>
 
-                            <ImageView fitHeight="130.0" fitWidth="673.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@desain/Typing/Panduan.png" />
-                                </image>
-                            </ImageView>
+                              <HBox alignment="CENTER">
+                                <children>
+                                        <ImageView fx:id="panduanMateri" fitHeight="130.0" fitWidth="673.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@desain/Typing/Panduan.png" />
+                                            </image>
+                                        </ImageView>
+                                </children>
+                              </HBox>
                      <VBox fx:id="keyboardHuruf1" alignment="CENTER" prefHeight="296.0" prefWidth="652.0" spacing="10.0">
                         <children>
                            <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="12.0">
@@ -121,7 +133,7 @@
                                  <Insets left="5.0" right="5.0" />
                               </padding>
                               <children>
-                                 <TextFlow fx:id="key_Q1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_Q" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_pinky_finger" />
@@ -137,7 +149,7 @@
                                        <Insets />
                                     </HBox.margin>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_W1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_W" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_ring_finger" />
@@ -149,7 +161,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_E1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_E" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_middle_finger" />
@@ -161,7 +173,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_R1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_R" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_index_finger" />
@@ -173,7 +185,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_T1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_T" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_index_finger" />
@@ -185,7 +197,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_Y1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_Y" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_index_finger" />
@@ -197,7 +209,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_U1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_U" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_index_finger" />
@@ -209,7 +221,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_I1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_I" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_middle_finger" />
@@ -221,7 +233,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_O1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_O" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_ring_finger" />
@@ -233,7 +245,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_P1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_P" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_pinky_finger" />
@@ -255,7 +267,7 @@
                                  <Insets left="30.0" />
                               </padding>
                               <children>
-                                 <TextFlow fx:id="key_A1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_A" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_pinky_finger" />
@@ -267,7 +279,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_S1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_S" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_ring_finger" />
@@ -279,7 +291,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_D1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_D" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_middle_finger" />
@@ -291,7 +303,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_F1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_F" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_index_finger" />
@@ -303,7 +315,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_G1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_G" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_index_finger" />
@@ -315,7 +327,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_H1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_H" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_index_finger" />
@@ -327,7 +339,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_J1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_J" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_index_finger" />
@@ -339,7 +351,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_K1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_K" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_middle_finger" />
@@ -351,7 +363,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_L1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_L" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_ring_finger" />
@@ -363,7 +375,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_SEMICOLON1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_SEMICOLON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_pinky_finger" />
@@ -390,7 +402,7 @@
                                  <Insets left="60.0" right="5.0" />
                               </padding>
                               <children>
-                                 <TextFlow fx:id="key_Z1" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_Z" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_pinky_finger" />
@@ -402,7 +414,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_X1" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_X" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_ring_finger" />
@@ -414,7 +426,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_C1" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_C" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_middle_finger" />
@@ -426,7 +438,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_V1" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_V" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_index_finger" />
@@ -438,7 +450,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_B1" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_B" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="left_index_finger" />
@@ -450,7 +462,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_N1" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_N" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_index_finger" />
@@ -462,7 +474,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_M1" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_M" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_index_finger" />
@@ -474,7 +486,7 @@
                                        <Insets bottom="7.0" top="7.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_COMMA1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_COMMA" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_middle_finger" />
@@ -491,7 +503,7 @@
                                        <Insets bottom="1.0" top="1.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_PERIOD1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_PERIOD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_ring_finger" />
@@ -508,7 +520,7 @@
                                        <Insets bottom="1.0" top="1.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_SLASH1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_SLASH" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="right_pinky_finger" />
@@ -532,7 +544,7 @@
                            </HBox>
                            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="534.0" spacing="15.0">
                               <children>
-                                 <TextFlow fx:id="key_RSHIFT1" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_RSHIFT" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="key-modifier" />
@@ -549,7 +561,7 @@
                                        <Insets bottom="10.0" top="10.0" />
                                     </padding>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_SPACE1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="341.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_SPACE" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="341.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
                                        <Text fill="WHITE" styleClass="key-char-space" text="SPACEBAR">
                                           <font>
@@ -565,7 +577,7 @@
                                        <String fx:value="adn_button_radius" />
                                     </styleClass>
                                  </TextFlow>
-                                 <TextFlow fx:id="key_LSHIFT1" maxHeight="-Infinity" prefHeight="40.0" prefWidth="70.0" stylesheets="@style.css" textAlignment="CENTER">
+                                 <TextFlow fx:id="key_LSHIFT" maxHeight="-Infinity" prefHeight="40.0" prefWidth="70.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <styleClass>
                                        <String fx:value="key-base" />
                                        <String fx:value="key-modifier" />
