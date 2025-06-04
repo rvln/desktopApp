@@ -44,7 +44,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+// import java.util.stream.Collectors; // Tidak digunakan lagi
 
 public class TypingController implements Initializable {
 
@@ -75,14 +75,14 @@ public class TypingController implements Initializable {
     @FXML private TextFlow key_Q, key_W, key_E, key_R, key_T, key_Y, key_U, key_I, key_O, key_P;
     @FXML private TextFlow key_A, key_S, key_D, key_F, key_G, key_H, key_J, key_K, key_L, key_SEMICOLON;
     @FXML private TextFlow key_Z, key_X, key_C, key_V, key_B, key_N, key_M, key_COMMA, key_PERIOD, key_SLASH;
-    @FXML private TextFlow key_SPACE, key_LSHIFT, key_RSHIFT; // fx:id Shift bisa tetap, tapi tidak akan di-highlight
+    @FXML private TextFlow key_SPACE, key_LSHIFT, key_RSHIFT;
 
     @FXML
     private Pane disableLayer;
 
     private Map<String, TextFlow> virtualKeyboardNodeMap;
     private Map<String, Circle> fingerNodeMap;
-    private Map<Character, String> charToFingerFxIdMap; // Kunci akan lowercase atau simbol sederhana
+    private Map<Character, String> charToFingerFxIdMap;
 
     private AnchorPane completePopupNode;
     private Text durasiTextComplete;
@@ -92,23 +92,24 @@ public class TypingController implements Initializable {
     private String currentTheme;
     private List<ExerciseSession> exerciseSessionsList;
     private int currentSessionIndex = 0;
-    private String currentTextToType; // Akan selalu lowercase dan minim tanda baca
+    private String currentTextToType;
     private int currentTypedCharIndex = 0;
 
     private Timeline timerTimeline;
     private long categoryStartTimeMillis;
 
     private String lastHighlightedKeyString = null;
-    // private TextFlow lastHighlightedShiftKeyNode = null; // Tidak diperlukan lagi
     private Circle lastHighlightedFingerCircle = null;
 
     private final String PENDING_CHAR_COLOR = "#3E3E3E";
     private final String CURRENT_CHAR_COLOR = "#1C5DF4";
     private final String CORRECT_CHAR_COLOR = "#7E7878";
     private final String INCORRECT_CHAR_COLOR = "RED";
-    private final double DEFAULT_OPACITY = 0.8;
+    private final double TEXT_DISPLAY_HIDDEN_OPACITY = 0.01;
+    private final double TEXT_DISPLAY_NORMAL_OPACITY = 0.8;
     private final Font TEXT_FONT = Font.font("Rubik Bold", 42);
     private final Font PROMPT_FONT = Font.font("Rubik Regular", 24);
+    private static final double DEFAULT_OPACITY = 1.0;
 
 
     @Override
@@ -134,14 +135,20 @@ public class TypingController implements Initializable {
             promptLabel.setManaged(false);
             promptLabel.setFont(PROMPT_FONT);
             promptLabel.setTextFill(Color.WHITE);
-        }
-        if (textToTypeDisplay != null) {
-            textToTypeDisplay.setOpacity(0.05);
+            promptLabel.setWrapText(true);
         } else {
-             System.err.println("TypingController FXML Injection Error: textToTypeDisplay is null.");
+            System.err.println("TypingController FXML Injection Error: promptLabel is null.");
         }
         if (panduanMateri == null) {
-            System.err.println("TypingController FXML Injection Error: panduanMateri is null.");
+            System.err.println("TypingController FXML Injection Error: panduanMateri (ImageView) is null.");
+        } else {
+            panduanMateri.setVisible(false);
+            panduanMateri.setManaged(false);
+        }
+        if (textToTypeDisplay != null) {
+            textToTypeDisplay.setOpacity(TEXT_DISPLAY_NORMAL_OPACITY);
+        } else {
+             System.err.println("TypingController FXML Injection Error: textToTypeDisplay is null.");
         }
 
         initializeVirtualKeyboardNodeMap();
@@ -165,14 +172,11 @@ public class TypingController implements Initializable {
         virtualKeyboardNodeMap.put(".", key_PERIOD);
         virtualKeyboardNodeMap.put("/", key_SLASH); 
         virtualKeyboardNodeMap.put(" ", key_SPACE);
-        // Tombol Shift tidak akan di-highlight aktif
-        // virtualKeyboardNodeMap.put("LSHIFT", key_LSHIFT); 
-        // virtualKeyboardNodeMap.put("RSHIFT", key_RSHIFT);
     }
 
     private void initializeFingerMapping() {
         fingerNodeMap = new HashMap<>();
-        charToFingerFxIdMap = new HashMap<>(); // Kunci akan lowercase atau simbol sederhana
+        charToFingerFxIdMap = new HashMap<>();
 
         if(keyLPinky != null) fingerNodeMap.put("keyLPinky", keyLPinky);
         if(keyLRing != null) fingerNodeMap.put("keyLRing", keyLRing);
@@ -186,7 +190,6 @@ public class TypingController implements Initializable {
         if(keyRindex != null) fingerNodeMap.put("keyRindex", keyRindex);
         if(keyRThumb != null) fingerNodeMap.put("keyRThumb", keyRThumb);
 
-        // Mapping Karakter (sekarang lowercase untuk huruf) ke fx:id Jari
         for (char c : "qaz1".toCharArray()) charToFingerFxIdMap.put(c, "keyLPinky");
         for (char c : "wsx2".toCharArray()) charToFingerFxIdMap.put(c, "keyLRing");
         for (char c : "edc3".toCharArray()) charToFingerFxIdMap.put(c, "keyLMiddle");
@@ -197,7 +200,6 @@ public class TypingController implements Initializable {
         for (char c : "ik8".toCharArray()) charToFingerFxIdMap.put(c, "keyRMiddle"); charToFingerFxIdMap.put(',', "keyRMiddle");
         for (char c : "ol9".toCharArray()) charToFingerFxIdMap.put(c, "keyRRing"); charToFingerFxIdMap.put('.', "keyRRing");
         for (char c : "p0".toCharArray()) charToFingerFxIdMap.put(c, "keyRPinky"); charToFingerFxIdMap.put(';', "keyRPinky");  charToFingerFxIdMap.put('/', "keyRPinky");
-        // Simbol yang memerlukan Shift tidak lagi relevan jika Shift dinonaktifkan untuk input
     }
 
     public void initContent(String category, String theme) {
@@ -218,19 +220,15 @@ public class TypingController implements Initializable {
         }
     }
     
-    // Helper untuk membersihkan teks menjadi lowercase dan hanya karakter yang diizinkan
     private String sanitizeTextForTyping(String inputText) {
         if (inputText == null) return "";
-        // Hanya izinkan huruf kecil, angka, dan spasi. Hapus tanda baca lainnya.
         return inputText.toLowerCase().replaceAll("[^a-z0-9 ]", "");
     }
     
     private String sanitizeAnswerForTyping(String inputText) {
         if (inputText == null) return "";
-        // Untuk jawaban, jadikan lowercase dan trim spasi, hapus tanda baca tidak diinginkan
         return inputText.toLowerCase().trim().replaceAll("[^a-z0-9 ]", "");
     }
-
 
     private void loadExercisesForCategory(String category) {
         exerciseSessionsList = new ArrayList<>();
@@ -279,38 +277,35 @@ public class TypingController implements Initializable {
     private void startNextSession() {
         if (currentSessionIndex < exerciseSessionsList.size()) {
             ExerciseSession currentSession = exerciseSessionsList.get(currentSessionIndex);
-            currentTextToType = currentSession.getTextToType(); // Ini sudah lowercase dan disanitasi
+            currentTextToType = currentSession.getTextToType(); 
             
-            System.out.println("TypingController: Sesi " + (currentSessionIndex + 1) + ": " + currentSession.toString());
             currentTypedCharIndex = 0;
 
-            if (panduanMateri != null && currentSession.getImagePath() != null) {
+            boolean imageLoadedSuccessfully = false;
+            if (panduanMateri != null && currentSession.getImagePath() != null && !currentSession.getImagePath().isEmpty()) {
                 try {
                     InputStream imageStream = getClass().getResourceAsStream(currentSession.getImagePath());
                     if (imageStream != null) {
                         panduanMateri.setImage(new Image(imageStream));
                         panduanMateri.setVisible(true);
                         panduanMateri.setManaged(true);
+                        imageLoadedSuccessfully = true;
                     } else {
                         System.err.println("TypingController Error: Gambar tidak ditemukan di path: " + currentSession.getImagePath());
-                        panduanMateri.setImage(null);
-                        panduanMateri.setVisible(false);
-                        panduanMateri.setManaged(false);
                     }
                 } catch (Exception e) {
                     System.err.println("TypingController Error: Gagal memuat gambar " + currentSession.getImagePath() + " - " + e.getMessage());
-                    panduanMateri.setImage(null);
-                    panduanMateri.setVisible(false);
-                    panduanMateri.setManaged(false);
                 }
-            } else if (panduanMateri != null) {
+            }
+            
+            if (!imageLoadedSuccessfully && panduanMateri != null) {
                 panduanMateri.setImage(null);
                 panduanMateri.setVisible(false);
                 panduanMateri.setManaged(false);
             }
 
             if (promptLabel != null) {
-                if (currentSession.isQuestionBased()) {
+                if (currentSession.isQuestionBased() && !imageLoadedSuccessfully) { // Hanya tampilkan prompt jika pertanyaan DAN gambar gagal
                     promptLabel.setText(currentSession.getPromptQuestion());
                     promptLabel.setVisible(true);
                     promptLabel.setManaged(true);
@@ -321,10 +316,9 @@ public class TypingController implements Initializable {
             }
 
             if (textToTypeDisplay != null) {
-                 textToTypeDisplay.setOpacity(DEFAULT_OPACITY);
+                 textToTypeDisplay.setOpacity(TEXT_DISPLAY_NORMAL_OPACITY); 
                  updateTextDisplay();
             } else {
-                System.err.println("TypingController Error: textToTypeDisplay (TextFlow) is null.");
                 return;
             }
             if (currentSessionIndex == 0) { 
@@ -332,7 +326,6 @@ public class TypingController implements Initializable {
             }
             highlightCharacterVisuals();
         } else {
-            System.out.println("TypingController: Semua sesi untuk kategori " + currentCategory + " selesai.");
             stopTimer();
             showCompletePopup();
         }
@@ -365,12 +358,12 @@ public class TypingController implements Initializable {
             charTextNode.setFont(TEXT_FONT);
 
             if (i < currentTypedCharIndex) {
-                charTextNode.setFill(Color.web(CORRECT_CHAR_COLOR, DEFAULT_OPACITY));
+                charTextNode.setFill(Color.web(CORRECT_CHAR_COLOR));
             } else if (i == currentTypedCharIndex) {
-                charTextNode.setFill(Color.web(CURRENT_CHAR_COLOR, DEFAULT_OPACITY));
+                charTextNode.setFill(Color.web(CURRENT_CHAR_COLOR));
                 charTextNode.setStyle(charTextNode.getStyle() + "-fx-font-weight: bold;");
             } else {
-                charTextNode.setFill(Color.web(PENDING_CHAR_COLOR, DEFAULT_OPACITY));
+                charTextNode.setFill(Color.web(PENDING_CHAR_COLOR));
             }
             textToTypeDisplay.getChildren().add(charTextNode);
         }
@@ -383,15 +376,14 @@ public class TypingController implements Initializable {
                 prevKeyNode.getStyleClass().remove("key-highlighted-active");
             }
         }
-        // Tidak ada lagi lastHighlightedShiftKeyNode
         if (lastHighlightedFingerCircle != null) {
             lastHighlightedFingerCircle.getStyleClass().remove("finger-highlighted");
             lastHighlightedFingerCircle.setEffect(null);
         }
 
         if (currentTypedCharIndex < currentTextToType.length()) {
-            char charToHighlight = currentTextToType.charAt(currentTypedCharIndex); // Ini sudah lowercase/casing yang benar
-            String charKeyForMap = String.valueOf(charToHighlight).toUpperCase(); // Untuk map keyboard tetap uppercase
+            char charToHighlight = currentTextToType.charAt(currentTypedCharIndex);
+            String charKeyForMap = String.valueOf(charToHighlight).toUpperCase(); 
 
             if (virtualKeyboardNodeMap != null) {
                 TextFlow currentKeyNode = virtualKeyboardNodeMap.get(charKeyForMap);
@@ -401,8 +393,11 @@ public class TypingController implements Initializable {
                 }
             }
             
-            // Highlight jari menggunakan karakter uppercase untuk konsistensi map
-            String fingerFxId = charToFingerFxIdMap.get(Character.toUpperCase(charToHighlight));
+            String fingerFxId = charToFingerFxIdMap.get(Character.toLowerCase(charToHighlight));
+            if (fingerFxId == null) { 
+                fingerFxId = charToFingerFxIdMap.get(Character.toUpperCase(charToHighlight));
+            }
+
             if (fingerFxId != null && fingerNodeMap != null) {
                 Circle fingerCircle = fingerNodeMap.get(fingerFxId);
                 if (fingerCircle != null) {
@@ -416,12 +411,8 @@ public class TypingController implements Initializable {
         updateTextDisplay();
     }
     
-    // Metode handleKeyReleased tidak lagi diperlukan untuk logika Shift case
-    // public void handleKeyReleased(KeyEvent event) { ... }
-
     public void handleKeyPress(KeyEvent event) {
         KeyCode code = event.getCode();
-        System.out.println("--- TypingController: KeyPress: Code=" + code + ", Text='" + event.getText() + "' ---");
 
         if (completePopupNode != null && completePopupNode.isVisible()) {
             event.consume(); return;
@@ -430,7 +421,6 @@ public class TypingController implements Initializable {
             event.consume(); return;
         }
 
-        // Abaikan tombol Shift dan modifier lainnya secara eksplisit
         if (code == KeyCode.SHIFT || code.isModifierKey() || code.isNavigationKey() || code.isFunctionKey() || code == KeyCode.CAPS) {
             event.consume();
             return;
@@ -441,30 +431,25 @@ public class TypingController implements Initializable {
 
         if (typedTextFromEvent != null && !typedTextFromEvent.isEmpty()) {
             typedCharInput = typedTextFromEvent.charAt(0);
-            // Jika Anda ingin semua input huruf menjadi lowercase (default)
             if (Character.isLetter(typedCharInput)) {
                 typedCharInput = Character.toLowerCase(typedCharInput);
             }
-            // Untuk simbol dan angka, biarkan apa adanya dari event.getText()
-            // atau lakukan sanitasi jika diperlukan
         } else if (code == KeyCode.SPACE) { 
             typedCharInput = ' ';
         } else {
-            // Jika event.getText() kosong dan bukan spasi, kemungkinan tombol non-karakter lain
-            System.out.println("TypingController: Key press ignored (no text from event and not space): " + code);
             event.consume();
             return;
         }
         
-        if (Character.isISOControl(typedCharInput) && typedCharInput != '\b') { // Abaikan karakter kontrol
+        if (Character.isISOControl(typedCharInput) && typedCharInput != '\b') {
             event.consume();
             return;
         }
 
-        char expectedChar = currentTextToType.charAt(currentTypedCharIndex); // Ini sudah lowercase/casing yang benar dari exerciseSessionsList
-        System.out.println("TypingController: Expected: '" + expectedChar + "', Processed Typed: '" + typedCharInput + "'");
+        char expectedChar = currentTextToType.charAt(currentTypedCharIndex);
 
         if (typedCharInput == expectedChar) {
+             AudioManager.playTypingSound();
             if (wrongIcon != null) {
                 wrongIcon.setVisible(false);
                 wrongIcon.setManaged(false);
@@ -478,7 +463,8 @@ public class TypingController implements Initializable {
                 highlightCharacterVisuals();
             }
         } else { 
-            System.out.println("TypingController: Salah ketik!");
+            AudioManager.playWrongSound();
+            System.out.println("TypingController: Salah ketik! Expected: '" + expectedChar + "', Typed: '" + typedCharInput + "'");
             if (wrongIcon != null) {
                 wrongIcon.setVisible(true);
                 wrongIcon.setManaged(true);
@@ -540,6 +526,7 @@ public class TypingController implements Initializable {
     }
 
     private void showCompletePopup() {
+        AudioManager.playCompleteSound();
         System.out.println("TypingController: showCompletePopup dipanggil.");
         try {
             String fxmlFile;
@@ -584,8 +571,8 @@ public class TypingController implements Initializable {
             
             if (durasiTextComplete != null) durasiTextComplete.setText("Durasi " + timeFormatted);
             
-            if (btnCobaLagiComplete != null) btnCobaLagiComplete.setOnMouseClicked(event -> handleCobaLagi());
-            if (btnKembaliComplete != null) btnKembaliComplete.setOnMouseClicked(event -> handleKembaliKeMenu());
+            if (btnCobaLagiComplete != null) btnCobaLagiComplete.setOnMouseClicked(event -> { AudioManager.playClickSound(); handleCobaLagi(); });
+            if (btnKembaliComplete != null) btnKembaliComplete.setOnMouseClicked(event -> { AudioManager.playClickSound(); handleKembaliKeMenu(); });
             
             if (btnLanjutkanComplete != null) {
                 if (currentCategory.equals("kalimat")) {
@@ -594,7 +581,7 @@ public class TypingController implements Initializable {
                 } else {
                     btnLanjutkanComplete.setVisible(true);
                     btnLanjutkanComplete.setManaged(true);
-                    btnLanjutkanComplete.setOnMouseClicked(event -> handleLanjutkan());
+                    btnLanjutkanComplete.setOnMouseClicked(event -> { AudioManager.playClickSound(); handleLanjutkan(); });
                 }
             }
             
@@ -714,6 +701,7 @@ public class TypingController implements Initializable {
             String cssPath = getClass().getResource("/style.css").toExternalForm();
             if (cssPath != null) mainScene.getStylesheets().add(cssPath);
             primaryStage.setScene(mainScene);
+            AudioManager.playMainMusic();
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Gagal kembali ke menu utama: " + e.getMessage());
