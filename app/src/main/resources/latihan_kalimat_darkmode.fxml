@@ -104,7 +104,7 @@
                                 <children>
                            <AnchorPane>
                               <children>
-                                 <Label fx:id="promptLabel" contentDisplay="CENTER" prefHeight="17.0" prefWidth="204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <Label fx:id="promptLabel" contentDisplay="CENTER" prefHeight="17.0" prefWidth="204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" opacity="0.0" AnchorPane.topAnchor="0.0" visible="false" managed="false">
                                     <font>
                                        <Font name="Rubik Regular" size="42.0" />
                                     </font></Label>
