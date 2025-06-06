@@ -19,7 +19,7 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
 --- -->
 
-![KidBoard](image-13.png)
+![KidBoard](/documentation/image-13.png)
 
 ---
 
@@ -32,7 +32,7 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 Jika JavaFX-SDK dan JDK sudah di download, tahap berikutnya melakukan [setup environment variables](#setup-environment-variables)
 
 > Install "Extension Pack For Java" by Microsoft.com di Visual Studio Code
-> ![Extension Pack For Java](image.png)
+> ![Extension Pack For Java](/documentation/image.png)
 
 ---
 
@@ -41,35 +41,36 @@ Jika JavaFX-SDK dan JDK sudah di download, tahap berikutnya melakukan [setup env
 > 1. Ekstrak hasil download javafx-sdk dan jdk ke dalam C:\\Program Files\\Java
 
 > 2. Pergi ke Settings > Search > Environment Variable
->    ![System Properties](image-1.png)
+>    ![System Properties](/documentation/image-1.png)
 
-> 3. System Variables > Edit ![Environment Variables](image-2.png)
+> 3. System Variables > Edit ![Environment Variables](/documentation/image-2.png)
 
-> 4. Copas Path/Sumber direktori/folder java jdk-21 sebagai berikut: ![PathJDK](image-3.png) Selanjutnya tekan OK.
+> 4. Copas Path/Sumber direktori/folder java jdk-21 sebagai berikut: ![PathJDK](/documentation/image-3.png) Selanjutnya tekan OK.
 
 > 5. Pada system variables, scroll kebawah dan klik pada variable 'PATH' dan tekan edit
 
-> 6. Tekan 'New' untuk menambahkan environment baru dan setelah itu masukkan sumber direktori atau path dari javafx-sdk-21, contoh seperti ini ![pathjavafx](image-4.png) dan selanjutnya tekan OK.
+> 6. Tekan 'New' untuk menambahkan environment baru dan setelah itu masukkan sumber direktori atau path dari javafx-sdk-21, contoh seperti ini ![pathjavafx](/documentation/image-4.png) dan selanjutnya tekan OK.
 
 ### 2. Git Clone menggunakan Git Bash
 
 Untuk mengakses tiap file dari repository 'desktopApp' harus melakukan git clone.
 
-> 1. Salin link HTTPS yang ada pada ![coderepo](image-5.png) diatas.
+> 1. Salin link HTTPS yang ada pada ![coderepo](/documentation/image-5.png) diatas.
 
 Pastikan anda sudah mempunyai 'Git Bash' di laptop/komputer anda (kalau belum ada, silahkan di install [Git Bash](https://gitforwindows.org/) terlebih dahulu)
 
 > 2. Buka Git Bash dan jalankan sebagai administrator, masuk ke salah satu direktori dengan perintah 'cd'
 > 3. Selanjutnya, ketik git clone dan paste linknya dengan klik kanan atau tekan Shift + Insert.
->    ![gitbash](image-6.png)
+>    ![gitbash](/documentation/image-6.png)
 > 4. masukkan perintah 'cd desktopApp' untuk memilih direktori tersebut.
-> 5. masukkan perintah code . untuk membuka vscode. ![code.](image-9.png)
+> 5. masukkan perintah code . untuk membuka vscode. ![code.](/documentation/image-9.png)
 
 ### 3. Build Application dengan Gradle
 
 Pada bagian ini akan dilakukan'./gradlew build' untuk membangun project agar bisa dijalankan (bisa berupa dalam format .exe)
 
-> ./gradlew build ![build](image-10.png)
+> ./gradlew build
+> ![build](/documentation/image-10.png)
 
 Tahap akhir untuk menjalankan aplikasinya dengan memasukkan perintah berikut:
 
@@ -77,9 +78,9 @@ Tahap akhir untuk menjalankan aplikasinya dengan memasukkan perintah berikut:
 
 #### 3.1 Menjalankan dengan Debug (OPSI)
 
-> Buka file App.java
-> ![App](image-11.png)
-> Scroll kebawah, ada opsi Run || Debug, tekan salah satu.
-> ![debug](image-12.png)
+> 1. Buka file App.java
+>    ![App](/documentation/image-11.png)
+> 2. Scroll kebawah, ada opsi Run || Debug, tekan salah satu.
+>    ![debug](/documentation/image-12.png)
 
 ---
