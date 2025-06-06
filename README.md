@@ -23,6 +23,12 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
 ---
 
+# Preview KidBoard
+
+![KidBoard](https://github.com/user-attachments/assets/ee65ff89-66ef-41ad-b67e-b0745167da08)
+
+---
+
 ## Setup di Visual Studio Code
 
 ### Hal yang diperlukan (bersifat WAJIB!!)
