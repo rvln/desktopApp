@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -131,21 +132,10 @@
                         </padding>
                      </HBox>
                             
-                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="669.0" styleClass="inputfield" stylesheets="@style.css">
+                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="669.0" stylesheets="@style.css">
                                 <children>
-                           <AnchorPane>
-                              <children>
-                                 <Label fx:id="promptLabel" contentDisplay="CENTER" managed="false" opacity="0.0" prefHeight="17.0" prefWidth="204.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <font>
-                                       <Font name="Rubik Regular" size="42.0" />
-                                    </font></Label>
-                                <TextFlow fx:id="textToTypeDisplay" prefHeight="80.0" prefWidth="620.0" style="-fx-text-alignment: center; -fx-line-spacing: 5px;" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                              </children>
-                           </AnchorPane>
+                           <TextField fx:id="answerTextField" prefHeight="100.0" prefWidth="669.0" styleClass="inputfield" stylesheets="@style.css" />
                                 </children>
-                                <padding>
-                                    <Insets left="20.0" right="20.0" />
-                                </padding>
                             </HBox>
                      <HBox alignment="CENTER" prefHeight="130.0" prefWidth="673.0">
                         <children>
