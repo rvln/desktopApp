@@ -68,19 +68,39 @@
                                        </VBox>
                                     </children>
                                  </HBox>
-                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                     <children>
-                                       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="423.0" stylesheets="@style.css">
+                                       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" stylesheets="@style.css">
                                           <styleClass>
                                              <String fx:value="medium_button_radius" />
                                              <String fx:value="stroked-hbox" />
-                                             <String fx:value="bottom_pane_background" />
+                                             <String fx:value="left_pane_background" />
                                           </styleClass>
                                           <children>
-                                             <Text fx:id="durasiTextComplete" fill="#3feb97" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
+                                             <Text fx:id="durasiTextComplete2" fill="#dceb3f" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
                                                 <font>
                                                    <Font name="Lapsus Pro Bold" size="42.0" />
                                                 </font>
+                                                <HBox.margin>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </HBox.margin>
+                                             </Text>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" stylesheets="@style.css">
+                                          <styleClass>
+                                             <String fx:value="medium_button_radius" />
+                                             <String fx:value="stroked-hbox" />
+                                             <String fx:value="left_pane_background" />
+                                          </styleClass>
+                                          <children>
+                                             <Text fx:id="incorrectCountText" fill="#de351f" stroke="#d4d938" strokeType="OUTSIDE" text="10x Salah">
+                                                <font>
+                                                   <Font name="Lapsus Pro Bold" size="42.0" />
+                                                </font>
+                                                <HBox.margin>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </HBox.margin>
                                              </Text>
                                           </children>
                                        </HBox>

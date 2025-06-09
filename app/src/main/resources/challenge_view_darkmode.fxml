@@ -20,7 +20,7 @@
 <StackPane fx:id="rootPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopapp.ChallengeController">
     <AnchorPane fx:id="mainPage" stylesheets="@style.css">
         <children>
-            <ImageView fitHeight="800.0" fitWidth="1039.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="false" style="-fx-preserve-ratio: false;">
+            <ImageView fx:id="checkAnswerIcon" fitHeight="800.0" fitWidth="1039.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="false" style="-fx-preserve-ratio: false;">
                 <image>
                     <Image url="@desain/Typing/TypingBackground2.png" />
                 </image>

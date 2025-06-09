@@ -253,13 +253,13 @@
         </children>
     </AnchorPane>
    <Pane fx:id="disableLayer" mouseTransparent="false" prefHeight="200.0" prefWidth="200.0" styleClass="disableLayer_background" stylesheets="@style.css" visible="false" />
-   <AnchorPane prefHeight="200.0" prefWidth="200.0" visible="false">
+   <AnchorPane fx:id="checkAnswer" prefHeight="200.0" prefWidth="200.0" visible="false">
       <children>
          <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                   <children>
-                     <ImageView fx:id="checkAnswer" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="checkAnswerIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@desain/icon/correct-answer.png" />
                         </image>
