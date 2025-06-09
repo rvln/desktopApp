@@ -91,7 +91,7 @@
                 <center>
                     <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="654.0" spacing="20.0" BorderPane.alignment="CENTER">
                         <children>
-                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="669.0" spacing="20.0" stylesheets="@style.css">
+                     <HBox fx:id="petunjukJawaban" alignment="CENTER" prefHeight="100.0" prefWidth="669.0" spacing="20.0" stylesheets="@style.css">
                         <children>
                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
                               <children>
@@ -139,7 +139,7 @@
                             </HBox>
                      <HBox alignment="CENTER" prefHeight="130.0" prefWidth="673.0">
                         <children>
-                                  <ImageView fx:id="panduanMateri" fitHeight="130.0" fitWidth="673.0" pickOnBounds="true" preserveRatio="true">
+                                  <ImageView fx:id="panduanPertanyaan" fitHeight="130.0" fitWidth="673.0" pickOnBounds="true" preserveRatio="true">
                                       <image>
                                           <Image url="@desain/Typing/Panduan.png" />
                                       </image>
