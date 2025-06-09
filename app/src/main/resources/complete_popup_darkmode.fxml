@@ -87,7 +87,7 @@
                                              </Text>
                                           </children>
                                        </HBox>
-                                       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" stylesheets="@style.css">
+                                       <HBox fx:id="incorrectCount" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" stylesheets="@style.css">
                                           <styleClass>
                                              <String fx:value="medium_button_radius" />
                                              <String fx:value="stroked-hbox" />

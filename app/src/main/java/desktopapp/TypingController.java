@@ -97,6 +97,7 @@ public class TypingController implements Initializable {
 
     private Timeline timerTimeline;
     private long categoryStartTimeMillis;
+    private HBox incorrectCount;
 
     private String lastHighlightedKeyString = null;
     private Circle lastHighlightedFingerCircle = null;
@@ -558,11 +559,18 @@ public class TypingController implements Initializable {
             btnLanjutkanComplete = (HBox) completePopupNode.lookup("#btnLanjutkanComplete");
             btnCobaLagiComplete = (HBox) completePopupNode.lookup("#btnCobaLagiComplete");
             btnKembaliComplete = (HBox) completePopupNode.lookup("#btnKembaliComplete");
+            incorrectCount = (HBox) completePopupNode.getProperties().get("incorrectCount");
 
             if (durasiTextComplete == null) System.err.println("#durasiTextComplete tidak ditemukan di popup.");
             if (btnLanjutkanComplete == null && !currentCategory.equals("kalimat")) System.err.println("#btnLanjutkanComplete tidak ditemukan di popup, padahal dibutuhkan.");
             if (btnCobaLagiComplete == null) System.err.println("#btnCobaLagiComplete tidak ditemukan di popup.");
             if (btnKembaliComplete == null) System.err.println("#btnKembaliComplete tidak ditemukan di popup.");
+            if (incorrectCount == null) System.err.println("#incorrectCount tidak ditemukan di popup.");
+
+            if (incorrectCount != null) {
+                incorrectCount.setVisible(false);
+                incorrectCount.setManaged(false);
+            }
 
             long elapsedMillis = System.currentTimeMillis() - categoryStartTimeMillis;
             String timeFormatted = String.format("%02d:%02d",
