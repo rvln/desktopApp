@@ -247,7 +247,7 @@
 /* untuk halaman latihan */
 
 .inputfield {
-  -fx-background-color: #abaaaa;
+  -fx-background-color: #717171;
   -fx-background-radius: 16.762;
   -fx-border-color: rgba(0, 0, 0, 0.8);
   -fx-border-width: 1;
@@ -390,4 +390,10 @@
 
 .petunjuk_text {
   -fx-background-color: #b2467e;
+}
+
+.text-field.custom-prompt .prompt-text {
+  -fx-font-family: "Rubik Regular";
+  -fx-font-size: 36px;
+  -fx-text-fill: #4a4a4a;
 }

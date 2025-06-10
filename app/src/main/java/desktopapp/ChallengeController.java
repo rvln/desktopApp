@@ -55,6 +55,22 @@ public class ChallengeController implements Initializable {
     @FXML
     private Label timerLabel;
     @FXML
+    private VBox keyboardHuruf;
+    @FXML
+    private AnchorPane leftHand, rightHand;
+    @FXML
+    private Circle keyLThumb, keyLIndex, keyLMiddle, keyLRing, keyLPinky;
+    @FXML
+    private Circle keyRThumb, keyRindex, keyRMiddle, keyRRing, keyRPinky;
+
+    @FXML private TextFlow key_Q, key_W, key_E, key_R, key_T, key_Y, key_U, key_I, key_O, key_P;
+    @FXML private TextFlow key_A, key_S, key_D, key_F, key_G, key_H, key_J, key_K, key_L, key_SEMICOLON;
+    @FXML private TextFlow key_Z, key_X, key_C, key_V, key_B, key_N, key_M, key_COMMA, key_PERIOD, key_SLASH;
+    @FXML private TextFlow key_SPACE, key_LSHIFT, key_RSHIFT;
+    private Map<String, TextFlow> virtualKeyboardNodeMap;
+    private Map<String, Circle> fingerNodeMap;
+    private Map<Character, String> charToFingerFxIdMap;
+    @FXML
     private HBox petunjukJawaban; // HBox utama untuk 3 pilihan jawaban
     @FXML
     private TextField answerTextField; // Input field untuk jawaban pengguna
@@ -85,6 +101,13 @@ public class ChallengeController implements Initializable {
     private Image correctImage;
     private Image wrongImage;
 
+    private String lastHighlightedKeyString = null;
+    private Circle lastHighlightedFingerCircle = null;
+
+    private final String CURRENT_CHAR_COLOR = "#1C5DF4";
+    private final String PROMPT_TEXT_COLOR = "#4a4a4a";
+    private final Font TEXT_FONT = Font.font("Rubik Bold", 36);
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (checkAnswer != null) {
@@ -94,6 +117,9 @@ public class ChallengeController implements Initializable {
         if (answerTextField != null) {
             // Event handler untuk saat pengguna menekan Enter
             answerTextField.setOnAction(event -> checkAnswer());
+            answerTextField.setFont(TEXT_FONT);
+            answerTextField.setPromptText("Ketik jawaban anda disini...");
+            answerTextField.setStyle("-fx-text-fill: white;");
         }
         
         // Pra-muat gambar feedback
@@ -119,6 +145,76 @@ public class ChallengeController implements Initializable {
 
         if (rootPage != null) {
             Platform.runLater(() -> rootPage.requestFocus());
+        }
+    }
+
+    private void initializeVirtualKeyboardNodeMap() {
+        virtualKeyboardNodeMap = new HashMap<>();
+        virtualKeyboardNodeMap.put("Q", key_Q); virtualKeyboardNodeMap.put("W", key_W); virtualKeyboardNodeMap.put("E", key_E);
+        virtualKeyboardNodeMap.put("R", key_R); virtualKeyboardNodeMap.put("T", key_T); virtualKeyboardNodeMap.put("Y", key_Y);
+        virtualKeyboardNodeMap.put("U", key_U); virtualKeyboardNodeMap.put("I", key_I); virtualKeyboardNodeMap.put("O", key_O);
+        virtualKeyboardNodeMap.put("P", key_P);
+        virtualKeyboardNodeMap.put("A", key_A); virtualKeyboardNodeMap.put("S", key_S); virtualKeyboardNodeMap.put("D", key_D);
+        virtualKeyboardNodeMap.put("F", key_F); virtualKeyboardNodeMap.put("G", key_G); virtualKeyboardNodeMap.put("H", key_H);
+        virtualKeyboardNodeMap.put("J", key_J); virtualKeyboardNodeMap.put("K", key_K); virtualKeyboardNodeMap.put("L", key_L);
+        virtualKeyboardNodeMap.put(";", key_SEMICOLON); 
+        virtualKeyboardNodeMap.put("Z", key_Z); virtualKeyboardNodeMap.put("X", key_X); virtualKeyboardNodeMap.put("C", key_C);
+        virtualKeyboardNodeMap.put("V", key_V); virtualKeyboardNodeMap.put("B", key_B); virtualKeyboardNodeMap.put("N", key_N);
+        virtualKeyboardNodeMap.put("M", key_M);
+        virtualKeyboardNodeMap.put(",", key_COMMA); 
+        virtualKeyboardNodeMap.put(".", key_PERIOD);
+        virtualKeyboardNodeMap.put("/", key_SLASH); 
+        virtualKeyboardNodeMap.put(" ", key_SPACE);
+    }
+
+    private void initializeFingerMapping() {
+        fingerNodeMap = new HashMap<>();
+        charToFingerFxIdMap = new HashMap<>();
+
+        if(keyLPinky != null) fingerNodeMap.put("keyLPinky", keyLPinky);
+        if(keyLRing != null) fingerNodeMap.put("keyLRing", keyLRing);
+        if(keyLMiddle != null) fingerNodeMap.put("keyLMiddle", keyLMiddle);
+        if(keyLIndex != null) fingerNodeMap.put("keyLIndex", keyLIndex);
+        if(keyLThumb != null) fingerNodeMap.put("keyLThumb", keyLThumb);
+
+        if(keyRPinky != null) fingerNodeMap.put("keyRPinky", keyRPinky);
+        if(keyRRing != null) fingerNodeMap.put("keyRRing", keyRRing);
+        if(keyRMiddle != null) fingerNodeMap.put("keyRMiddle", keyRMiddle);
+        if(keyRindex != null) fingerNodeMap.put("keyRindex", keyRindex);
+        if(keyRThumb != null) fingerNodeMap.put("keyRThumb", keyRThumb);
+
+        for (char c : "qaz1".toCharArray()) charToFingerFxIdMap.put(c, "keyLPinky");
+        for (char c : "wsx2".toCharArray()) charToFingerFxIdMap.put(c, "keyLRing");
+        for (char c : "edc3".toCharArray()) charToFingerFxIdMap.put(c, "keyLMiddle");
+        for (char c : "rfvtgb45".toCharArray()) charToFingerFxIdMap.put(c, "keyLIndex");
+        charToFingerFxIdMap.put(' ', "keyLThumb");
+
+        for (char c : "yuhjnm67".toCharArray()) charToFingerFxIdMap.put(c, "keyRindex");
+        for (char c : "ik8".toCharArray()) charToFingerFxIdMap.put(c, "keyRMiddle"); charToFingerFxIdMap.put(',', "keyRMiddle");
+        for (char c : "ol9".toCharArray()) charToFingerFxIdMap.put(c, "keyRRing"); charToFingerFxIdMap.put('.', "keyRRing");
+        for (char c : "p0".toCharArray()) charToFingerFxIdMap.put(c, "keyRPinky"); charToFingerFxIdMap.put(';', "keyRPinky");  charToFingerFxIdMap.put('/', "keyRPinky");
+    }
+
+    private String sanitizeTextForTyping(String inputText) {
+        if (inputText == null) return "";
+        return inputText.toLowerCase().replaceAll("[^a-z0-9 ]", "");
+    }
+    
+    private String sanitizeAnswerForTyping(String inputText) {
+        if (inputText == null) return "";
+        return inputText.toLowerCase().trim().replaceAll("[^a-z0-9 ]", "");
+    }
+
+    private void highlightCharacterVisuals() {
+        if (lastHighlightedKeyString != null && virtualKeyboardNodeMap != null) {
+            TextFlow prevKeyNode = virtualKeyboardNodeMap.get(lastHighlightedKeyString);
+            if (prevKeyNode != null) {
+                prevKeyNode.getStyleClass().remove("key-highlighted-active");
+            }
+        }
+        if (lastHighlightedFingerCircle != null) {
+            lastHighlightedFingerCircle.getStyleClass().remove("finger-highlighted");
+            lastHighlightedFingerCircle.setEffect(null);
         }
     }
 
@@ -193,6 +289,7 @@ public class ChallengeController implements Initializable {
                 Label choiceLabel = (Label) choiceBox.getChildren().get(0);
                 if (choiceLabel != null) {
                     choiceLabel.setText(choices.get(i));
+                    choiceLabel.setFont(TEXT_FONT);
                 }
             }
         }
@@ -218,11 +315,13 @@ public class ChallengeController implements Initializable {
         
         checkAnswerIcon.setImage(isCorrect ? correctImage : wrongImage);
         checkAnswer.setVisible(true);
+        disableLayer.setVisible(true);
         
         PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
         pause.setOnFinished(event -> {
             checkAnswer.setVisible(false);
             answerTextField.setDisable(false);
+            disableLayer.setVisible(false);
             if (isCorrect) {
                 currentSessionIndex++;
                 startNextSession();

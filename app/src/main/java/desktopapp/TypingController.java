@@ -559,7 +559,7 @@ public class TypingController implements Initializable {
             btnLanjutkanComplete = (HBox) completePopupNode.lookup("#btnLanjutkanComplete");
             btnCobaLagiComplete = (HBox) completePopupNode.lookup("#btnCobaLagiComplete");
             btnKembaliComplete = (HBox) completePopupNode.lookup("#btnKembaliComplete");
-            incorrectCount = (HBox) completePopupNode.getProperties().get("incorrectCount");
+            incorrectCount = (HBox) completePopupNode.lookup("#incorrectCount");
 
             if (durasiTextComplete == null) System.err.println("#durasiTextComplete tidak ditemukan di popup.");
             if (btnLanjutkanComplete == null && !currentCategory.equals("kalimat")) System.err.println("#btnLanjutkanComplete tidak ditemukan di popup, padahal dibutuhkan.");

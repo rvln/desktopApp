@@ -201,23 +201,6 @@
                                  <Insets left="40.0" />
                               </VBox.margin></HBox>
                                     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="534.0" spacing="15.0"> <children>
-                                 <TextFlow fx:id="key_RSHIFT" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@style.css" textAlignment="CENTER">
-                                    <styleClass>
-                                       <String fx:value="key-base" />
-                                       <String fx:value="key-modifier" />
-                                       <String fx:value="right_pinky_finger" />
-                                    </styleClass>
-                                    <children>
-                                       <Text styleClass="key-char-modifier" text="SHIFT">
-                                          <font>
-                                             <Font name="Rubik Bold" size="18.0" />
-                                          </font>
-                                       </Text>
-                                    </children>
-                                    <padding>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </padding>
-                                 </TextFlow>
                                         <TextFlow fx:id="key_SPACE" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="341.0" stylesheets="@style.css" textAlignment="CENTER"><children><Text fill="WHITE" styleClass="key-char-space" text="SPACEBAR">
                                           <font>
                                              <Font name="Rubik Bold" size="18.0" />
@@ -226,24 +209,23 @@
                                        <String fx:value="thumb_finger" />
                                        <String fx:value="adn_button_radius" />
                                     </styleClass></TextFlow>
-                                 <TextFlow fx:id="key_LSHIFT" maxHeight="-Infinity" prefHeight="40.0" prefWidth="70.0" stylesheets="@style.css" textAlignment="CENTER">
-                                    <styleClass>
-                                       <String fx:value="key-base" />
-                                       <String fx:value="key-modifier" />
-                                       <String fx:value="left_pinky_finger" />
-                                    </styleClass>
-                                    <padding>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </padding>
+                                 <TextFlow fx:id="key_ENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="78.0" stylesheets="@style.css" textAlignment="CENTER">
                                     <children>
-                                       <Text styleClass="key-char-modifier" text="SHIFT" wrappingWidth="66.0">
+                                       <Text fill="WHITE" styleClass="key-char-space" text="ENTER">
                                           <font>
                                              <Font name="Rubik Bold" size="18.0" />
                                           </font>
                                        </Text>
                                     </children>
+                                    <padding>
+                                       <Insets bottom="7.0" top="10.0" />
+                                    </padding>
+                                    <styleClass>
+                                       <String fx:value="right_pinky_finger" />
+                                       <String fx:value="adn_button_radius" />
+                                    </styleClass>
                                  </TextFlow>
-                                    </children> <padding><Insets top="5.0" /></padding> </HBox>
+                                    </children> <padding><Insets left="60.0" top="5.0" /></padding> </HBox>
                                 </children>
                             </VBox>
                         </children>
