@@ -66,7 +66,6 @@ public class Controller implements Initializable {
     private HBox soundEffectSwitch;
     @FXML
     private Circle soundEffectSwitchCircle;
-    // Pastikan fx:id ini ada di FXML Anda jika ingin menambahkan suara klik pada mereka
     @FXML private HBox btnMulai;
     @FXML private HBox btnTantangan;
     @FXML private HBox btnTutorial;
@@ -83,10 +82,6 @@ public class Controller implements Initializable {
     private HBox btnKeluarTidak;
     @FXML
     private HBox btnTantanganYa;
-    // Tombol kembali di popup info, settings, tutorial (jika ada fx:id nya)
-    // @FXML private HBox btnInfoKembali, btnSettingsKembali, btnTutorialKembaliPage1, btnTutorialKembaliPage2;
-    // @FXML private HBox btnTutorialLanjutPage1;
-
 
     private Node profilDeveloperNode;
     private Node sumberReferensiNode;
@@ -132,7 +127,7 @@ public class Controller implements Initializable {
     }
 
     private void showSpecificPopup(AnchorPane popupToShow) {
-        AudioManager.playClickSound(); // Mainkan SFX klik umum saat popup akan muncul
+        AudioManager.playClickSound();
         for (AnchorPane popup : allPopups) {
             if (popup != null && popup != popupToShow) {
                 popup.setVisible(false);
@@ -155,9 +150,8 @@ public class Controller implements Initializable {
 
     @FXML
     private void showInfo(MouseEvent event) {
-        // AudioManager.playClickSound(); // Sudah dipanggil di showSpecificPopup jika ini memicu popup
         showProfilContent();
-        showSpecificPopup(overlayPopup); // Ini akan memutar suara klik
+        showSpecificPopup(overlayPopup);
     }
 
     @FXML
@@ -198,7 +192,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void showSettingsPopup(MouseEvent event) {
-        showSpecificPopup(settingsPopupAnchorPane); // Ini akan memutar suara klik
+        showSpecificPopup(settingsPopupAnchorPane);
     }
 
     @FXML
@@ -236,22 +230,22 @@ public class Controller implements Initializable {
 
     @FXML
     private void showMulaiPopup(MouseEvent event) {
-        showSpecificPopup(mulaiPopup); // Ini akan memutar suara klik
+        showSpecificPopup(mulaiPopup);
     }
 
     @FXML
     private void showTutorialPopup(MouseEvent event) {
-        showSpecificPopup(tutorialPage1Popup); // Ini akan memutar suara klik
+        showSpecificPopup(tutorialPage1Popup);
     }
 
     @FXML
     private void showKeluarPopup(MouseEvent event) {
-        showSpecificPopup(keluarPopup); // Ini akan memutar suara klik
+        showSpecificPopup(keluarPopup);
     }
     
     @FXML
     private void showTantanganPopup(MouseEvent event) {
-        showSpecificPopup(tantanganPopup); // Ini akan memutar suara klik
+        showSpecificPopup(tantanganPopup);
     }
 
     private void ensureThemeSelected() {
@@ -267,7 +261,7 @@ public class Controller implements Initializable {
         System.out.println("Pilihan Tantangan diklik.");
         ensureThemeSelected();
         switchToChallenge(selectedTheme);
-        closeActivePopup(null); // Tidak perlu suara klik lagi di sini karena popup sudah ditutup
+        closeActivePopup(null);
     }
 
     @FXML
@@ -276,7 +270,7 @@ public class Controller implements Initializable {
         System.out.println("Pilihan Latihan: Huruf");
         ensureThemeSelected();
         switchToLatihanScene("huruf", selectedTheme);
-        closeActivePopup(null); // Tidak perlu suara klik lagi di sini karena popup sudah ditutup
+        closeActivePopup(null);
     }
 
     @FXML
@@ -298,7 +292,7 @@ public class Controller implements Initializable {
     }
 
     private void switchToLatihanScene(String category, String theme) {
-        AudioManager.stopMainMusic(); // Hentikan musik utama saat pindah ke scene latihan
+        AudioManager.stopMainMusic();
         try {
             String fxmlFile;
             if (theme.equals("ori")) {
@@ -306,9 +300,7 @@ public class Controller implements Initializable {
             } else { 
                  fxmlFile = "/latihan_" + category + "_" + theme + ".fxml";
             }
-            // Jika Anda menggunakan satu file FXML untuk semua latihan:
-            // fxmlFile = "/latihan_view.fxml"; // Ganti ini jika Anda sudah beralih ke satu file
-
+        
             FXMLLoader loader = App.getLoader(fxmlFile);
             Parent typingRoot = loader.load();
 
@@ -326,22 +318,18 @@ public class Controller implements Initializable {
             }
             
             scene.setOnKeyPressed(typingController::handleKeyPress);
-            // scene.setOnKeyReleased(typingController::handleKeyReleased); // Dihapus jika tidak ada logika shift case
-
             primaryStage.setScene(scene);
-            
             typingController.initContent(category, theme);
-            // Musik untuk halaman latihan akan dimulai dari TypingController.initContent() jika ada
 
         } catch (Exception e) {
             System.err.println("Controller ERROR: Gagal memuat halaman latihan: " + category + " tema: " + theme);
             e.printStackTrace();
-             AudioManager.playMainMusic(); // Putar kembali musik utama jika gagal pindah scene
+             AudioManager.playMainMusic();
         }
     }
     
     private void switchToChallenge(String theme) {
-        AudioManager.stopMainMusic(); // Hentikan musik utama saat pindah ke scene tantangan
+        AudioManager.stopMainMusic();
         try {
             String fxmlFile;
             if (theme.equals("ori")) {
@@ -349,9 +337,6 @@ public class Controller implements Initializable {
             } else { 
                  fxmlFile = "/challenge_view" + "_" + theme + ".fxml";
             }
-            // Jika Anda menggunakan satu file FXML untuk semua latihan:
-            // fxmlFile = "/latihan_view.fxml"; // Ganti ini jika Anda sudah beralih ke satu file
-
             FXMLLoader loader = App.getLoader(fxmlFile);
             Parent typingRoot = loader.load();
 
@@ -368,18 +353,13 @@ public class Controller implements Initializable {
                 scene.getStylesheets().add(cssPath);
             }
             
-            // scene.setOnKeyPressed(typingController::handleKeyPress);
-            // scene.setOnKeyReleased(typingController::handleKeyReleased); // Dihapus jika tidak ada logika shift case
-
             primaryStage.setScene(scene);
             
             challengeController.initGame(theme);
-            // Musik untuk halaman tantangan akan dimulai dari ChallengeController.initGame() jika ada
-
         } catch (Exception e) {
             System.err.println("Controller ERROR: Gagal memuat halaman Challenge: "  + " tema: " + theme);
             e.printStackTrace();
-             AudioManager.playMainMusic(); // Putar kembali musik utama jika gagal pindah scene
+             AudioManager.playMainMusic();
         }
     }
 
@@ -401,22 +381,18 @@ public class Controller implements Initializable {
     private void handleKeluarYa(MouseEvent event) {
         AudioManager.playClickSound();
         System.out.println("Keluar dari aplikasi.");
-        Platform.exit(); // Ini akan memicu App.stop()
+        Platform.exit();
     }
 
     @FXML
     private void handleKeluarTidak(MouseEvent event) {
         AudioManager.playClickSound();
         System.out.println("Batal keluar.");
-        closeActivePopup(null); // Tidak perlu suara klik lagi
+        closeActivePopup(null);
     }
 
     @FXML
     private void closeActivePopup(MouseEvent event) {
-        // Jika event null (dipanggil programatik), jangan mainkan suara.
-        // Jika event tidak null (diklik pengguna), mainkan suara.
-        // Namun, showSpecificPopup sudah memainkan suara, jadi mungkin tidak perlu di sini
-        // kecuali jika ada tombol "Kembali" spesifik di dalam popup yang langsung memanggil ini.
         if (event != null) {
              AudioManager.playClickSound();
         }

@@ -44,8 +44,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
-// import java.util.stream.Collectors; // Tidak digunakan lagi
-
 public class TypingController implements Initializable {
 
     @FXML
@@ -102,9 +100,9 @@ public class TypingController implements Initializable {
     private String lastHighlightedKeyString = null;
     private Circle lastHighlightedFingerCircle = null;
 
-    private final String PENDING_CHAR_COLOR = "#3E3E3E";
-    private final String CURRENT_CHAR_COLOR = "#1C5DF4";
-    private final String CORRECT_CHAR_COLOR = "#7E7878";
+    private final String PENDING_CHAR_COLOR = "#EFEFEF";
+    private final String CURRENT_CHAR_COLOR = "#F4AC1C";
+    private final String CORRECT_CHAR_COLOR = "#544F4F";
     private final String INCORRECT_CHAR_COLOR = "RED";
     private final double TEXT_DISPLAY_HIDDEN_OPACITY = 0.01;
     private final double TEXT_DISPLAY_NORMAL_OPACITY = 0.8;
@@ -250,7 +248,7 @@ public class TypingController implements Initializable {
                 exerciseSessionsList.add(new ExerciseSession(sanitizeTextForTyping("rumah sekolah buku"), basePath + "kata_rumah_sekolah.png"));
                 exerciseSessionsList.add(new ExerciseSession(sanitizeTextForTyping("pensil meja kursi"), basePath + "kata_pensil_meja.png"));
                 exerciseSessionsList.add(new ExerciseSession(sanitizeTextForTyping("lampu pintu jendela"), basePath + "kata_lampu_pintu.png"));
-                // Sesi 6-10: Pertanyaan (Jawaban akan disanitasi menjadi lowercase)
+                
                 exerciseSessionsList.add(new ExerciseSession("Bagian tubuh untuk melihat: _____", sanitizeAnswerForTyping("mata"), basePath + "kata_q_mata.png"));
                 exerciseSessionsList.add(new ExerciseSession("Warna bendera Indonesia: Merah _____", sanitizeAnswerForTyping("putih"), basePath + "kata_q_bendera.png"));
                 exerciseSessionsList.add(new ExerciseSession("Hewan yang menggonggong: _____", sanitizeAnswerForTyping("anjing"), basePath + "kata_q_anjing.png"));
@@ -265,7 +263,7 @@ public class TypingController implements Initializable {
                 exerciseSessionsList.add(new ExerciseSession(sanitizeTextForTyping("buku itu di atas meja."), basePath + "kalimat_buku_meja.png"));
                 // Sesi 6-10: Pertanyaan
                 exerciseSessionsList.add(new ExerciseSession("Bhinneka _______ Ika.", sanitizeAnswerForTyping("tunggal"), basePath + "kalimat_q_bhinneka.png"));
-                exerciseSessionsList.add(new ExerciseSession("Istirahat mata setiap __ menit.", sanitizeAnswerForTyping("20"), basePath + "kalimat_q_gawai.png"));
+                exerciseSessionsList.add(new ExerciseSession("Sehabis makan harus _____.", sanitizeAnswerForTyping("sikat gigi"), basePath + "kalimat_q_sikat_gigi.png"));
                 exerciseSessionsList.add(new ExerciseSession("Besar ____ daripada tiang.", sanitizeAnswerForTyping("pasak"), basePath + "kalimat_q_pasak.png"));
                 exerciseSessionsList.add(new ExerciseSession("Kita harus hemat ___ agar tidak habis.", sanitizeAnswerForTyping("air"), basePath + "kalimat_q_air.png"));
                 exerciseSessionsList.add(new ExerciseSession("Sampah plastik jadi ____-brick.", sanitizeAnswerForTyping("eco"), basePath + "kalimat_q_ecobrick.png"));
@@ -306,7 +304,7 @@ public class TypingController implements Initializable {
             }
 
             if (promptLabel != null) {
-                if (currentSession.isQuestionBased() && !imageLoadedSuccessfully) { // Hanya tampilkan prompt jika pertanyaan DAN gambar gagal
+                if (currentSession.isQuestionBased() && !imageLoadedSuccessfully) {
                     promptLabel.setText(currentSession.getPromptQuestion());
                     promptLabel.setVisible(true);
                     promptLabel.setManaged(true);
@@ -678,7 +676,6 @@ public class TypingController implements Initializable {
                 if (cssPath != null) scene.getStylesheets().add(cssPath);
                 
                 scene.setOnKeyPressed(nextTypingController::handleKeyPress);
-                // scene.setOnKeyReleased(nextTypingController::handleKeyReleased); // Dihapus
                 primaryStage.setScene(scene);
                 nextTypingController.initContent(nextCategory, currentTheme);
 

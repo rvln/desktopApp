@@ -1,23 +1,21 @@
 package desktopapp;
 
 public class ExerciseSession {
-    private String textToType; // Teks yang harus diketik pengguna (cocok dengan teks di gambar)
+    private String textToType;
     private boolean isQuestionBased;
-    private String promptQuestion; // Pertanyaan atau kalimat rumpang (misal "Bhinneka _____ Ika")
-    private String imagePath; // Path ke file gambar untuk sesi ini
+    private String promptQuestion;
+    private String imagePath;
 
-    // Konstruktor untuk sesi mengetik biasa dengan gambar
     public ExerciseSession(String textToType, String imagePath) {
-        this.textToType = textToType; // Simpan dengan casing asli
+        this.textToType = textToType;
         this.imagePath = imagePath; 
         this.isQuestionBased = false;
         this.promptQuestion = null;
     }
 
-    // Konstruktor untuk sesi berbasis pertanyaan/lengkapi kalimat dengan gambar
     public ExerciseSession(String promptQuestion, String answerToType, String imagePath) {
         this.promptQuestion = promptQuestion;
-        this.textToType = answerToType; // Simpan jawaban dengan casing asli
+        this.textToType = answerToType;
         this.imagePath = imagePath;
         this.isQuestionBased = true;
     }
@@ -45,7 +43,6 @@ public class ExerciseSession {
     }
 
     public void setTextToType(String sanitizeTextForTyping) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setTextToType'");
     }
 }

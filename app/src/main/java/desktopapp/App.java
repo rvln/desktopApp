@@ -8,7 +8,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
-// import java.util.Objects; // Tidak digunakan jika tidak ada Objects.requireNonNull
 
 public class App extends Application {
 
@@ -19,7 +18,6 @@ public class App extends Application {
             "/fonts/static/Rubik-Regular.ttf",
             "/fonts/static/Rubik-Bold.ttf",
             "/fonts/static/LapsusPro-Bold.otf"
-            // Tambahkan path font lainnya jika ada
         };
 
         for (String fontPath : fontPaths) {
@@ -41,10 +39,9 @@ public class App extends Application {
         primaryStageInstance = primaryStage;
 
         loadCustomFonts();
-        // System.out.println("Available font families: " + Font.getFamilies()); // Bisa di-uncomment untuk debug font
 
-        AudioManager.loadAudio(); // Muat semua aset audio
-        System.out.println("Audio assets loaded successfully."); // Log dari Anda
+        AudioManager.loadAudio();
+        System.out.println("Audio assets loaded successfully.");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainpage.fxml"));
         Parent root = loader.load();
@@ -64,20 +61,16 @@ public class App extends Application {
         primaryStageInstance.setScene(scene);
         primaryStageInstance.show();
 
-        // === MULAI MUSIK LATAR UTAMA DI SINI ===
+        
         AudioManager.playMainMusic();
-        // =======================================
+        
     }
 
-    /**
-     * Metode ini dipanggil ketika aplikasi ditutup.
-     * Kita gunakan untuk menghentikan musik.
-     */
     @Override
     public void stop() throws Exception {
         System.out.println("App: stop() called, stopping music.");
-        AudioManager.stopMainMusic(); // Hentikan musik utama
-        super.stop(); // Panggil implementasi super
+        AudioManager.stopMainMusic();
+        super.stop();
     }
 
     public static Stage getPrimaryStage() {

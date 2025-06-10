@@ -9,8 +9,4 @@ class AppTest {
         // App classUnderTest = new App();
         // assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
-
-    private void assertNotNull(Object greeting, String string) {
-        throw new UnsupportedOperationException("Unimplemented method 'assertNotNull'");
-    }
 }

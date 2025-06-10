@@ -15,7 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField; // Menggunakan TextField untuk input
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -71,22 +71,20 @@ public class ChallengeController implements Initializable {
     private Map<String, Circle> fingerNodeMap;
     private Map<Character, String> charToFingerFxIdMap;
     @FXML
-    private HBox petunjukJawaban; // HBox utama untuk 3 pilihan jawaban
+    private HBox petunjukJawaban;
     @FXML
-    private TextField answerTextField; // Input field untuk jawaban pengguna
+    private TextField answerTextField;
     @FXML
-    private ImageView panduanPertanyaan; // ImageView untuk gambar pertanyaan
+    private ImageView panduanPertanyaan;
     @FXML
-    private AnchorPane checkAnswer; // AnchorPane untuk ikon checklist/wrong
+    private AnchorPane checkAnswer;
     @FXML
-    private ImageView checkAnswerIcon; // ImageView di dalam AnchorPane checkAnswer
+    private ImageView checkAnswerIcon;
 
     @FXML
     private Pane disableLayer;
-
-    // Untuk pop-up penyelesaian
     private AnchorPane completePopupNode;
-    private Text durasiTextComplete, incorrectCountText; // Tambahkan Text untuk jumlah salah
+    private Text durasiTextComplete, incorrectCountText;
     private HBox btnLanjutkanComplete, btnCobaLagiComplete, btnKembaliComplete;
 
     private List<ChallengeSession> challengeSessionsList;
@@ -112,14 +110,18 @@ public class ChallengeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if (checkAnswer != null) {
             checkAnswer.setVisible(false);
-            System.err.println("Hasil Jawaban tidak null"); // Sembunyikan di awal
+            System.err.println("Hasil Jawaban tidak null");
         }
         if (answerTextField != null) {
-            // Event handler untuk saat pengguna menekan Enter
             answerTextField.setOnAction(event -> checkAnswer());
             answerTextField.setFont(TEXT_FONT);
             answerTextField.setPromptText("Ketik jawaban anda disini...");
             answerTextField.setStyle("-fx-text-fill: white;");
+            answerTextField.setOnKeyTyped(event -> {
+                if (!event.getCharacter().isEmpty()) {
+                    AudioManager.playTypingSound();
+                }
+            });
         }
         
         // Pra-muat gambar feedback
@@ -132,7 +134,7 @@ public class ChallengeController implements Initializable {
     }
     
     public void initGame(String theme) {
-        // Logika untuk mengatur tema (misalnya background) bisa ditambahkan di sini
+        // Logika untuk mengatur tema
         currentTheme = theme;
         
         loadChallengeSessions();
@@ -148,81 +150,9 @@ public class ChallengeController implements Initializable {
         }
     }
 
-    private void initializeVirtualKeyboardNodeMap() {
-        virtualKeyboardNodeMap = new HashMap<>();
-        virtualKeyboardNodeMap.put("Q", key_Q); virtualKeyboardNodeMap.put("W", key_W); virtualKeyboardNodeMap.put("E", key_E);
-        virtualKeyboardNodeMap.put("R", key_R); virtualKeyboardNodeMap.put("T", key_T); virtualKeyboardNodeMap.put("Y", key_Y);
-        virtualKeyboardNodeMap.put("U", key_U); virtualKeyboardNodeMap.put("I", key_I); virtualKeyboardNodeMap.put("O", key_O);
-        virtualKeyboardNodeMap.put("P", key_P);
-        virtualKeyboardNodeMap.put("A", key_A); virtualKeyboardNodeMap.put("S", key_S); virtualKeyboardNodeMap.put("D", key_D);
-        virtualKeyboardNodeMap.put("F", key_F); virtualKeyboardNodeMap.put("G", key_G); virtualKeyboardNodeMap.put("H", key_H);
-        virtualKeyboardNodeMap.put("J", key_J); virtualKeyboardNodeMap.put("K", key_K); virtualKeyboardNodeMap.put("L", key_L);
-        virtualKeyboardNodeMap.put(";", key_SEMICOLON); 
-        virtualKeyboardNodeMap.put("Z", key_Z); virtualKeyboardNodeMap.put("X", key_X); virtualKeyboardNodeMap.put("C", key_C);
-        virtualKeyboardNodeMap.put("V", key_V); virtualKeyboardNodeMap.put("B", key_B); virtualKeyboardNodeMap.put("N", key_N);
-        virtualKeyboardNodeMap.put("M", key_M);
-        virtualKeyboardNodeMap.put(",", key_COMMA); 
-        virtualKeyboardNodeMap.put(".", key_PERIOD);
-        virtualKeyboardNodeMap.put("/", key_SLASH); 
-        virtualKeyboardNodeMap.put(" ", key_SPACE);
-    }
-
-    private void initializeFingerMapping() {
-        fingerNodeMap = new HashMap<>();
-        charToFingerFxIdMap = new HashMap<>();
-
-        if(keyLPinky != null) fingerNodeMap.put("keyLPinky", keyLPinky);
-        if(keyLRing != null) fingerNodeMap.put("keyLRing", keyLRing);
-        if(keyLMiddle != null) fingerNodeMap.put("keyLMiddle", keyLMiddle);
-        if(keyLIndex != null) fingerNodeMap.put("keyLIndex", keyLIndex);
-        if(keyLThumb != null) fingerNodeMap.put("keyLThumb", keyLThumb);
-
-        if(keyRPinky != null) fingerNodeMap.put("keyRPinky", keyRPinky);
-        if(keyRRing != null) fingerNodeMap.put("keyRRing", keyRRing);
-        if(keyRMiddle != null) fingerNodeMap.put("keyRMiddle", keyRMiddle);
-        if(keyRindex != null) fingerNodeMap.put("keyRindex", keyRindex);
-        if(keyRThumb != null) fingerNodeMap.put("keyRThumb", keyRThumb);
-
-        for (char c : "qaz1".toCharArray()) charToFingerFxIdMap.put(c, "keyLPinky");
-        for (char c : "wsx2".toCharArray()) charToFingerFxIdMap.put(c, "keyLRing");
-        for (char c : "edc3".toCharArray()) charToFingerFxIdMap.put(c, "keyLMiddle");
-        for (char c : "rfvtgb45".toCharArray()) charToFingerFxIdMap.put(c, "keyLIndex");
-        charToFingerFxIdMap.put(' ', "keyLThumb");
-
-        for (char c : "yuhjnm67".toCharArray()) charToFingerFxIdMap.put(c, "keyRindex");
-        for (char c : "ik8".toCharArray()) charToFingerFxIdMap.put(c, "keyRMiddle"); charToFingerFxIdMap.put(',', "keyRMiddle");
-        for (char c : "ol9".toCharArray()) charToFingerFxIdMap.put(c, "keyRRing"); charToFingerFxIdMap.put('.', "keyRRing");
-        for (char c : "p0".toCharArray()) charToFingerFxIdMap.put(c, "keyRPinky"); charToFingerFxIdMap.put(';', "keyRPinky");  charToFingerFxIdMap.put('/', "keyRPinky");
-    }
-
-    private String sanitizeTextForTyping(String inputText) {
-        if (inputText == null) return "";
-        return inputText.toLowerCase().replaceAll("[^a-z0-9 ]", "");
-    }
-    
-    private String sanitizeAnswerForTyping(String inputText) {
-        if (inputText == null) return "";
-        return inputText.toLowerCase().trim().replaceAll("[^a-z0-9 ]", "");
-    }
-
-    private void highlightCharacterVisuals() {
-        if (lastHighlightedKeyString != null && virtualKeyboardNodeMap != null) {
-            TextFlow prevKeyNode = virtualKeyboardNodeMap.get(lastHighlightedKeyString);
-            if (prevKeyNode != null) {
-                prevKeyNode.getStyleClass().remove("key-highlighted-active");
-            }
-        }
-        if (lastHighlightedFingerCircle != null) {
-            lastHighlightedFingerCircle.getStyleClass().remove("finger-highlighted");
-            lastHighlightedFingerCircle.setEffect(null);
-        }
-    }
-
     private void loadChallengeSessions() {
         challengeSessionsList = new ArrayList<>();
-        String basePath = "/desain/materi_images/tantangan/"; // Path untuk gambar tantangan
-
-        // Sesi 1-10 (Contoh)
+        String basePath = "/desain/materi_images/tantangan/";
         challengeSessionsList.add(new ChallengeSession(basePath + "q_lambang_negara.png", "garuda", Arrays.asList("pancasila", "elang")));
         challengeSessionsList.add(new ChallengeSession(basePath + "q_ibukota_sulawesi_utara.png", "manado", Arrays.asList("surabaya", "bandung")));
         challengeSessionsList.add(new ChallengeSession(basePath + "q_bendera_indonesia.png", "merah", Arrays.asList("pakaian", "hiasan")));
@@ -239,13 +169,9 @@ public class ChallengeController implements Initializable {
         if (currentSessionIndex < challengeSessionsList.size()) {
             ChallengeSession currentSession = challengeSessionsList.get(currentSessionIndex);
             
-            // Tampilkan gambar pertanyaan
             loadImage(currentSession.getQuestionImagePath());
-
-            // Tampilkan pilihan jawaban di petunjuk
             populateAnswerChoices(currentSession.getAnswerChoices());
             
-            // Bersihkan dan fokus ke TextField
             answerTextField.clear();
             answerTextField.requestFocus();
 
@@ -285,7 +211,6 @@ public class ChallengeController implements Initializable {
             Node node = petunjukJawaban.getChildren().get(i);
             if (node instanceof HBox) {
                 HBox choiceBox = (HBox) node;
-                // Asumsi di dalam HBox ada Label
                 Label choiceLabel = (Label) choiceBox.getChildren().get(0);
                 if (choiceLabel != null) {
                     choiceLabel.setText(choices.get(i));
@@ -304,18 +229,24 @@ public class ChallengeController implements Initializable {
             showFeedback(true);
         } else {
             System.out.println("Jawaban Salah!");
-            incorrectAttempts++; // Tambah jumlah kesalahan
+            incorrectAttempts++;
             showFeedback(false);
         }
     }
     
     private void showFeedback(boolean isCorrect) {
-        answerTextField.setDisable(true); // Nonaktifkan input saat feedback muncul
+        answerTextField.setDisable(true);
         if (checkAnswer == null || checkAnswerIcon == null) return;
         
         checkAnswerIcon.setImage(isCorrect ? correctImage : wrongImage);
         checkAnswer.setVisible(true);
         disableLayer.setVisible(true);
+
+        if (isCorrect) {
+            AudioManager.playCorrectSound(); 
+        } else {
+            AudioManager.playWrongSound();
+        }
         
         PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
         pause.setOnFinished(event -> {
@@ -333,11 +264,6 @@ public class ChallengeController implements Initializable {
         pause.play();
     }
     
-    // Metode startTimer(), stopTimer(), dan untuk popup bisa disalin dari TypingController
-    // atau di-refactor ke kelas utilitas
-    // ... (Salin metode timer dan popup dari TypingController.java (ID: javafx_typing_controller_with_disablelayer) dan sesuaikan untuk menampilkan incorrectAttempts)
-    // ... handleLanjutkan tidak relevan di sini, handleCobaLagi dan handleKembaliKeMenu akan mirip
-
     private void startTimer() {
         startTimeMillis = System.currentTimeMillis();
         if (timerTimeline != null) timerTimeline.stop();
@@ -422,7 +348,7 @@ public class ChallengeController implements Initializable {
                     TimeUnit.MILLISECONDS.toMinutes(elapsedMillis),
                     TimeUnit.MILLISECONDS.toSeconds(elapsedMillis) % 60);
 
-            incorrectAttempts = Math.max(0, incorrectAttempts); // Pastikan tidak negatif
+            incorrectAttempts = Math.max(0, incorrectAttempts);
             
             if (durasiTextComplete != null) durasiTextComplete.setText("Durasi " + timeFormatted);
             if (incorrectCountText != null) {
@@ -493,7 +419,6 @@ public class ChallengeController implements Initializable {
         }
     }
     
-    // Handler untuk tombol di popup
     private void handleCobaLagi() {
         hideCompletePopup();
         currentSessionIndex = 0;

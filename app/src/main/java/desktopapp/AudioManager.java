@@ -16,31 +16,29 @@ public class AudioManager {
     private static AudioClip clickSfx;
     private static List<AudioClip> typingSfxList;
     private static AudioClip wrongSfx;
+    private static AudioClip correctSfx;
     private static AudioClip completeSfx;
 
-    private static boolean isMusicGloballyEnabled = true; // Default musik aktif
-    private static boolean isSoundEffectsGloballyEnabled = true; // Default SFX aktif
+    private static boolean isMusicGloballyEnabled = true;
+    private static boolean isSoundEffectsGloballyEnabled = true;
 
-    private static final double DEFAULT_MUSIC_VOLUME = 0.8; // Volume 80%
+    private static final double DEFAULT_MUSIC_VOLUME = 0.8;
     private static final Random random = new Random();
     private static int typingSoundIndex = 0;
 
     public static void loadAudio() {
         System.out.println("AudioManager: Loading audio assets...");
         try {
-            // Muat Musik Latar
             URL musicResource = AudioManager.class.getResource("/musik_sfx/main-music.wav");
             if (musicResource != null) {
                 Media media = new Media(musicResource.toExternalForm());
                 mainMusicPlayer = new MediaPlayer(media);
                 mainMusicPlayer.setVolume(DEFAULT_MUSIC_VOLUME);
-                mainMusicPlayer.setOnEndOfMedia(() -> mainMusicPlayer.seek(Duration.ZERO)); // Loop
+                mainMusicPlayer.setOnEndOfMedia(() -> mainMusicPlayer.seek(Duration.ZERO));
                 System.out.println("AudioManager: main-music.wav loaded.");
             } else {
                 System.err.println("AudioManager Error: main-music.wav not found in /musik_sfx/");
             }
-
-            // Muat Efek Suara
             clickSfx = loadAudioClip("/musik_sfx/click.mp3", "click.mp3");
 
             typingSfxList = new ArrayList<>();
@@ -58,6 +56,7 @@ public class AudioManager {
 
 
             wrongSfx = loadAudioClip("/musik_sfx/wrong-sfx.mp3", "wrong-sfx.mp3");
+            correctSfx = loadAudioClip("/musik_sfx/correct-sfx.mp3", "correct-sfx.mp3");
             completeSfx = loadAudioClip("/musik_sfx/complete_typing.mp3", "complete_typing.mp3");
 
         } catch (Exception e) {
@@ -85,9 +84,7 @@ public class AudioManager {
     // --- Kontrol Musik Utama ---
     public static void playMainMusic() {
         if (mainMusicPlayer != null && isMusicGloballyEnabled) {
-            if (mainMusicPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                // Musik sudah berjalan, mungkin tidak perlu apa-apa atau restart jika diinginkan
-                // mainMusicPlayer.seek(Duration.ZERO); 
+            if (mainMusicPlayer.getStatus() == MediaPlayer.Status.PLAYING) { 
             } else {
                  mainMusicPlayer.play();
             }
@@ -117,7 +114,7 @@ public class AudioManager {
             if (enabled) {
                 playMainMusic();
             } else {
-                pauseMainMusic(); // Atau stopMainMusic() jika ingin berhenti total
+                pauseMainMusic();
             }
         }
         System.out.println("AudioManager: Music globally " + (enabled ? "enabled" : "disabled"));
@@ -145,8 +142,8 @@ public class AudioManager {
     public static void playTypingSound() {
         if (typingSfxList != null && !typingSfxList.isEmpty() && isSoundEffectsGloballyEnabled) {
             // Putar secara berurutan atau acak
-            // AudioClip clipToPlay = typingSfxList.get(random.nextInt(typingSfxList.size())); // Acak
-            AudioClip clipToPlay = typingSfxList.get(typingSoundIndex % typingSfxList.size()); // Berurutan
+            AudioClip clipToPlay = typingSfxList.get(random.nextInt(typingSfxList.size()));
+            // AudioClip clipToPlay = typingSfxList.get(typingSoundIndex % typingSfxList.size()); // Berurutan
             clipToPlay.play();
             typingSoundIndex++;
         }
@@ -155,6 +152,12 @@ public class AudioManager {
     public static void playWrongSound() {
         if (wrongSfx != null && isSoundEffectsGloballyEnabled) {
             wrongSfx.play();
+        }
+    }
+    
+    public static void playCorrectSound() {
+        if (correctSfx != null && isSoundEffectsGloballyEnabled) {
+            correctSfx.play();
         }
     }
 
