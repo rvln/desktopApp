@@ -1,33 +1,18 @@
-/* mainpage */
-
-/* Contoh di style.css */
 .root {
-  /* Style default untuk seluruh aplikasi */
-  -fx-font-family: "Rubik Regular"; /* Atau "Rubik Regular" jika itu nama keluarganya */
+  -fx-font-family: "Rubik Regular";
 }
-
-/* .label {
-  /* Mengubah font default untuk semua Label
--fx-font-family: "Rubik";
-/* Ukuran font bisa diatur di sini atau per elemen spesifik
-} */
-
 .text-lapsus-bold {
   -fx-font-family: "Lapsus Pro Bold";
 }
-
-/* Contoh untuk teks di dalam tombol keyboard virtual */
 .key-text {
-  /* Jika Anda menggunakan styleClass ini untuk elemen Text di tombol */
-  -fx-font-family: "Rubik Bold"; /* Atau font lain yang Anda inginkan */
-  -fx-font-size: 20px; /* Sesuaikan */
-  -fx-fill: white; /* Warna teks di tombol */
+  -fx-font-family: "Rubik Bold";
+  -fx-font-size: 20px;
+  -fx-fill: white;
 }
 
-/* Contoh untuk judul */
 .title-text {
   -fx-font-family: "Lapsus Pro Bold";
-  -fx-font-size: 28px; /* Sesuaikan */
+  -fx-font-size: 28px;
 }
 
 .left_pane_background {
@@ -82,7 +67,7 @@
   -fx-background-radius: 48px;
   -fx-border-color: #3c8d51;
   -fx-border-width: 0.5;
-  -fx-border-radius: 48px; /* INI WAJIB agar border mengikuti lengkungan background */
+  -fx-border-radius: 48px;
   -fx-padding: 10;
 }
 
@@ -158,8 +143,6 @@
   -fx-background-color: #a83c3c;
 }
 
-/* infoPopup */
-
 .disableLayer_background {
   -fx-background-color: rgba(0, 0, 0, 0.548);
 }
@@ -200,51 +183,40 @@
 }
 
 .sumber-referensi-scrollpane {
-  -fx-background-color: transparent; /* Membuat background ScrollPane transparan */
-  -fx-border-color: transparent; /* Menghilangkan border default jika ada */
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
 }
 
 .sumber-referensi-scrollpane > .viewport {
-  -fx-background-color: transparent; /* Membuat background viewport (area konten) transparan */
+  -fx-background-color: transparent;
 }
 
-/* Styling Scrollbar Vertikal (Opsional) */
 .sumber-referensi-scrollpane .scroll-bar:vertical {
-  -fx-background-color: rgba(
-    40,
-    40,
-    40,
-    0.7
-  ); /* Warna background track scrollbar */
-  -fx-pref-width: 10; /* Lebar scrollbar */
+  -fx-background-color: rgba(40, 40, 40, 0.7);
+  -fx-pref-width: 10;
   -fx-padding: 2;
 }
 
 .sumber-referensi-scrollpane .scroll-bar:vertical .thumb {
-  -fx-background-color: #6e6e6e; /* Warna thumb (bagian yang digeser) */
+  -fx-background-color: #6e6e6e;
   -fx-background-insets: 0;
-  -fx-background-radius: 5; /* Membuat sudut thumb sedikit membulat */
+  -fx-background-radius: 5;
 }
 
 .sumber-referensi-scrollpane .scroll-bar:vertical .increment-button,
 .sumber-referensi-scrollpane .scroll-bar:vertical .decrement-button {
-  -fx-background-color: transparent; /* Menghilangkan tombol panah atas/bawah */
+  -fx-background-color: transparent;
   -fx-padding: 0 0 0 0;
   -fx-pref-height: 0;
 }
 
 .settings-switch-track {
-  /* Anda bisa tambahkan styleClass ini ke HBox switch jika mau */
-  -fx-background-radius: 20px; /* Radius untuk track switch */
+  -fx-background-radius: 20px;
   -fx-padding: 4px;
 }
 
 .settings-switch-thumb {
-  /* Anda bisa tambahkan styleClass ini ke Circle switch jika mau */
-  /* Tidak banyak yang perlu di-style di sini karena fill diatur di Java */
 }
-
-/* untuk halaman latihan */
 
 .inputfield {
   -fx-background-color: #919191;
@@ -312,81 +284,59 @@
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 7.2, 0, 0, 4);
 }
 
-/* update untuk halaman latihan */
-/* Style dasar untuk semua tombol keyboard virtual */
 .key-base {
   -fx-pref-height: 40px;
-  -fx-pref-width: 40px; /* Lebar default, bisa di-override untuk tombol panjang */
+  -fx-pref-width: 40px;
   -fx-background-radius: 8px;
-  -fx-alignment: center; /* Untuk TextFlow agar Text di dalamnya center */
-  -fx-padding: 5px; /* Padding internal untuk TextFlow */
+  -fx-alignment: center;
+  -fx-padding: 5px;
 }
 
 .key-base Text {
-  /* Style untuk Text di dalam TextFlow tombol */
   -fx-fill: white;
   -fx-font-family: "Rubik Bold";
-  -fx-font-size: 20px; /* Ukuran font default untuk tombol */
-  -fx-text-origin: center; /* Coba VPOS_CENTER atau CENTER untuk vertikal alignment */
+  -fx-font-size: 20px;
+  -fx-text-origin: center;
 }
 
-/* Untuk tombol dengan dua karakter (atas kecil, bawah besar) */
 .key-char-small {
-  -fx-font-size: 12px; /* Ukuran lebih kecil untuk karakter atas */
-  -fx-translate-y: -2px; /* Sedikit ke atas */
+  -fx-font-size: 12px;
+  -fx-translate-y: -2px;
 }
 .key-char-main {
-  -fx-font-size: 18px; /* Ukuran normal untuk karakter utama/bawah */
-  -fx-translate-y: 2px; /* Sedikit ke bawah */
+  -fx-font-size: 18px;
+  -fx-translate-y: 2px;
 }
 
-/* Untuk tombol modifier seperti SHIFT */
 .key-modifier {
-  -fx-pref-width: 70px; /* Lebar lebih besar untuk SHIFT */
+  -fx-pref-width: 70px;
 }
 .key-char-modifier Text {
-  /* Teks di dalam tombol SHIFT */
   -fx-font-size: 16px;
   -fx-opacity: 0.75;
 }
 
-/* Untuk tombol SPACEBAR */
 .key-char-space Text {
   -fx-font-size: 20px;
   -fx-opacity: 0.75;
 }
 
-/* Style class untuk highlight tombol aktif (dari TypingController) */
 .key-highlighted-active {
-  -fx-background-color: #1c5df4; /* Warna highlight biru */
+  -fx-background-color: #1c5df4;
   -fx-border-color: #0d3c73;
   -fx-border-width: 2px;
-  /* Efek blink bisa ditambahkan dengan animasi jika diperlukan */
 }
 .key-highlighted-active Text {
-  -fx-fill: white; /* Pastikan teks tetap terlihat */
+  -fx-fill: white;
 }
 
-/* Style class untuk highlight jari (Circle) */
 .finger-highlighted {
-  /* Efek DropShadow akan ditambahkan via Java */
-  /* Anda bisa menambahkan stroke di sini jika mau */
   -fx-stroke: #1c5df4;
   -fx-stroke-width: 2px;
 }
 
-/* Style untuk TextFlow yang menampilkan teks latihan */
 #textToTypeDisplay {
-  /* Menggunakan ID selector */
-  /* -fx-font-family: "Rubik Bold"; /* Font default jika tidak di-override per karakter */
-  /* -fx-font-size: 42px; /* Ukuran font default */
-  /* -fx-text-alignment: center; /* Alignment teks di dalam TextFlow */
-  /* -fx-line-spacing: 5px; /* Jarak antar baris jika teks wrap */
 }
-
-/* Style class untuk Text di dalam textToTypeDisplay (diatur via Java) */
-/* .text-flow-pending, .text-flow-current, .text-flow-correct, .text-flow-incorrect */
-/* Sudah ada di instruksi sebelumnya, pastikan warnanya sesuai keinginan Anda */
 
 .petunjuk_text {
   -fx-background-color: #b2467e;
