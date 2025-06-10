@@ -24,8 +24,6 @@ public class AudioManager {
 
     private static final double DEFAULT_MUSIC_VOLUME = 0.8;
     private static final Random random = new Random();
-    private static int typingSoundIndex = 0;
-
     public static void loadAudio() {
         System.out.println("AudioManager: Loading audio assets...");
         try {
@@ -145,7 +143,6 @@ public class AudioManager {
             AudioClip clipToPlay = typingSfxList.get(random.nextInt(typingSfxList.size()));
             // AudioClip clipToPlay = typingSfxList.get(typingSoundIndex % typingSfxList.size()); // Berurutan
             clipToPlay.play();
-            typingSoundIndex++;
         }
     }
 

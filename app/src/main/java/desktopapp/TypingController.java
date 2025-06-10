@@ -3,14 +3,11 @@ package desktopapp;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -36,12 +33,9 @@ import javafx.util.Duration;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 public class TypingController implements Initializable {
@@ -104,7 +98,6 @@ public class TypingController implements Initializable {
     private final String CURRENT_CHAR_COLOR = "#F4AC1C";
     private final String CORRECT_CHAR_COLOR = "#544F4F";
     private final String INCORRECT_CHAR_COLOR = "RED";
-    private final double TEXT_DISPLAY_HIDDEN_OPACITY = 0.01;
     private final double TEXT_DISPLAY_NORMAL_OPACITY = 0.8;
     private final Font TEXT_FONT = Font.font("Rubik Bold", 42);
     private final Font PROMPT_FONT = Font.font("Rubik Regular", 24);
@@ -713,26 +706,4 @@ public class TypingController implements Initializable {
         }
     }
     
-    private void handleExitToMainMenu() {
-        stopTimer();
-        try {
-            FXMLLoader loader = App.getLoader("/mainpage.fxml");
-            Parent mainRoot = loader.load();
-            Stage primaryStage = App.getPrimaryStage();
-            if (primaryStage == null && rootPage != null && rootPage.getScene() != null) {
-                 primaryStage = (Stage) rootPage.getScene().getWindow();
-            }
-            if (primaryStage == null) {
-                 System.err.println("Tidak bisa mendapatkan PrimaryStage untuk keluar.");
-                 return;
-            }
-            Scene mainScene = new Scene(mainRoot, primaryStage.getWidth(), primaryStage.getHeight());
-            String cssPath = getClass().getResource("/style.css").toExternalForm();
-            if (cssPath != null) mainScene.getStylesheets().add(cssPath);
-            primaryStage.setScene(mainScene);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Gagal keluar ke menu utama dari tombol X: " + e.getMessage());
-        }
-    }
 }

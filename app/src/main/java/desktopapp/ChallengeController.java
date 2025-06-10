@@ -3,30 +3,23 @@ package desktopapp;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -38,11 +31,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -67,9 +56,6 @@ public class ChallengeController implements Initializable {
     @FXML private TextFlow key_A, key_S, key_D, key_F, key_G, key_H, key_J, key_K, key_L, key_SEMICOLON;
     @FXML private TextFlow key_Z, key_X, key_C, key_V, key_B, key_N, key_M, key_COMMA, key_PERIOD, key_SLASH;
     @FXML private TextFlow key_SPACE, key_LSHIFT, key_RSHIFT;
-    private Map<String, TextFlow> virtualKeyboardNodeMap;
-    private Map<String, Circle> fingerNodeMap;
-    private Map<Character, String> charToFingerFxIdMap;
     @FXML
     private HBox petunjukJawaban;
     @FXML
@@ -90,7 +76,6 @@ public class ChallengeController implements Initializable {
     private List<ChallengeSession> challengeSessionsList;
     private String currentTheme;
     private int currentSessionIndex = 0;
-    private int currentTypedCharIndex = 0;
     private int incorrectAttempts = 0;
 
     private Timeline timerTimeline;
@@ -99,11 +84,6 @@ public class ChallengeController implements Initializable {
     private Image correctImage;
     private Image wrongImage;
 
-    private String lastHighlightedKeyString = null;
-    private Circle lastHighlightedFingerCircle = null;
-
-    private final String CURRENT_CHAR_COLOR = "#1C5DF4";
-    private final String PROMPT_TEXT_COLOR = "#4a4a4a";
     private final Font TEXT_FONT = Font.font("Rubik Bold", 36);
 
     @Override
@@ -422,7 +402,6 @@ public class ChallengeController implements Initializable {
     private void handleCobaLagi() {
         hideCompletePopup();
         currentSessionIndex = 0;
-        currentTypedCharIndex = 0;
         startNextSession();
     }
 

@@ -24,7 +24,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -434,9 +433,9 @@ public class Controller implements Initializable {
         HBox developersContainer = new HBox();
         developersContainer.setAlignment(Pos.CENTER);
         developersContainer.setSpacing(25.0);
-        VBox fricoVBox = createSingleDeveloperVBox("/desain/default_avatar.png", "Frico Putung", "220211060359", 130.0);
-        VBox syifabelaVBox = createSingleDeveloperVBox("/desain/default_avatar.png", "Syifabela Suratinoyo", "220211060344", 150.0);
-        VBox kevinVBox = createSingleDeveloperVBox("/desain/default_avatar.png", "Kevin Rimper", "220211060364", 130.0);
+        VBox fricoVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Frico Putung", "220211060359", 130.0);
+        VBox syifabelaVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Syifabela Suratinoyo", "220211060344", 150.0);
+        VBox kevinVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Kevin Rimper", "220211060364", 130.0);
         developersContainer.getChildren().addAll(fricoVBox, syifabelaVBox, kevinVBox);
         return developersContainer;
     }
