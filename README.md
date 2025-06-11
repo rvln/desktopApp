@@ -82,6 +82,10 @@ Tahap akhir untuk menjalankan aplikasinya dengan memasukkan perintah berikut:
 
 > ./gradlew run
 
+> ./gradlew clean build (untuk merefresh)
+
+> ./gradlew createExecutable (Untuk Build jadi APK)
+
 #### 3.1 Menjalankan dengan Debug (OPSI)
 
 > 1. Buka file App.java
