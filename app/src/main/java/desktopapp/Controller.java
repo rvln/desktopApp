@@ -13,17 +13,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.image.ImageView;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -433,7 +437,7 @@ public class Controller implements Initializable {
         HBox developersContainer = new HBox();
         developersContainer.setAlignment(Pos.CENTER);
         developersContainer.setSpacing(25.0);
-        VBox fricoVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Frico Putung", "220211060359", 130.0);
+        VBox fricoVBox = createSingleDeveloperVBox("/desain/foto/frico.jpg", "Frico Putung", "220211060359", 130.0);
         VBox syifabelaVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Syifabela Suratinoyo", "220211060344", 150.0);
         VBox kevinVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Kevin Rimper", "220211060364", 130.0);
         developersContainer.getChildren().addAll(fricoVBox, syifabelaVBox, kevinVBox);
@@ -446,12 +450,42 @@ public class Controller implements Initializable {
         devVBox.setPrefHeight(200.0);
         devVBox.setPrefWidth(prefWidth);
         devVBox.setSpacing(25.0);
-        HBox avatarHBox = new HBox();
-        avatarHBox.setMaxHeight(100.0);
-        avatarHBox.setMaxWidth(100.0);
-        avatarHBox.setPrefHeight(100.0);
-        avatarHBox.setPrefWidth(100.0);
-        avatarHBox.getStyleClass().addAll("info_background", "info_avatar");
+        // Menggunakan StackPane untuk memastikan centering yang sempurna
+        StackPane avatarContainer = new StackPane();
+        avatarContainer.setMaxHeight(100.0);
+        avatarContainer.setMaxWidth(100.0);
+        avatarContainer.setPrefHeight(100.0);
+        avatarContainer.setPrefWidth(100.0);
+        avatarContainer.getStyleClass().addAll("info_background", "info_avatar");
+
+        try {
+            ImageView avatarImageView = new ImageView();
+            InputStream imageStream = getClass().getResourceAsStream(avatarResourcePath);
+            if (imageStream != null) {
+                Image avatarImage = new Image(imageStream);
+                avatarImageView.setImage(avatarImage);
+            } else {
+                 System.err.println("Gagal menemukan gambar avatar: " + avatarResourcePath);
+            }
+            
+            // *** PERUBAHAN DI SINI ***
+            // Mengatur ukuran ImageView agar pas dengan kontainer
+            avatarImageView.setFitWidth(avatarContainer.getPrefWidth());
+            avatarImageView.setFitHeight(avatarContainer.getPrefHeight());
+            
+            // Membuat klip lingkaran untuk ImageView
+            // Radius adalah setengah dari lebar/tinggi kontainer untuk membuat lingkaran penuh
+            Circle clip = new Circle(avatarContainer.getPrefWidth() / 2);
+            // Atur pusat klip ke tengah ImageView
+            clip.setCenterX(avatarImageView.getFitWidth() / 2);
+            clip.setCenterY(avatarImageView.getFitHeight() / 2);
+            avatarImageView.setClip(clip);
+            
+            avatarContainer.getChildren().add(avatarImageView); // Menambahkan ImageView ke StackPane
+        } catch (Exception e) {
+            System.err.println("Gagal memuat gambar avatar: " + avatarResourcePath + " - " + e.getMessage());
+        }
+
         Label namaLabel = new Label(nama);
         namaLabel.setTextFill(Color.WHITE);
         namaLabel.setFont(Font.font("Lapsus Pro Bold", 18.0));
@@ -465,7 +499,7 @@ public class Controller implements Initializable {
         nimHBox.setAlignment(Pos.CENTER);
         nimHBox.setPrefHeight(30.0);
         VBox.setMargin(nimHBox, new Insets(-30.0, 0, 0, 0));
-        devVBox.getChildren().addAll(avatarHBox, namaHBox, nimHBox);
+        devVBox.getChildren().addAll(avatarContainer, namaHBox, nimHBox);
         return devVBox;
     }
 
