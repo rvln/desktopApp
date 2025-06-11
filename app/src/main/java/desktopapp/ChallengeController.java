@@ -132,7 +132,7 @@ public class ChallengeController implements Initializable {
 
     private void loadChallengeSessions() {
         challengeSessionsList = new ArrayList<>();
-        String basePath = "/desain/materi_images/tantangan/";
+        String basePath = "/desain/Materi/Tantangan/";
         challengeSessionsList.add(new ChallengeSession(basePath + "q_lambang_negara.png", "garuda", Arrays.asList("pancasila", "elang")));
         challengeSessionsList.add(new ChallengeSession(basePath + "q_ibukota_sulawesi_utara.png", "manado", Arrays.asList("surabaya", "bandung")));
         challengeSessionsList.add(new ChallengeSession(basePath + "q_bendera_indonesia.png", "merah", Arrays.asList("pakaian", "hiasan")));

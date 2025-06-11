@@ -224,7 +224,7 @@ public class TypingController implements Initializable {
 
     private void loadExercisesForCategory(String category) {
         exerciseSessionsList = new ArrayList<>();
-        String basePath = "/desain/materi_images/"; 
+        String basePath = "/desain/Materi/"; 
 
         switch (category.toLowerCase()) {
             case "huruf": 
