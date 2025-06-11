@@ -3,14 +3,18 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.14'
 }
 
+group = 'com.kidboard'
+version = '1.0.0'
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
     implementation "org.openjfx:javafx-controls:21"
     implementation "org.openjfx:javafx-fxml:21"
+    implementation "org.openjfx:javafx-media:21"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
 }
 
 javafx {
@@ -26,8 +30,50 @@ java {
 
 application {
     mainClass = 'desktopapp.App'
+    applicationName = 'KidBoard' // Nama untuk task 'run' dan 'distZip'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// Custom task untuk membuat standalone application image
+tasks.register('createExecutable', Exec) { // Mengganti nama task agar lebih jelas
+    dependsOn tasks.named('jar')
+
+    // Dapatkan path JDK dari sistem atau tentukan secara manual
+    def javaHome = System.getenv("JAVA_HOME") ?: 'C:/Program Files/Java/jdk-21' // Fallback path, sesuaikan jika perlu
+    if (!new File(javaHome).exists()) {
+        throw new GradleException("JAVA_HOME tidak ditemukan atau path fallback tidak valid. Mohon set JAVA_HOME ke direktori JDK 21 Anda.")
+    }
+
+    def outputDir = "$buildDir/executable" // Ganti nama folder output
+    def iconPath = "src/main/resources/desain/icon/IconKidBoard.ico"
+    def javaFxModulesPath = "C:/Program Files/Java/javafx-sdk-21.0.7/lib" // SESUAIKAN PATH INI
+
+    doFirst {
+        delete(outputDir) // Hapus folder output lama sebelum membuat yang baru
+        mkdir(outputDir)
+    }
+
+    commandLine = [
+        "${javaHome}/bin/jpackage",
+        // === PERUBAHAN UTAMA DI SINI ===
+        // 'exe' diganti menjadi 'app-image' untuk membuat folder mandiri
+        // Ini TIDAK memerlukan WiX Toolset.
+        '--type', 'app-image',
+        
+        '--dest', outputDir,
+        '--input', 'build/libs',
+        '--name', 'KidBoard',
+        '--main-jar', "app-${version}.jar",
+        '--main-class', 'desktopapp.App',
+        '--icon', iconPath,
+        '--app-version', version,
+        '--vendor', 'KidBoard Developer (B6)',
+        
+        // Tetap diperlukan untuk menyertakan JavaFX runtime di dalam paket
+        '--module-path', javaFxModulesPath,
+        '--add-modules', 'javafx.controls,javafx.fxml,javafx.media'
+    ]
 }
