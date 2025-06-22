@@ -111,7 +111,7 @@
                         <children>
                                   <ImageView fx:id="panduanMateri" fitHeight="130.0" fitWidth="673.0" pickOnBounds="true" preserveRatio="true">
                                       <image>
-                                          <Image url="@desain/Typing/Panduan.png" />
+                                          <Image url="@desain/Typing/kata_q_default.png" />
                                       </image>
                                   </ImageView>
                         </children>
@@ -275,7 +275,7 @@
                            <Insets top="20.0" />
                         </HBox.margin>
                      </HBox>
-                     <ImageView fx:id="logoutLatihan" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="logoutLatihan" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#handleLogoutLatihan" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@desain/icon/Logout.png" />
                         </image>
@@ -287,4 +287,90 @@
         </children>
     </AnchorPane>
    <Pane fx:id="disableLayer" mouseTransparent="false" prefHeight="200.0" prefWidth="200.0" styleClass="disableLayer_background" stylesheets="@style.css" visible="false" />
+   <AnchorPane fx:id="keluarPopup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="612.0" style="-fx-background-color: #C3D8DF;" styleClass="adn_button_radius" stylesheets="@style.css" visible="false">
+      <children>
+         <BorderPane prefHeight="412.0" prefWidth="612.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+               <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #C3D8DF;" BorderPane.alignment="CENTER">
+                  <children>
+                     <HBox alignment="CENTER" prefHeight="110.0" prefWidth="632.0" stylesheets="@style.css">
+                        <children>
+                           <HBox alignment="CENTER" prefHeight="80.0" prefWidth="80.0">
+                              <children>
+                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@desain/Alert/info-f.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                           </HBox>
+                        </children>
+                        <padding>
+                           <Insets top="20.0" />
+                        </padding>
+                     </HBox>
+                     <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="532.0" spacing="10.0" stylesheets="@style.css">
+                        <children>
+                           <Label text="Apakah Kamu Yakin?">
+                              <font>
+                                 <Font name="Lapsus Pro Bold" size="52.0" />
+                              </font>
+                           </Label>
+                        </children>
+                        <padding>
+                           <Insets top="10.0" />
+                        </padding>
+                     </VBox>
+                     <VBox spacing="15.0" stylesheets="@style.css">
+                        <children>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" stylesheets="@style.css">
+                              <children>
+                                 <HBox fx:id="btnKeluarYa" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#handleKeluarYa" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
+                                    <children>
+                                       <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Ya" textAlignment="CENTER">
+                                          <font>
+                                             <Font name="Lapsus Pro Bold" size="48.0" />
+                                          </font>
+                                       </Text>
+                                    </children>
+                                    <styleClass>
+                                       <String fx:value="btn_system_red" />
+                                       <String fx:value="stroked-hbox" />
+                                    </styleClass>
+                                 </HBox>
+                                 <HBox fx:id="btnKeluarTidak" alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#handleKeluarTidak" prefHeight="40.0" prefWidth="200.0" stylesheets="@style.css">
+                                    <styleClass>
+                                       <String fx:value="btn_system_blue" />
+                                       <String fx:value="stroked-hbox" />
+                                    </styleClass>
+                                    <children>
+                                       <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Tidak" textAlignment="CENTER">
+                                          <font>
+                                             <Font name="Lapsus Pro Bold" size="48.0" />
+                                          </font>
+                                       </Text>
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </HBox>
+                        </children>
+                        <padding>
+                           <Insets top="10.0" />
+                        </padding>
+                        <VBox.margin>
+                           <Insets bottom="40.0" />
+                        </VBox.margin>
+                     </VBox>
+                  </children>
+               </VBox>
+            </center>
+            <left>
+               <Pane prefHeight="512.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+            </left>
+            <right>
+               <Pane prefHeight="512.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+            </right>
+         </BorderPane>
+      </children>
+   </AnchorPane>
 </StackPane>

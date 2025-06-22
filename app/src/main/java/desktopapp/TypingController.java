@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -56,7 +57,12 @@ public class TypingController implements Initializable {
     private Label promptLabel;
     @FXML
     private ImageView panduanMateri;
-
+    // === DEKLARASI FXML BARU UNTUK FUNGSI LOGOUT ===
+    @FXML private ImageView logoutLatihan;
+    @FXML private AnchorPane keluarPopup;
+    @FXML private HBox btnKeluarYa;
+    @FXML private HBox btnKeluarTidak;
+    // ===========================================
     @FXML
     private AnchorPane leftHand, rightHand;
     @FXML
@@ -106,6 +112,11 @@ public class TypingController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        if (keluarPopup != null) {
+            keluarPopup.setVisible(false);
+        }
+
         if (wrongIcon != null) {
             wrongIcon.setVisible(false);
             wrongIcon.setManaged(false);
@@ -404,6 +415,11 @@ public class TypingController implements Initializable {
     }
     
     public void handleKeyPress(KeyEvent event) {
+        if ((keluarPopup != null && keluarPopup.isVisible()) || (completePopupNode != null && completePopupNode.isVisible())) {
+            event.consume();
+            return;
+        }
+        
         KeyCode code = event.getCode();
 
         if (completePopupNode != null && completePopupNode.isVisible()) {
@@ -495,6 +511,35 @@ public class TypingController implements Initializable {
             }
         }
         event.consume();
+    }
+
+    @FXML
+    private void handleLogoutLatihan(MouseEvent event) {
+        System.out.println("TypingController: Tombol Logout diklik.");
+        if (keluarPopup != null) {
+            AudioManager.playClickSound();
+            disableLayer.setVisible(true);
+            keluarPopup.setVisible(true);
+            keluarPopup.toFront();
+        }
+    }
+
+    @FXML
+    private void handleKeluarYa(MouseEvent event) {
+        AudioManager.playClickSound();
+        System.out.println("TypingController: Memilih 'Ya' untuk keluar dari latihan.");
+        handleKembaliKeMenu();
+    }
+
+    @FXML
+    private void handleKeluarTidak(MouseEvent event) {
+        AudioManager.playClickSound();
+        System.out.println("TypingController: Memilih 'Tidak', menutup popup keluar.");
+        if (keluarPopup != null) {
+            keluarPopup.setVisible(false);
+            disableLayer.setVisible(false);
+            rootPage.requestFocus(); // Kembalikan fokus
+        }
     }
 
     private void applyFadeInAnimation(Node node) {

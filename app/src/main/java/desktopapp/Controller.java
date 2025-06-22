@@ -437,10 +437,10 @@ public class Controller implements Initializable {
         HBox developersContainer = new HBox();
         developersContainer.setAlignment(Pos.CENTER);
         developersContainer.setSpacing(25.0);
-        VBox fricoVBox = createSingleDeveloperVBox("/desain/foto/frico.jpg", "Frico Putung", "220211060359", 130.0);
-        VBox syifabelaVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Syifabela Suratinoyo", "220211060344", 150.0);
-        VBox kevinVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Kevin Rimper", "220211060364", 130.0);
-        developersContainer.getChildren().addAll(fricoVBox, syifabelaVBox, kevinVBox);
+        VBox fricoVBox = createSingleDeveloperVBox("/desain/profil/frico.jpg", "Frico Putung", "220211060359", 130.0);
+        VBox chevinVBox = createSingleDeveloperVBox("/desain/profil/chevin.jpg", "Chevin Tangkelabi", "220211060193", 150.0);
+        VBox yesayaVBox = createSingleDeveloperVBox("/desain/profil/yesaya.jpg", "Yesaya Saweho", "220211060012", 130.0);
+        developersContainer.getChildren().addAll(fricoVBox, chevinVBox, yesayaVBox);
         return developersContainer;
     }
 
@@ -511,7 +511,7 @@ public class Controller implements Initializable {
         title.setFont(Font.font("Lapsus Pro Bold", 22)); title.setTextFill(Color.WHITE); title.setWrapText(true);
         Label descMateri = new Label("Materi Pembelajaran:");
         descMateri.setFont(Font.font("Lapsus Pro Bold", 18)); descMateri.setTextFill(Color.WHITE); VBox.setMargin(descMateri, new Insets(10,0,5,0));
-        Label materi1 = new Label("- Konten game ini diadaptasi dari buku-buku resmi Bahasa Indonesia Kurikulum Merdeka dari Kemendikbudristek untuk SD Kelas 1 dan 2."); // Diperbarui
+        Label materi1 = new Label("- Konten game ini diadaptasi dari buku-buku resmi Bahasa Indonesia Kurikulum Merdeka dari Kemendikbudristek untuk anak SD"); // Diperbarui
         materi1.setFont(Font.font("Lapsus Pro Regular", 14)); materi1.setTextFill(Color.LIGHTGRAY); materi1.setWrapText(true);
         Label descTeknologi = new Label("Teknologi yang Digunakan:");
         descTeknologi.setFont(Font.font("Lapsus Pro Bold", 18)); descTeknologi.setTextFill(Color.WHITE); VBox.setMargin(descTeknologi, new Insets(15,0,5,0));
