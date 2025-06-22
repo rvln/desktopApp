@@ -693,6 +693,18 @@
                   </children>
                </HBox>
             </center>
+            <left>
+               <Pane prefHeight="368.0" prefWidth="580.0" BorderPane.alignment="CENTER" />
+            </left>
+            <top>
+               <Pane prefHeight="368.0" prefWidth="1366.0" BorderPane.alignment="CENTER" />
+            </top>
+            <right>
+               <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </right>
+            <bottom>
+               <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </bottom>
          </BorderPane>
       </children>
    </AnchorPane>

@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -67,6 +68,20 @@ public class ChallengeController implements Initializable {
     @FXML
     private ImageView checkAnswerIcon;
 
+     // === FXML Fields BARU untuk Popup ===
+     @FXML private ImageView iconPanduan;
+     @FXML private ImageView logoutTantangan;
+     @FXML private AnchorPane panduanPopup;
+     @FXML private AnchorPane panduanPopup1;
+     @FXML private AnchorPane panduanPopup2;
+     @FXML private AnchorPane keluarPopup;
+     @FXML private HBox btnLanjutPanduan;
+     @FXML private HBox btnLanjutPanduan1;
+     @FXML private HBox btnLanjutPanduan2;
+     @FXML private HBox btnKeluarYa;
+     @FXML private HBox btnKeluarTidak;
+     // ===================================
+
     @FXML
     private Pane disableLayer;
     private AnchorPane completePopupNode;
@@ -84,13 +99,30 @@ public class ChallengeController implements Initializable {
     private Image correctImage;
     private Image wrongImage;
 
+    private List<AnchorPane> allPopups; // List untuk mengelola semua popup
+
     private final Font TEXT_FONT = Font.font("Rubik Bold", 36);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Gabungkan semua popup ke dalam satu list untuk manajemen yang mudah
+        allPopups = new ArrayList<>(Arrays.asList(
+                panduanPopup, panduanPopup1, panduanPopup2, keluarPopup
+        ));
+
+        // Sembunyikan semua popup di awal
+        for (AnchorPane popup : allPopups) {
+            if (popup != null) {
+                popup.setVisible(false);
+            }
+        }
+        
+        if (disableLayer != null) {
+            disableLayer.setVisible(false);
+        }
         if (checkAnswer != null) {
             checkAnswer.setVisible(false);
-            System.err.println("Hasil Jawaban tidak null");
+            checkAnswer.setManaged(false); // Pastikan tidak memakan tempat saat tidak terlihat
         }
         if (answerTextField != null) {
             answerTextField.setOnAction(event -> checkAnswer());
@@ -104,7 +136,6 @@ public class ChallengeController implements Initializable {
             });
         }
         
-        // Pra-muat gambar feedback
         try {
              correctImage = new Image(getClass().getResourceAsStream("/desain/icon/correct-answer.png"));
              wrongImage = new Image(getClass().getResourceAsStream("/desain/icon/wrong-answer.png"));
@@ -243,7 +274,73 @@ public class ChallengeController implements Initializable {
         });
         pause.play();
     }
+
+    // --- Implementasi 5 Metode Baru ---
+
+    @FXML
+    private void handlePopupTantangan(MouseEvent event) {
+        showSpecificPopup(panduanPopup);
+    }
     
+    @FXML
+    private void handleLanjutPanduan(MouseEvent event) {
+        showSpecificPopup(panduanPopup1);
+    }
+
+    @FXML
+    private void handleLanjutPanduan1(MouseEvent event) {
+        showSpecificPopup(panduanPopup2);
+    }
+    
+    @FXML
+    private void handleLanjutPanduan2(MouseEvent event) {
+        closeActivePopup();
+    }
+
+    @FXML
+    private void handleLogoutTantangan(MouseEvent event) {
+        showSpecificPopup(keluarPopup);
+    }
+
+    @FXML
+    private void handleKeluarYa(MouseEvent event) {
+        AudioManager.playClickSound();
+        handleKembaliKeMenu();
+    }
+
+    @FXML
+    private void handleKeluarTidak(MouseEvent event) {
+        closeActivePopup();
+    }
+
+    private void showSpecificPopup(AnchorPane popupToShow) {
+        AudioManager.playClickSound();
+        if (disableLayer != null) {
+            disableLayer.setVisible(true);
+        }
+        for (AnchorPane popup : allPopups) {
+            if (popup != null) {
+                popup.setVisible(popup == popupToShow);
+            }
+        }
+        if (popupToShow != null) {
+            popupToShow.toFront();
+        }
+    }
+
+    private void closeActivePopup() {
+        AudioManager.playClickSound();
+        for (AnchorPane popup : allPopups) {
+            if (popup != null) {
+                popup.setVisible(false);
+            }
+        }
+        if (disableLayer != null) {
+            disableLayer.setVisible(false);
+        }
+        rootPage.requestFocus();
+    }
+
     private void startTimer() {
         startTimeMillis = System.currentTimeMillis();
         if (timerTimeline != null) timerTimeline.stop();
@@ -398,7 +495,7 @@ public class ChallengeController implements Initializable {
             });
         }
     }
-    
+
     private void handleCobaLagi() {
         hideCompletePopup();
         currentSessionIndex = 0;
