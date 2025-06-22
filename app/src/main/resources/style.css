@@ -269,18 +269,18 @@
 .right_pinky_finger {
   -fx-background-color: #57700b;
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
+  -fx-background-radius: 12px;
 }
 
 .complete_typing {
-  -fx-background-radius: 24px;
-  -fx-background-color: radial-gradient(
-    focus-angle 0deg,
-    focus-distance 0%,
-    center 50.06% 16.03%,
-    radius 111.72%,
-    #dd4f4f 0%,
-    #480ece 100%
-  );
+  -fx-background-image: url("desain/Complete.png"); /* ganti dengan path gambar kamu */
+  -fx-background-size: cover; /* supaya gambar menutupi area */
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 7.2, 0, 0, 4);
+}
+
+.panduan_tantangan {
+  -fx-background-image: url("desain/PanduanTantangan.png"); /* ganti dengan path gambar kamu */
+  -fx-background-size: cover; /* supaya gambar menutupi area */
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 7.2, 0, 0, 4);
 }
 
@@ -339,7 +339,7 @@
 }
 
 .petunjuk_text {
-  -fx-background-color: #b2467e;
+  -fx-background-color: #316f98;
 }
 
 .text-field.custom-prompt .prompt-text {

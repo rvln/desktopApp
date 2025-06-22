@@ -49,7 +49,7 @@ tasks.register('createExecutable', Exec) { // Mengganti nama task agar lebih jel
 
     def outputDir = "$buildDir/executable" // Ganti nama folder output
     def iconPath = "src/main/resources/desain/icon/IconKidBoard.ico"
-    def javaFxModulesPath = "C:/Program Files/Java/javafx-sdk-21.0.7/lib" // SESUAIKAN PATH INI
+    def javaFxModulesPath = "C:/Program Files/Java/javafx-sdk-21/lib" // SESUAIKAN PATH INI
 
     doFirst {
         delete(outputDir) // Hapus folder output lama sebelum membuat yang baru

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="rootPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopapp.TypingController">
+   <ImageView fitHeight="800.0" fitWidth="1039.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-preserve-ratio: false;">
+      <image>
+         <Image url="@desain/Typing/TypingBackground2.png" />
+      </image>
+   </ImageView>
+   <AnchorPane prefWidth="1106.0" styleClass="disableLayer_background" stylesheets="@style.css">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="106.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true" />
+      </children></AnchorPane>
+    <AnchorPane fx:id="mainPage" prefWidth="1077.0" stylesheets="@style.css">
+      <children>
+         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+               <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="185.0" BorderPane.alignment="BOTTOM_CENTER" />
+            </left>
+            <right>
+               <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="185.0" BorderPane.alignment="BOTTOM_CENTER" />
+            </right>
+            <top>
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </top>
+            <center>
+               <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="0.0" prefWidth="678.0" spacing="20.0" BorderPane.alignment="CENTER">
+                  <children>
+                     <HBox alignment="CENTER" maxWidth="-Infinity" prefWidth="700.0" styleClass="complete_typing" stylesheets="@style.css">
+                        <children>
+                           <VBox alignment="CENTER" prefHeight="340.0" prefWidth="648.0">
+                              <children>
+                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@desain/Typing/Star.png" />
+                                          </image>
+                                       </ImageView>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <VBox alignment="CENTER" prefHeight="108.0" prefWidth="425.0" spacing="5.0">
+                                          <children>
+                                             <Text fill="#fcd8a2" stroke="#254e5b" strokeType="OUTSIDE" text="Selamat!" textAlignment="CENTER" wrappingWidth="332.0558319091797">
+                                                <font>
+                                                   <Font name="Lapsus Pro Bold" size="33.0" />
+                                                </font>
+                                             </Text>
+                                             <Text fill="#fad7a2" stroke="#254e5b" strokeType="OUTSIDE" text="anda telah menyelesaikannya~" textAlignment="CENTER" wrappingWidth="402.72251892089844">
+                                                <font>
+                                                   <Font name="Lapsus Pro Bold" size="33.0" />
+                                                </font>
+                                             </Text>
+                                          </children>
+                                       </VBox>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                    <children>
+                                       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" stylesheets="@style.css">
+                                          <styleClass>
+                                             <String fx:value="medium_button_radius" />
+                                             <String fx:value="stroked-hbox" />
+                                             <String fx:value="top_pane_background" />
+                                          </styleClass>
+                                          <children>
+                                             <Text fx:id="durasiTextComplete" fill="#dceb3f" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
+                                                <font>
+                                                   <Font name="Lapsus Pro Bold" size="42.0" />
+                                                </font>
+                                                <HBox.margin>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </HBox.margin>
+                                             </Text>
+                                          </children>
+                                       </HBox>
+                                       <HBox fx:id="incorrectCount" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" stylesheets="@style.css">
+                                          <styleClass>
+                                             <String fx:value="medium_button_radius" />
+                                             <String fx:value="stroked-hbox" />
+                                             <String fx:value="top_pane_background" />
+                                          </styleClass>
+                                          <children>
+                                             <Text fx:id="incorrectCountText" fill="#de351f" stroke="#d4d938" strokeType="OUTSIDE" text="10x Salah">
+                                                <font>
+                                                   <Font name="Lapsus Pro Bold" size="42.0" />
+                                                </font>
+                                                <HBox.margin>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </HBox.margin>
+                                             </Text>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                    <VBox.margin>
+                                       <Insets left="20.0" right="20.0" />
+                                    </VBox.margin>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                        <children>
+                           <HBox fx:id="btnKembaliComplete" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" stylesheets="@style.css">
+                              <styleClass>
+                                 <String fx:value="info_button_kembali" />
+                                 <String fx:value="medium_button_radius" />
+                                 <String fx:value="stroked-hbox" />
+                              </styleClass>
+                              <children>
+                                 <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Kembali">
+                                    <font>
+                                       <Font name="Lapsus Pro Bold" size="42.0" />
+                                    </font>
+                                    <HBox.margin>
+                                       <Insets left="20.0" right="20.0" />
+                                    </HBox.margin>
+                                 </Text>
+                              </children>
+                           </HBox>
+                           <HBox fx:id="btnCobaLagiComplete" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" stylesheets="@style.css">
+                              <styleClass>
+                                 <String fx:value="btn_system_red" />
+                                 <String fx:value="medium_button_radius" />
+                                 <String fx:value="stroked-hbox" />
+                              </styleClass>
+                              <children>
+                                 <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Coba Lagi">
+                                    <font>
+                                       <Font name="Lapsus Pro Bold" size="42.0" />
+                                    </font>
+                                    <HBox.margin>
+                                       <Insets left="20.0" right="20.0" />
+                                    </HBox.margin>
+                                 </Text>
+                              </children>
+                           </HBox>
+                           <HBox fx:id="btnLanjutkanComplete" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" stylesheets="@style.css">
+                              <styleClass>
+                                 <String fx:value="btn_system" />
+                                 <String fx:value="medium_button_radius" />
+                                 <String fx:value="stroked-hbox" />
+                              </styleClass>
+                              <children>
+                                 <Text fill="#f5cb8a" stroke="#254e5b" strokeType="OUTSIDE" text="Lanjutkan">
+                                    <font>
+                                       <Font name="Lapsus Pro Bold" size="42.0" />
+                                    </font>
+                                    <HBox.margin>
+                                       <Insets left="20.0" right="20.0" />
+                                    </HBox.margin>
+                                 </Text>
+                              </children>
+                           </HBox>
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </center>
+         </BorderPane>
+      </children>
+   </AnchorPane>
+
+</StackPane>

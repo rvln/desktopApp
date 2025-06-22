@@ -35,11 +35,11 @@
                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
             </top>
             <center>
-               <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="0.0" prefWidth="623.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="0.0" prefWidth="678.0" spacing="20.0" BorderPane.alignment="CENTER">
                   <children>
-                     <HBox alignment="CENTER" styleClass="complete_typing" stylesheets="@style.css">
+                     <HBox alignment="CENTER" maxWidth="-Infinity" prefWidth="700.0" styleClass="complete_typing" stylesheets="@style.css">
                         <children>
-                           <VBox alignment="CENTER" prefHeight="340.0" prefWidth="623.0">
+                           <VBox alignment="CENTER" prefHeight="340.0" prefWidth="648.0">
                               <children>
                                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -74,7 +74,7 @@
                                           <styleClass>
                                              <String fx:value="medium_button_radius" />
                                              <String fx:value="stroked-hbox" />
-                                             <String fx:value="left_pane_background" />
+                                             <String fx:value="top_pane_background" />
                                           </styleClass>
                                           <children>
                                              <Text fx:id="durasiTextComplete" fill="#dceb3f" stroke="#254e5b" strokeType="OUTSIDE" text="Durasi 08:10 Menit">
@@ -91,7 +91,7 @@
                                           <styleClass>
                                              <String fx:value="medium_button_radius" />
                                              <String fx:value="stroked-hbox" />
-                                             <String fx:value="left_pane_background" />
+                                             <String fx:value="top_pane_background" />
                                           </styleClass>
                                           <children>
                                              <Text fx:id="incorrectCountText" fill="#de351f" stroke="#d4d938" strokeType="OUTSIDE" text="10x Salah">

@@ -54,9 +54,9 @@ public class App extends Application {
             System.err.println("Stylesheet /style.css tidak ditemukan.");
         }
 
-        primaryStageInstance.setWidth(1024);
-        primaryStageInstance.setHeight(800);
-        primaryStageInstance.setResizable(false);
+        primaryStageInstance.setWidth(1366);
+        primaryStageInstance.setHeight(768);
+        primaryStageInstance.setResizable(true);
         primaryStageInstance.setTitle("KidBoard");
         primaryStageInstance.setScene(scene);
         primaryStageInstance.show();
