@@ -438,8 +438,8 @@ public class Controller implements Initializable {
         developersContainer.setAlignment(Pos.CENTER);
         developersContainer.setSpacing(25.0);
         VBox fricoVBox = createSingleDeveloperVBox("/desain/profil/frico.jpg", "Frico Putung", "220211060359", 130.0);
-        VBox chevinVBox = createSingleDeveloperVBox("/desain/profil/chevin.jpg", "Chevin Tangkelabi", "220211060193", 150.0);
-        VBox yesayaVBox = createSingleDeveloperVBox("/desain/profil/yesaya.jpg", "Yesaya Saweho", "220211060012", 130.0);
+        VBox chevinVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Frico Putung", "220211060359", 150.0);
+        VBox yesayaVBox = createSingleDeveloperVBox("/desain/icon/user.png", "Frico Putung", "220211060359", 130.0);
         developersContainer.getChildren().addAll(fricoVBox, chevinVBox, yesayaVBox);
         return developersContainer;
     }
