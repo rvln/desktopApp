@@ -56,6 +56,10 @@ public class App extends Application {
 
         primaryStageInstance.setWidth(1366);
         primaryStageInstance.setHeight(768);
+        primaryStageInstance.setMinWidth(1024);
+        primaryStageInstance.setMinHeight(768);
+        primaryStageInstance.setMaxWidth(1366);
+        primaryStageInstance.setMaxHeight(768);
         primaryStageInstance.setResizable(true);
         primaryStageInstance.setTitle("KidBoard");
         primaryStageInstance.setScene(scene);
